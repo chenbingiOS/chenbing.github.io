@@ -1,0 +1,82 @@
+/*头部区域*/
+
+.header {
+	width: 1100px;
+	height: 106px;
+	margin: auto 0;
+	position: relative;
+	background-color: #333;
+}
+
+
+/*头部区域 end*/
+
+
+/*海报区域*/
+
+.banner {
+	width: 100%;
+	height: 500px;
+	margin: auto 0;
+	position: relative;
+	background-color: #333;
+}
+
+
+/*海报区域 end*/
+
+
+/*关于我们区域*/
+
+.about {
+	width: 106px;
+	height: 1100px;
+	margin: auto 0;
+	position: relative;
+	background-color: #333;
+}
+
+
+/*关于我们区域 end*/
+
+
+/*产品区域*/
+
+.pro {
+	width: 100%;
+	height: 630px;	
+	margin: auto 0;
+	position: relative;
+	background-color: #333;
+}
+
+
+/*产品区域 end*/
+
+
+/*新闻区域*/
+
+.news {
+	width: 1100px;
+	height: 440px;
+	margin: auto 85px;
+	position: relative;
+	background-color: #333;
+}
+
+
+/*新闻区域 end*/
+
+
+/*底部区域*/
+
+.footer {
+	width: 100%;
+	height: 250px;	
+	margin: auto 0;
+	position: relative;
+	background-color: #333;
+}
+
+
+/*底部区域 end*/
