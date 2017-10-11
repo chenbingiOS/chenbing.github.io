@@ -1,1 +1,46 @@
-theme: jekyll-theme-tactile
+####全局配置####
+# Safe 禁用 自定义插件。
+safe: true
+# Exclude 转换时排除某些文件夹或文件。被排除的文件或文件夹的路径是相对于网站源码目录的，源码目录以外不受影响。
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "CNAME", "Gemfile", "Gemfile.lock"]
+#Time Zone 设置时区，这个设置作用于 TZ 变量， Ruby 用它来处理日期和时间。 IANA Time Zone Database 里边的都有效，比如 America/New_York 。默认值为操作系统的时区。
+timezone: Asia/Shanghai
+encoding
+####全局配置 end####
+
+
+
+permalink: /blog/:year/:month/:title.html 
+include: ['.htaccess']
+markdown: kramdown
+highlights: pygments
+url: 
+cdn_url: 7u2t01.com1.z0.glb.clouddn.com
+lsi: false
+auto: false 
+
+paginate: 8
+paginate_path: "page:num"
+
+kramdown:
+  auto_ids: true,
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
+
+JB :
+  IMAGE_PATH : http://coolshell.info/images
+
+# presonal config
+domain: http://coolshell.info
+title: ChenBing
+description: Draw my life with code
+author: Lippi.OuYang
+email: ouyanglip@gmail.com
+github: LippiOuYang
+
+config:
+  js_dir:
+  img_dir:
+  css_dir:
