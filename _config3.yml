@@ -1,0 +1,86 @@
+# 
+#   根据 jekyll 配置表，修改个人博客配置信息
+#   
+#   http://jekyll.com.cn/docs/configuration/
+#
+#
+#
+#
+
+#source:      .
+#destination: ./_site
+plugins:     [jekyll-paginate] #plugins:     ./_plugins
+#layouts_dir: ./_layouts #  The 'layouts' configuration option has been renamed to 'layouts_dir'. Please update your config file accordingly.
+include:     ['.htaccess']
+exclude:     [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "CNAME", "Gemfile", "Gemfile.lock"]    # Exclude 转换时排除某些文件夹或文件。被排除的文件或文件夹的路径是相对于网站源码目录的，源码目录以外不受影响。
+#keep_files:  ['.git','.svn']
+#gems:        [] # The 'gems' configuration option has been renamed to 'plugins'. Please update your config file accordingly.
+timezone:    Asia/Shanghai    #Time Zone 设置时区，这个设置作用于 TZ 变量， Ruby 用它来处理日期和时间。 IANA Time Zone Database 里边的都有效，比如 America/New_York 。默认值为操作系统的时区。
+#encoding:    nil
+
+#future:      true
+#show_drafts: nil
+#limit_posts: 0
+highlighter: pygments
+
+#relative_permalinks: true
+
+permalink: /blog/:year/:month/:title.html  #permalink:     date
+paginate_path: 'page:num'
+paginate:      8
+
+markdown:      kramdown # maruku
+#markdown_ext:  markdown,mkd,mkdn,md
+#textile_ext:   textile
+
+#excerpt_separator: "\n\n"
+
+safe:        true     # Safe 禁用 自定义插件。
+#watch:       false    # deprecated
+#server:      false    # deprecated
+#host:        0.0.0.0
+#port:        4000
+#baseurl:     /
+url:         # http://localhost:4000
+lsi:         false    # LSI 为相关文章生成索引
+
+#maruku:
+#  use_tex:    false
+#  use_divs:   false
+#  png_engine: blahtex
+#  png_dir:    images/latex
+#  png_url:    /images/latex
+#  fenced_code_blocks: true
+
+#rdiscount:
+#  extensions: []
+
+#redcarpet:
+#  extensions: []
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+#  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false  # change use_coderay: false
+
+#  coderay:
+#    coderay_wrap: div
+#    coderay_line_numbers: inline
+#    coderay_line_numbers_start: 1
+#    coderay_tab_width: 4
+#    coderay_bold_every: 10
+#    coderay_css: style
+
+#redcloth:
+#  hard_breaks: true
+
+# presonal config
+domain:      http://coolshell.info
+title:       陈冰
+description: Draw my life with code
+author:      ChenBing
+email:       chenbingios@163.com
+github:      chenbingiOS
