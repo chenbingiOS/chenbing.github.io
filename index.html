@@ -1,71 +1,79 @@
-<!DOCTYPE html>
-<html>
+---
+layout: default
+title: "首页：Home"
+---
+<!-- 
+<h1 class="page-header">
+  <small>
+    {{ site.description }}
+  </small>
+</h1>
+-->
+<!-- Loop output paged posts -->
+<div id="index" class="row">
+    <div class="post-area">
+     	 <div class="post-list-body">
+        <div post-cate="All">
+        <ul class="posts">
+	{% for post in paginator.posts %}
+	<li>	
+	<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+	<span class="date">{{ post.date | date_to_string }}</span>
+	
+	<hr>
+	<p>{% if post.excerpt.size > 32 %}{{ post.excerpt }}{% else %}{{ post.content | strip_html | strip_newlines | truncate: 160 }}{% endif %}</p>
+		<p> <a href="{{ post.url }}"><span >阅读全文 &raquo; </span></a></p>
+	<hr>
+	</li>
+	{% endfor %}
+	</ul>
+	<!-- Pager indicator -->
+	<ul class="pager">
+	  {% if paginator.previous_page %} {% if paginator.previous_page == 1 %}
+	  <li class="previous">
+	    <a href="{{ site.url }}/">
+	      &larr; Older
+	    </a>
+	  </li>
+	  {% else %}
+	  <li class="previous">
+	    <a href="{{ site.url }}/page{{ paginator.previous_page }}">
+	      &larr; Older
+	    </a>
+	  </li>
+	  {% endif %} {% endif %} {% if paginator.next_page %}
+	  <li class="next">
+	    <a href="{{ site.url }}/page{{ paginator.next_page }}">
+	      Newer &rarr;
+	    </a>
+	  </li>
+	  {% endif %}
+	</ul>
+	</div>
+	
 
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/styles.css" />
-	</head>
+	 
+       {% for category in site.categories %}
+	<div post-cate="{{category | first}}">
 
-	<body>
+          <ul class="posts">
+            {% for posts in category  %}
+              {% for post in posts %}
+                {% if post.url %}
+		<li>
+                  <a href="{{ post.url }}" class="post-list-item">
+                    <h2>{{ post.title }}</h2>
+                    <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
+                  </a>
+		</li>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </ul>
+	</div>
+        {% endfor %}
+	
+	 </div>
 
-		<!--头部区域-->
-		<div class="header">
-			<a href="#" class="logo"></a>
-			<div class="tel"></div>
-			<div class="nav"></div>
-		</div>
-		<!--头部区域 end-->
-
-		<!--海报区域-->
-		<div class="banner">
-
-		</div>
-		<!--海报区域 end-->
-
-		<!--关于我们区域-->
-		<div class="about">
-			<div class="box box_l">
-				<a href="#">
-					<i></i>
-					<h2>公司简介</h2>
-					<p>公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介</p>
-				</a>
-			</div>
-			<div class="box box_r">
-				<a href="#">
-					<i></i>
-					<h2>公司简介</h2>
-					<p>公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介公司简介</p>
-				</a>
-			</div>
-		</div>
-		<!--关于我们区域 end-->
-
-		<!--产品区域-->
-		<div class="pro">
-			<div class="pro_con">
-				<div class="btn btn_l">
-				</div>
-				<div class="out">
-				</div>
-				<div class="btn btn_r">
-				</div>
-			</div>
-		</div>
-		<!--产品区域 end-->
-
-		<!--新闻区域-->
-		<div class="news">
-
-		</div>
-		<!--新闻区域 end-->
-
-		<!--底部区域-->
-		<div class="footer">
-
-		</div>
-		<!--底部区域 end-->
-	</body>
-
-</html>
+</div>
+</div>
