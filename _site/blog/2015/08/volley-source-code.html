@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Volley源码分析 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="Volley源码分析 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      Volley源码分析 - ChenBing
+      Volley源码分析 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  Volley源码分析
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2015-08-27-volley-source-code.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2015-08-27-volley-source-code.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			27 Aug 2015
 		  </div>
@@ -133,7 +133,7 @@
 
 <p>##请求Request</p>
 
-<p>Volley里面每一个请求都是继承自Request抽象类，比如图中的StringRequest,JsonRequest,ImageRequest,请求最主要的几个属性有：http请求的方法method,请求资源url,是否应该缓存响应shouldCache,如果缓存的话就会有对应的缓存对象Cache.Entry,以及用来标识请求的序列号mSequence,当然这里的每一个请求是异步的，你还需要注册对应的响应监听器，<code class="highlighter-rouge">private final Listener&lt;String&gt; mListener;</code>,这个后面再讲．</p>
+<p>Volley里面每一个请求都是继承自Request抽象类，比如图中的StringRequest,JsonRequest,ImageRequest,请求最主要的几个属性有：http请求的方法method,请求资源url,是否应该缓存响应shouldCache,如果缓存的话就会有对应的缓存对象Cache.Entry,以及用来标识请求的序列号mSequence,当然这里的每一个请求是异步的，你还需要注册对应的响应监听器，<code>private final Listener&lt;String&gt; mListener;</code>,这个后面再讲．</p>
 
 <p>##请求队列</p>
 
@@ -165,14 +165,14 @@
 	<span class="n">IMMEDIATE</span>
 <span class="o">}</span></code></pre></figure>
 
-<p>既然是这样那么请求一定实现了java的<code class="highlighter-rouge">Comparable</code>接口了，没错，而且正如前面所说请求按照优先级和序列号来排序，如下所示：</p>
+<p>既然是这样那么请求一定实现了java的<code>Comparable</code>接口了，没错，而且正如前面所说请求按照优先级和序列号来排序，如下所示：</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="n">Request</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
 <span class="n">Priority</span> <span class="n">left</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">getPriority</span><span class="o">();</span>
 <span class="n">Priority</span> <span class="n">right</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="na">getPriority</span><span class="o">();</span>
 
-<span class="c1">// High-priority requests are "lesser" so they are sorted to the front.</span>
+<span class="c1">// High-priority requests are &quot;lesser&quot; so they are sorted to the front.</span>
 <span class="c1">// Equal priorities are sorted by sequence number to provide FIFO ordering.</span>
 <span class="k">return</span> <span class="n">left</span> <span class="o">==</span> <span class="n">right</span> <span class="o">?</span>
         <span class="k">this</span><span class="o">.</span><span class="na">mSequence</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="na">mSequence</span> <span class="o">:</span>
@@ -181,12 +181,12 @@
 
 <p>##请求分派RequestDispatcher</p>
 
-<p>Volley里面有两个<code class="highlighter-rouge">Dispacher</code>,一个是<code class="highlighter-rouge">CacheDispatcher</code>,另一个是<code class="highlighter-rouge">NetworkDispatcher</code>,两个都是继承自线程，<code class="highlighter-rouge">CacheDispatcher</code>启动后从mCacheQueue里取出请求，根据请求的CacheKey(实际上是url)从缓存中检索数据，如果没有检索到数据就把它重新丢进<code class="highlighter-rouge">mNetworkQueue</code>中从网络中获取数据，如果缓存命中同时检查下缓存是否过期，如果缓存过期了照样要重新获取数据，否则调用<code class="highlighter-rouge">ResponseDelivery</code>把响应传递给相应的对象(实际上是调用请求注册的相应监听器)．
-Volley默认启动了４个<code class="highlighter-rouge">NetworkDispatcher</code>线程来处理网络请求，为了避免过多的网络请求造成UI卡死，Volley默认把这些线程的优先级设置为后台线程<code class="highlighter-rouge">Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);</code></p>
+<p>Volley里面有两个<code>Dispacher</code>,一个是<code>CacheDispatcher</code>,另一个是<code>NetworkDispatcher</code>,两个都是继承自线程，<code>CacheDispatcher</code>启动后从mCacheQueue里取出请求，根据请求的CacheKey(实际上是url)从缓存中检索数据，如果没有检索到数据就把它重新丢进<code>mNetworkQueue</code>中从网络中获取数据，如果缓存命中同时检查下缓存是否过期，如果缓存过期了照样要重新获取数据，否则调用<code>ResponseDelivery</code>把响应传递给相应的对象(实际上是调用请求注册的相应监听器)．
+Volley默认启动了４个<code>NetworkDispatcher</code>线程来处理网络请求，为了避免过多的网络请求造成UI卡死，Volley默认把这些线程的优先级设置为后台线程<code>Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);</code></p>
 
 <p>##HttpStack</p>
 
-<p>Volley的<code class="highlighter-rouge">NetworkDispatcher</code>线程默认调用的是Network类的<code class="highlighter-rouge">HttpStack</code>的方法来执行Http请求，HttpStack的实现有两种，如果系统在 Gingerbread 及之后(即 API Level &gt;= 9)，采用基于 <code class="highlighter-rouge">HttpURLConnection</code> 的 HurlStack，如果小于 9，采用基于 HttpClient 的 <code class="highlighter-rouge">HttpClientStack</code>。</p>
+<p>Volley的<code>NetworkDispatcher</code>线程默认调用的是Network类的<code>HttpStack</code>的方法来执行Http请求，HttpStack的实现有两种，如果系统在 Gingerbread 及之后(即 API Level &gt;= 9)，采用基于 <code>HttpURLConnection</code> 的 HurlStack，如果小于 9，采用基于 HttpClient 的 <code>HttpClientStack</code>。</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">stack</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
@@ -209,28 +209,28 @@ Volley默认启动了４个<code class="highlighter-rouge">NetworkDispatcher</co
 <p>通过代码我们发现如果是使用 AndroidHttpClient，Volley 还会将请求头中的 User-Agent 字段设置为 App 的 ${packageName}/${versionCode}，如果异常则使用 “volley/0”，不过这个获取 User-Agent 的操作应该放到 if else 内部更合适。而对于 HttpURLConnection 却没有任何操作，为什么呢？
 如果用 Fiddler 或 Charles 对数据抓包我们会发现，我们会发现 HttpURLConnection 默认是有 User-Agent 的，类似：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dalvik/1.6.0 (Linux; U; Android 4.1.1; Google Nexus 4 - 4.1.1 - API 16 - 768x1280_1 Build/JRO03S)
-</code></pre></div></div>
+<pre><code>Dalvik/1.6.0 (Linux; U; Android 4.1.1; Google Nexus 4 - 4.1.1 - API 16 - 768x1280_1 Build/JRO03S)
+</code></pre>
 
 <p>经常用 WebView 的同学会也许会发现似曾相识，是的，WebView 默认的 User-Agent 也是这个。实际在请求发出之前，会检测 User-Agent 是否为空，如果不为空，则加上系统默认 User-Agent。在 Android 2.1 之后，我们可以通过</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>String userAgent = System.getProperty("http.agent");
-</code></pre></div></div>
+<pre><code>String userAgent = System.getProperty("http.agent");
+</code></pre>
 
 <p>得到系统默认的 User-Agent，Volley 如果希望自定义 User-Agent，可在自定义 Request 中重写 getHeaders() 函数</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">getHeaders</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">AuthFailureError</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">getHeaders</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">AuthFailureError</span> <span class="o">{</span>
     <span class="c1">// self-defined user agent</span>
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">headerMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
-    <span class="n">headerMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"User-Agent"</span><span class="o">,</span> <span class="s">"android-open-project-analysis/1.0"</span><span class="o">);</span>
+    <span class="n">headerMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;User-Agent&quot;</span><span class="o">,</span> <span class="s">&quot;android-open-project-analysis/1.0&quot;</span><span class="o">);</span>
     <span class="k">return</span> <span class="n">headerMap</span><span class="o">;</span>
 <span class="o">}</span></code></pre></figure>
 
 <p>##DiskBasedCache</p>
 
 <p>Volley默认是把缓存保存在文件中，并在内存中保存了缓存的头部，缓存头部占的最大内存可以设置，便于快速查询缓存是否存在．CacheHeader的主要属性有
-文件大小size,缓存的etag,获取缓存的key,ttl,softTtl以及responseHeader.根据key来查询缓存，先从内存中查询是否存在CacheHeader,如果存在再从文件中把响应的data再读出来．每次向缓存中插入数据时先看看是否达到了缓存的最大大小，如果超过了容量就按照LRU算法从缓存中删除一部分数据直到满足需求，LRU算法实现很简单，直接调用LinkedHashMap来实现，<code class="highlighter-rouge">private final Map&lt;String, CacheHeader&gt; mEntries = new LinkedHashMap&lt;String, CacheHeader&gt;(16,0.75f,true)</code>.</p>
+文件大小size,缓存的etag,获取缓存的key,ttl,softTtl以及responseHeader.根据key来查询缓存，先从内存中查询是否存在CacheHeader,如果存在再从文件中把响应的data再读出来．每次向缓存中插入数据时先看看是否达到了缓存的最大大小，如果超过了容量就按照LRU算法从缓存中删除一部分数据直到满足需求，LRU算法实现很简单，直接调用LinkedHashMap来实现，<code>private final Map&lt;String, CacheHeader&gt; mEntries = new LinkedHashMap&lt;String, CacheHeader&gt;(16,0.75f,true)</code>.</p>
 
 <p>##ByteArrayPool</p>
 
@@ -243,25 +243,25 @@ Volley默认启动了４个<code class="highlighter-rouge">NetworkDispatcher</co
 
 <h2 id="关于http缓存">关于Http缓存</h2>
 
-<p>Volley中对Http缓存作了相应的处理，在使用BasicNetwork执行Request之前，会给请求添加相应的缓存首部，利用<code class="highlighter-rouge">If-None-Match</code>和<code class="highlighter-rouge">If-Modified-Since</code>对过期缓存或者不新鲜缓存，进行请求再验证,代码如下所示：</p>
+<p>Volley中对Http缓存作了相应的处理，在使用BasicNetwork执行Request之前，会给请求添加相应的缓存首部，利用<code>If-None-Match</code>和<code>If-Modified-Since</code>对过期缓存或者不新鲜缓存，进行请求再验证,代码如下所示：</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">addCacheHeaders</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">headers</span><span class="o">,</span> <span class="n">Cache</span><span class="o">.</span><span class="na">Entry</span> <span class="n">entry</span><span class="o">)</span> <span class="o">{</span>
-	<span class="c1">// If there's no cache entry, we're done.</span>
+	<span class="c1">// If there&#39;s no cache entry, we&#39;re done.</span>
 	<span class="k">if</span> <span class="o">(</span><span class="n">entry</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
 	    <span class="k">return</span><span class="o">;</span>
 	<span class="o">}</span>
 
 	<span class="k">if</span> <span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">etag</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-	    <span class="n">headers</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"If-None-Match"</span><span class="o">,</span> <span class="n">entry</span><span class="o">.</span><span class="na">etag</span><span class="o">);</span>
+	    <span class="n">headers</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;If-None-Match&quot;</span><span class="o">,</span> <span class="n">entry</span><span class="o">.</span><span class="na">etag</span><span class="o">);</span>
 	<span class="o">}</span>
 
 	<span class="k">if</span> <span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">serverDate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
 	    <span class="n">Date</span> <span class="n">refTime</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">serverDate</span><span class="o">);</span>
-	    <span class="n">headers</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"If-Modified-Since"</span><span class="o">,</span> <span class="n">DateUtils</span><span class="o">.</span><span class="na">formatDate</span><span class="o">(</span><span class="n">refTime</span><span class="o">));</span>
+	    <span class="n">headers</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;If-Modified-Since&quot;</span><span class="o">,</span> <span class="n">DateUtils</span><span class="o">.</span><span class="na">formatDate</span><span class="o">(</span><span class="n">refTime</span><span class="o">));</span>
 	<span class="o">}</span>
     <span class="o">}</span></code></pre></figure>
 
-<p>同样，在收到Http响应之后，Volley也会检查响应首部中的缓存字段，根据<code class="highlighter-rouge">Cache-Control</code>和<code class="highlighter-rouge">Expires</code>首部来计算缓存的过期时间。如果两个首部都存在情况下，以<code class="highlighter-rouge">Cache-Control</code>为准。代码如下所示：</p>
+<p>同样，在收到Http响应之后，Volley也会检查响应首部中的缓存字段，根据<code>Cache-Control</code>和<code>Expires</code>首部来计算缓存的过期时间。如果两个首部都存在情况下，以<code>Cache-Control</code>为准。代码如下所示：</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Cache</span><span class="o">.</span><span class="na">Entry</span> <span class="nf">parseCacheHeaders</span><span class="o">(</span><span class="n">NetworkResponse</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
 <span class="kt">long</span> <span class="n">now</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
@@ -277,36 +277,36 @@ Volley默认启动了４个<code class="highlighter-rouge">NetworkDispatcher</co
 <span class="n">String</span> <span class="n">serverEtag</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 <span class="n">String</span> <span class="n">headerValue</span><span class="o">;</span>
 
-<span class="n">headerValue</span> <span class="o">=</span> <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"Date"</span><span class="o">);</span>
+<span class="n">headerValue</span> <span class="o">=</span> <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;Date&quot;</span><span class="o">);</span>
 <span class="k">if</span> <span class="o">(</span><span class="n">headerValue</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">serverDate</span> <span class="o">=</span> <span class="n">parseDateAsEpoch</span><span class="o">(</span><span class="n">headerValue</span><span class="o">);</span>
 <span class="o">}</span>
 
-<span class="n">headerValue</span> <span class="o">=</span> <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"Cache-Control"</span><span class="o">);</span>
+<span class="n">headerValue</span> <span class="o">=</span> <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;Cache-Control&quot;</span><span class="o">);</span>
 <span class="k">if</span> <span class="o">(</span><span class="n">headerValue</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">hasCacheControl</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="n">String</span><span class="o">[]</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">headerValue</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">","</span><span class="o">);</span>
+    <span class="n">String</span><span class="o">[]</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">headerValue</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&quot;,&quot;</span><span class="o">);</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">tokens</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
         <span class="n">String</span> <span class="n">token</span> <span class="o">=</span> <span class="n">tokens</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">trim</span><span class="o">();</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"no-cache"</span><span class="o">)</span> <span class="o">||</span> <span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"no-store"</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;no-cache&quot;</span><span class="o">)</span> <span class="o">||</span> <span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;no-store&quot;</span><span class="o">))</span> <span class="o">{</span>
             <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"max-age="</span><span class="o">))</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&quot;max-age=&quot;</span><span class="o">))</span> <span class="o">{</span>
             <span class="k">try</span> <span class="o">{</span>
                 <span class="n">maxAge</span> <span class="o">=</span> <span class="n">Long</span><span class="o">.</span><span class="na">parseLong</span><span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">8</span><span class="o">));</span>
             <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="o">}</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"must-revalidate"</span><span class="o">)</span> <span class="o">||</span> <span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"proxy-revalidate"</span><span class="o">))</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;must-revalidate&quot;</span><span class="o">)</span> <span class="o">||</span> <span class="n">token</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;proxy-revalidate&quot;</span><span class="o">))</span> <span class="o">{</span>
             <span class="n">maxAge</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
-<span class="n">headerValue</span> <span class="o">=</span> <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"Expires"</span><span class="o">);</span>
+<span class="n">headerValue</span> <span class="o">=</span> <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;Expires&quot;</span><span class="o">);</span>
 <span class="k">if</span> <span class="o">(</span><span class="n">headerValue</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">serverExpires</span> <span class="o">=</span> <span class="n">parseDateAsEpoch</span><span class="o">(</span><span class="n">headerValue</span><span class="o">);</span>
 <span class="o">}</span>
 
-<span class="n">serverEtag</span> <span class="o">=</span> <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"ETag"</span><span class="o">);</span>
+<span class="n">serverEtag</span> <span class="o">=</span> <span class="n">headers</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;ETag&quot;</span><span class="o">);</span>
 
 <span class="c1">// Cache-Control takes precedence over an Expires header, even if both exist and Expires</span>
 <span class="c1">// is more restrictive.</span>
@@ -328,13 +328,13 @@ Volley默认启动了４个<code class="highlighter-rouge">NetworkDispatcher</co
 <span class="k">return</span> <span class="n">entry</span><span class="o">;</span>
 <span class="o">}</span></code></pre></figure>
 
-<p>读完Volley的源码之后只有一个感觉，就是<code class="highlighter-rouge">谷歌出品，必属精品</code>.</p>
+<p>读完Volley的源码之后只有一个感觉，就是<code>谷歌出品，必属精品</code>.</p>
 
 		  </article>
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -444,6 +444,15 @@ Volley默认启动了４个<code class="highlighter-rouge">NetworkDispatcher</co
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -816,6 +825,15 @@ Volley默认启动了４个<code class="highlighter-rouge">NetworkDispatcher</co
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1293,7 +1311,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1321,7 +1339,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1484,11 +1502,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

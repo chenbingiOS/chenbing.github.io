@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="利用github-pages建立个人博客 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="利用github-pages建立个人博客 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      利用github-pages建立个人博客 - ChenBing
+      利用github-pages建立个人博客 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  利用github-pages建立个人博客
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2015-03-01-github-pages-blog.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2015-03-01-github-pages-blog.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			01 Mar 2015
 		  </div>
@@ -160,8 +160,8 @@
 <p>我们选择DNSPod的服务，他们的产品做得不错，易用、免费，收费版有更高端的功能，暂不需要。注册登录之后，按照DNSPod的说法，只需三步（我们插入一步）：</p>
 
 <p>首先添加域名记录，可参考DNSPod的帮助文档：<a href="https://www.dnspod.cn/Support">https://www.dnspod.cn/Support</a>
-在DNSPod自己的域名下添加一条A记录，地址就是Github Pages的服务IP地址：<code class="highlighter-rouge">192.30.252.153</code>
-在域名注册商处修改DNS服务:去Godaddy修改Nameservers为这两个地址： <code class="highlighter-rouge">f1g1ns1.dnspod.net、f1g1ns2.dnspod.net</code>。</p>
+在DNSPod自己的域名下添加一条A记录，地址就是Github Pages的服务IP地址：<code>192.30.252.153</code>
+在域名注册商处修改DNS服务:去Godaddy修改Nameservers为这两个地址： <code>f1g1ns1.dnspod.net、f1g1ns2.dnspod.net</code>。</p>
 
 <p>##配置和使用Github</p>
 
@@ -172,15 +172,15 @@
 
 <p>安装完成后，还需要最后一步设置，在命令行输入：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git config --global user.name "Your Name"
+<pre><code>$ git config --global user.name "Your Name"
 $ git config --global user.email "email@example.com"
-</code></pre></div></div>
+</code></pre>
 
 <p>###检查SSH keys的设置</p>
 
 <p>首先我们需要检查你电脑上现有的ssh key：</p>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="err">$</span> <span class="n">cd</span> <span class="o">~/.</span><span class="na">ssh</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">$</span> <span class="n">cd</span> <span class="o">~/.</span><span class="na">ssh</span></code></pre></figure>
 
 <p>如果显示“No such file or directory”，跳到第三步，否则继续。</p>
 
@@ -188,19 +188,19 @@ $ git config --global user.email "email@example.com"
 
 <p>因为已经存在key文件，所以需要备份旧的数据并删除：</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">ls
-</span>config  id_rsa  id_rsa.pub  known_hosts
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">ls
+config  id_rsa  id_rsa.pub  known_hosts
 mkdir key_backup
-cp id_rsa<span class="k">*</span> key_backup
-rm id_rsa<span class="k">*</span></code></pre></figure>
+cp id_rsa* key_backup
+rm id_rsa*</code></pre></figure>
 
 <p>###生成新的SSH Key</p>
 
 <p>输入下面的代码，就可以生成新的key文件，我们只需要默认设置就好，所以当需要输入文件名的时候，回车就好。</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-C</span> <span class="s2">"邮件地址@youremail.com"</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>ssh-keygen -t rsa -C <span class="s2">&quot;邮件地址@youremail.com&quot;</span>
 Generating public/private rsa key pair.
-Enter file <span class="k">in </span>which to save the key <span class="o">(</span>/Users/	your_user_directory/.ssh/id_rsa<span class="o">)</span>:&lt;回车就好&gt;</code></pre></figure>
+Enter file in which to save the key <span class="o">(</span>/Users/	your_user_directory/.ssh/id_rsa<span class="o">)</span>:&lt;回车就好&gt;</code></pre></figure>
 
 <p>然后系统会要你输入加密串（Passphrase）：</p>
 
@@ -220,27 +220,27 @@ Enter same passphrase again:&lt;再次输入加密串&gt;</code></pre></figure>
 <p>选择SSH Keys项，把复制的内容粘贴进去，然后点击Add Key按钮即可： 
 <img src="/images/images/githubpages/bootcamp_1_ssh.jpg" alt="set ssh keys" /></p>
 
-<p>PS：如果需要配置多个GitHub账号，可以参看这个<a href="http://ju.outofmemory.cn/entry/16775">多个github帐号的SSH key切换</a>，不过需要提醒一下的是，如果你只是通过这篇文章中所述配置了Host，那么你多个账号下面的提交用户会是一个人，所以需要通过命令<code class="highlighter-rouge">git config --global --unset user.email</code>删除用户账户设置，在每一个repo下面使用<code class="highlighter-rouge">git config --local user.email '你的github邮箱@mail.com' </code>命令单独设置用户账户信息</p>
+<p>PS：如果需要配置多个GitHub账号，可以参看这个<a href="http://ju.outofmemory.cn/entry/16775">多个github帐号的SSH key切换</a>，不过需要提醒一下的是，如果你只是通过这篇文章中所述配置了Host，那么你多个账号下面的提交用户会是一个人，所以需要通过命令<code>git config --global --unset user.email</code>删除用户账户设置，在每一个repo下面使用<code>git config --local user.email '你的github邮箱@mail.com' </code>命令单独设置用户账户信息</p>
 
 <p>###测试一下</p>
 
 <p>可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改：</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="nv">$ </span>ssh <span class="nt">-T</span> git@github.com
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="nv">$ </span>ssh -T git@github.com
 
     </code></pre></figure>
 
 <p>如果是下面的反应：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The authenticity of host 'github.com (207.97.227.239)' can't be established.
+<pre><code>The authenticity of host 'github.com (207.97.227.239)' can't be established.
 RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
 Are you sure you want to continue connecting (yes/no)?
-</code></pre></div></div>
+</code></pre>
 
 <p>不要紧张，输入yes就好，然后会看到：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hi &lt;em&gt;username&lt;/em&gt;! You've successfully authenticated, but GitHub does not provide shell access.
-</code></pre></div></div>
+<pre><code>Hi &lt;em&gt;username&lt;/em&gt;! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre>
 
 <p>###设置你的账号信息</p>
 
@@ -248,8 +248,8 @@ Are you sure you want to continue connecting (yes/no)?
 
 <p>Git会根据用户的名字和邮箱来记录提交。GitHub也是用这些信息来做权限的处理，输入下面的代码进行个人信息的设置，把名称和邮箱替换成你自己的，名字必须是你的真名，而不是GitHub的昵称。</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"你的名字"</span>
-<span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"your_email@youremail.com"</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>git config --global user.name <span class="s2">&quot;你的名字&quot;</span>
+<span class="nv">$ </span>git config --global user.email <span class="s2">&quot;your_email@youremail.com&quot;</span></code></pre></figure>
 
 <p>好了，你已经可以成功连接GitHub了。</p>
 
@@ -257,7 +257,7 @@ Are you sure you want to continue connecting (yes/no)?
 
 <p>###帐号注册</p>
 
-<p>在创建博客之前，当然必须有GitHub的帐号，该帐号将用来创建项目，默认的域名<code class="highlighter-rouge">username.github.com/projectName</code>中的username也要用到这个帐号。</p>
+<p>在创建博客之前，当然必须有GitHub的帐号，该帐号将用来创建项目，默认的域名<code>username.github.com/projectName</code>中的username也要用到这个帐号。</p>
 
 <p>注意：下面涉及到的一些命令凡是更用户名和项目名有关的一律会用这里的username和projectName代替，注意替换
 访问：<a href="http://www.github.com/">http://www.github.com/ </a>sign up for free的意思就是“免费注册登录”，注册你的username和邮箱，邮箱十分重要，GitHub上很多通知都是通过邮箱的。比如你的主页上传并构建成功会通过邮箱通知，更重要的是，如果构建失败的话也会在邮件中说明原因。</p>
@@ -287,7 +287,7 @@ Are you sure you want to continue connecting (yes/no)?
 
 <p>创建一个没有父节点的分支gh-pages，并自动切换到这个分支上。</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="nv">$git</span> checkout <span class="nt">--orphan</span> gh-pages
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="nv">$git</span> checkout --orphan gh-pages
 
     </code></pre></figure>
 
@@ -310,31 +310,31 @@ Are you sure you want to continue connecting (yes/no)?
 
 <p>default.html</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-　<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"content-type"</span> <span class="na">content=</span><span class="s">"text/html; charset=utf-8"</span> <span class="nt">/&gt;</span>
-　<span class="nt">&lt;title&gt;</span>一步步在GitHub上创建博客主页(2)<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+　&lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;
+　&lt;title&gt;一步步在GitHub上创建博客主页(2)&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
 　
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre></div></div>
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 
 <p>编辑index.html</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+<pre><code>---
 layout: default
 title: test title
 ---
 &lt;p&gt;Hello world!&lt;/p&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>再次打开Git Bash，先后输入如下命令：</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>git add <span class="nb">.</span>
-<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"first post"</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;first post&quot;</span>
 <span class="nv">$ </span>git remote add origin https://github.com/username/projectName.git
 <span class="nv">$ </span>git push origin gh-pages</code></pre></figure>
 
@@ -347,7 +347,7 @@ title: test title
   <li>向origin推送gh-pages分支，该命令将会将本地分支gh-pages推送到github的远程仓库，并在远程仓库创建一个同名的分支。该命令后会提示输入用户名和密码。</li>
 </ul>
 
-<p>现在，你只需要稍等半分钟时间，访问<code class="highlighter-rouge">http://username.github.com/projectName</code>就可以看到生成的博客了</p>
+<p>现在，你只需要稍等半分钟时间，访问<code>http://username.github.com/projectName</code>就可以看到生成的博客了</p>
 
 <p>另外上面提到的，如果生成失败，Github会向你的邮箱发送一封邮件说明，请注意查收。</p>
 
@@ -361,13 +361,13 @@ title: test title
 
 <p>###CNAME</p>
 
-<p>也被称为规范名字。这种记录允许您将多个名字映射到同一台计算机。 通常用于同时提供WWW和MAIL服务的计算机。例如，有一台计算机名为<code class="highlighter-rouge">“host.mydomain.com”</code>（A记录）。 它同时提供WWW和MAIL服务，为了便于用户访问服务。可以为该计算机设置两个别名（CNAME）：WWW和MAIL。 这两个别名的全称就是<code class="highlighter-rouge">“www.mydomain.com”</code>和<code class="highlighter-rouge">“mail.mydomain.com”</code>。实际上他们都指向<code class="highlighter-rouge">“host.mydomain.com”</code>。 同样的方法可以用于当您拥有多个域名需要指向同一服务器IP，此时您就可以将一个域名做A记录指向服务器IP然后将其他的域名做别名到之前做A记录的域名上，那么当您的服务器IP地址变更时您就可以不必麻烦的一个一个域名更改指向了 只需要更改做A记录的那个域名其他做别名的那些域名的指向也将自动更改到新的IP地址上了。</p>
+<p>也被称为规范名字。这种记录允许您将多个名字映射到同一台计算机。 通常用于同时提供WWW和MAIL服务的计算机。例如，有一台计算机名为<code>“host.mydomain.com”</code>（A记录）。 它同时提供WWW和MAIL服务，为了便于用户访问服务。可以为该计算机设置两个别名（CNAME）：WWW和MAIL。 这两个别名的全称就是<code>“www.mydomain.com”</code>和<code>“mail.mydomain.com”</code>。实际上他们都指向<code>“host.mydomain.com”</code>。 同样的方法可以用于当您拥有多个域名需要指向同一服务器IP，此时您就可以将一个域名做A记录指向服务器IP然后将其他的域名做别名到之前做A记录的域名上，那么当您的服务器IP地址变更时您就可以不必麻烦的一个一个域名更改指向了 只需要更改做A记录的那个域名其他做别名的那些域名的指向也将自动更改到新的IP地址上了。</p>
 
 <p>###TTL</p>
 
 <p>TTL值全称是“生存时间（Time To Live)”，简单的说它表示DNS记录在DNS服务器上缓存时间。要理解TTL值，请先看下面的一个例子：
-假设，有这样一个域名<code class="highlighter-rouge">myhost.cnMonkey.com</code>（其实，这就是一条DNS记录，通常表示在abc.com域中有一台名为myhost的主机）对应IP地 址为1.1.1.1，它的TTL为10分钟。这个域名或称这条记录存储在一台名为dns.cnMonkey.com的DNS服务器上。
-现在有一个用户键入一下地址（又称URL）：<code class="highlighter-rouge">http://myhost.cnMonkey.com</code> 这时会发生什么呢？
+假设，有这样一个域名<code>myhost.cnMonkey.com</code>（其实，这就是一条DNS记录，通常表示在abc.com域中有一台名为myhost的主机）对应IP地 址为1.1.1.1，它的TTL为10分钟。这个域名或称这条记录存储在一台名为dns.cnMonkey.com的DNS服务器上。
+现在有一个用户键入一下地址（又称URL）：<code>http://myhost.cnMonkey.com</code> 这时会发生什么呢？
 该 访问者指定的DNS服务器（或是他的ISP,互联网服务商, 动态分配给他的)8.8.8.8就会试图为他解释myhost.cnMonkey.com，当然8.8.8.8这台DNS服务器由于没有包含 myhost.cnMonkey.com这条信息，因此无法立即解析，但是通过全球DNS的递归查询后，最终定位到dns.cnMonkey.com这台DNS服务器， dns.cnMonkey.com这台DNS服务器将myhost.cnMonkey.com对应的IP地址1.1.1.1告诉8.8.8.8这台DNS服务器，然有再由 8.8.8.8告诉用户结果。8.8.8.8为了以后加快对myhost.cnMonkey.com这条记录的解析，就将刚才的1.1.1.1结果保留一段时间，这 就是TTL时间，在这段时间内如果用户又有对myhost.cnMonkey.com这条记录的解析请求，它就直接告诉用户1.1.1.1，当TTL到期则又会重复 上面的过程。</p>
 
 <p>###域名分级</p>
@@ -386,7 +386,7 @@ title: test title
 
 <p>###绑定域名到GitHub-Page</p>
 
-<p>其实十分简单，假设我们购买了域名<a href="coolshell.info">coolshell.info</a>，想用coolshell.info访问你的站点<code class="highlighter-rouge">http://username.github.com/projectname</code>，你可以参考这个链接：<a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/">Setting up a custom domain with Pages</a></p>
+<p>其实十分简单，假设我们购买了域名<a href="coolshell.info">coolshell.info</a>，想用coolshell.info访问你的站点<code>http://username.github.com/projectname</code>，你可以参考这个链接：<a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages/">Setting up a custom domain with Pages</a></p>
 
 <p>在你的域名提供商那边，设置一条A记录：</p>
 
@@ -422,15 +422,15 @@ title: test title
   <li>由于国内的网络（你们懂的），gem官方的源基本上是没法用了，参考文中的链接，使用淘宝的镜像比较靠谱；</li>
   <li>
     <p>jekyll有一个问题，可能需要修改下面这个文件，否则会出现GBK错误
-<code class="highlighter-rouge">D:\Ruby193\lib\ruby\gems\1.9.1\gems\jekyll-1.2.1\lib\jekyll\convertible.rb</code>
+<code>D:\Ruby193\lib\ruby\gems\1.9.1\gems\jekyll-1.2.1\lib\jekyll\convertible.rb</code>
 将它改成
-<code class="highlighter-rouge">self.content = File.read(File.join(base, name),:encoding =&gt; "utf-8")</code>
-<code class="highlighter-rouge">D:\Ruby193\lib\ruby\gems\1.9.1\gems\jekyll-1.2.1\lib\jekyll\tags\include.rb</code>中的最后几行的地方改成
-<code class="highlighter-rouge">File.read_with_options(file,:encoding =&gt; "utf-8")</code></p>
+<code>self.content = File.read(File.join(base, name),:encoding =&gt; "utf-8")</code>
+<code>D:\Ruby193\lib\ruby\gems\1.9.1\gems\jekyll-1.2.1\lib\jekyll\tags\include.rb</code>中的最后几行的地方改成
+<code>File.read_with_options(file,:encoding =&gt; "utf-8")</code></p>
   </li>
-  <li>最新的jekyll修改了命令行参数，需使用如下命令行 <code class="highlighter-rouge">jekyll serve --safe --watch</code></li>
-  <li>jekyll 1.4.3在windows下本地生成的时候可能会出现<code class="highlighter-rouge">'fileutils.rb:247:in mkdir Invalid argument'</code>的错误</li>
-  <li>jekyll 1.4.3在–watch参数的情况下可能会出现<code class="highlighter-rouge">'cannot load such file -- wdm (LoadError)'</code>的错误，用gem安装wdm就好了： 	gem install wdm</li>
+  <li>最新的jekyll修改了命令行参数，需使用如下命令行 <code>jekyll serve --safe --watch</code></li>
+  <li>jekyll 1.4.3在windows下本地生成的时候可能会出现<code>'fileutils.rb:247:in mkdir Invalid argument'</code>的错误</li>
+  <li>jekyll 1.4.3在–watch参数的情况下可能会出现<code>'cannot load such file -- wdm (LoadError)'</code>的错误，用gem安装wdm就好了： 	gem install wdm</li>
 </ol>
 
 <p>###Ruby安装</p>
@@ -450,7 +450,7 @@ windows的安装还是一如既往的“无脑”，不多说了。</p>
 
 <p>下载下来的是一个很有意思的sfx文件，如果你安装有7-zip吧，可以直接双击，它会自解压到你所选择的目录。</p>
 
-<p>解压完成之后，用cmd进入到刚才解压的目录下，运行下面命令，该命令会生成config.yml。（这种安装方式让我想起了，linux下安装三步走<code class="highlighter-rouge">config-&gt;make-&gt;make install中的config</code>）</p>
+<p>解压完成之后，用cmd进入到刚才解压的目录下，运行下面命令，该命令会生成config.yml。（这种安装方式让我想起了，linux下安装三步走<code>config-&gt;make-&gt;make install中的config</code>）</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="nv">$ruby</span> dk.rb init
     </code></pre></figure>
@@ -459,8 +459,8 @@ windows的安装还是一如既往的“无脑”，不多说了。</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># This configuration file contains the absolute path locations of all</span>
 <span class="c"># installed Rubies to be enhanced to work with the DevKit. This config</span>
-<span class="c"># file is generated by the 'ruby dk.rb init' step and may be modified</span>
-<span class="c"># before running the 'ruby dk.rb install' step. To include any installed</span>
+<span class="c"># file is generated by the &#39;ruby dk.rb init&#39; step and may be modified</span>
+<span class="c"># before running the &#39;ruby dk.rb install&#39; step. To include any installed</span>
 <span class="c"># Rubies that were not automagically discovered, simply add a line below</span>
 <span class="c"># the triple hyphens with the absolute path to the Ruby root directory.</span>
 <span class="c">#</span>
@@ -470,7 +470,7 @@ windows的安装还是一如既往的“无脑”，不多说了。</p>
 <span class="c"># - C:/ruby19trunk</span>
 <span class="c"># - C:/ruby192dev</span>
 <span class="c">#</span>
-<span class="nt">---</span>
+---
 - C:/Ruby193</code></pre></figure>
 
 <p>最后，执行如下命令，执行安装：</p>
@@ -500,8 +500,8 @@ windows的安装还是一如既往的“无脑”，不多说了。</p>
 
 <p>有了上面的基础，安装jekyll就十分轻松了，在此之前，建议国内用户换成淘宝服务器，速度更快：</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="nv">$ </span><span class="nb">sudo </span>gem sources <span class="nt">--remove</span> http://rubygems.org/
-    <span class="nv">$ </span><span class="nb">sudo </span>gem sources <span class="nt">-a</span> http://ruby.taobao.org/
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="nv">$ </span>sudo gem sources --remove http://rubygems.org/
+    <span class="nv">$ </span>sudo gem sources -a http://ruby.taobao.org/
     </code></pre></figure>
 
 <p>执行下面gem命令即可全自动搞定：</p>
@@ -523,7 +523,7 @@ windows的安装还是一如既往的“无脑”，不多说了。</p>
 
 <p>安装好之后就可以测试我们的环境了。用cmd进入到上一节我们创建的目录，执行下面命令：</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="nv">$jekyll</span> <span class="nt">--server</span> <span class="nt">--safe</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="nv">$jekyll</span> --server --safe
     </code></pre></figure>
 
 <p>jekyll此时会在localhost的4000端口监听http请求，用浏览器访问<a href="http://localhost:4000/index.html">http://localhost:4000/index.html</a>，之前的页面出现了！</p>
@@ -543,7 +543,7 @@ jekyll最新的动态和文档现在可以在<a href="http://jekyllrb.com/">jeky
 
 <p>在jekyll解析你的网站结构前，需要确保网站目录像下面那样：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|-- _config.yml
+<pre><code>|-- _config.yml
 |-- _includes
 |-- _layouts
 |   |-- default.html
@@ -557,14 +557,14 @@ jekyll最新的动态和文档现在可以在<a href="http://jekyllrb.com/">jeky
    |-- css
        |-- style.css
    |-- javascripts
-</code></pre></div></div>
+</code></pre>
 
 <ul>
   <li>
     <p>_config.yml：保存配置，该配置将影响jekyll构造网站的各种行为。</p>
   </li>
   <li>
-    <p>_includes：该目录下的文件可以用来作为公共的内容被其他文章引用，就跟C语言include头文件的机制完全一样，jekyll在解析时会对<code class="highlighter-rouge">{ % include file.ext %}</code>标记扩展成对应的在_includes文件夹中的文件</p>
+    <p>_includes：该目录下的文件可以用来作为公共的内容被其他文章引用，就跟C语言include头文件的机制完全一样，jekyll在解析时会对<code>{ % include file.ext %}</code>标记扩展成对应的在_includes文件夹中的文件</p>
   </li>
   <li>
     <p>_layouts：该目录下的文件作为主要的模板文件</p>
@@ -588,14 +588,14 @@ jekyll最新的动态和文档现在可以在<a href="http://jekyllrb.com/">jeky
 
 <p>default.html</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
-   <span class="nt">&lt;head&gt;</span>
-       <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Type"</span> <span class="na">content=</span><span class="s">"text/html; charset=UTF-8"</span> <span class="nt">/&gt;</span>
-       <span class="nt">&lt;title&gt;</span>My blog<span class="nt">&lt;/title&gt;</span>
-   <span class="nt">&lt;/head&gt;</span>
-   <span class="nt">&lt;body&gt;</span>
-   <span class="c">&lt;!-- Blog Post --&gt;</span> <span class="c">&lt;!-- Title --&gt;</span>
-</code></pre></div></div>
+<pre><code>&lt;html&gt;
+   &lt;head&gt;
+       &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+       &lt;title&gt;My blog&lt;/title&gt;
+   &lt;/head&gt;
+   &lt;body&gt;
+   &lt;!-- Blog Post --&gt; &lt;!-- Title --&gt;
+</code></pre>
 <div class="row">
   <div class="post-area post">
 
@@ -604,7 +604,7 @@ jekyll最新的动态和文档现在可以在<a href="http://jekyllrb.com/">jeky
  		<header>
 		<h1>
 		  谈谈缓存和基本的缓存算法
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2015-02-04-cache.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2015-02-04-cache.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			04 Feb 2015
 		  </div>
@@ -738,7 +738,7 @@ jekyll最新的动态和文档现在可以在<a href="http://jekyllrb.com/">jeky
   	<span class="n">element</span><span class="o">.</span><span class="na">setObjectValue</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
   	<span class="n">element</span><span class="o">.</span><span class="na">setObjectKey</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
   	<span class="k">return</span><span class="o">;</span>
-  	<span class="o">}</span><span class="c1">// If we haven't filled the cache yet, put it at the end.</span>
+  	<span class="o">}</span><span class="c1">// If we haven&#39;t filled the cache yet, put it at the end.</span>
   	<span class="k">if</span> <span class="o">(!</span><span class="n">isFull</span><span class="o">())</span>
   	<span class="o">{</span>
  	 <span class="n">index</span> <span class="o">=</span> <span class="n">numEntries</span><span class="o">;</span>
@@ -769,7 +769,7 @@ jekyll最新的动态和文档现在可以在<a href="http://jekyllrb.com/">jeky
   	<span class="n">element</span><span class="o">.</span><span class="na">setObjectKey</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
   	<span class="k">return</span><span class="o">;</span>
   	<span class="o">}</span>
- 	 <span class="c1">// If we haven't filled the cache yet, put it at the end.</span>
+ 	 <span class="c1">// If we haven&#39;t filled the cache yet, put it at the end.</span>
  	 <span class="k">if</span> <span class="o">(!</span><span class="n">isFull</span><span class="o">())</span>
   	<span class="o">{</span>
  	 <span class="n">index</span> <span class="o">=</span> <span class="n">numEntries</span><span class="o">;</span>
@@ -870,10 +870,10 @@ jekyll最新的动态和文档现在可以在<a href="http://jekyllrb.com/">jeky
   	<span class="n">nextIndex</span> <span class="o">=</span> <span class="n">next</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
   	<span class="n">prevIndex</span> <span class="o">=</span> <span class="n">prev</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
   	<span class="c1">// Only the head has a prev entry that is an invalid index</span>
- 	 <span class="c1">// so we don't check.</span>
+ 	 <span class="c1">// so we don&#39;t check.</span>
   	<span class="n">next</span><span class="o">[</span><span class="n">prevIndex</span><span class="o">]</span> <span class="o">=</span> <span class="n">nextIndex</span><span class="o">;</span>
-  	<span class="c1">// Make sure index is valid. If it isn't, we're at the tail</span>
-  	<span class="c1">// and don't set prev[next].</span>
+  	<span class="c1">// Make sure index is valid. If it isn&#39;t, we&#39;re at the tail</span>
+  	<span class="c1">// and don&#39;t set prev[next].</span>
   	<span class="k">if</span><span class="o">(</span><span class="n">nextIndex</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;=</span> <span class="mi">0</span><span class="o">)</span>
  	 <span class="n">prev</span><span class="o">[</span><span class="n">nextIndex</span><span class="o">]</span> <span class="o">=</span> <span class="n">prevIndex</span><span class="o">;</span>
  	 <span class="k">else</span>
@@ -898,7 +898,7 @@ jekyll最新的动态和文档现在可以在<a href="http://jekyllrb.com/">jeky
       <span class="n">moveToFront</span><span class="o">(</span><span class="n">entry</span><span class="o">.</span><span class="na">getIndex</span><span class="o">());</span>
       <span class="k">return</span><span class="o">;</span>
       <span class="o">}</span>
-      <span class="c1">// If we haven't filled the cache yet, place in next available</span>
+      <span class="c1">// If we haven&#39;t filled the cache yet, place in next available</span>
       <span class="c1">// spot and move to front.</span>
       <span class="k">if</span><span class="o">(!</span><span class="n">isFull</span><span class="o">())</span>
       <span class="o">{</span>
@@ -961,7 +961,7 @@ jekyll最新的动态和文档现在可以在<a href="http://jekyllrb.com/">jeky
 		<hr />
 	<br />
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -1071,6 +1071,15 @@ jekyll最新的动态和文档现在可以在<a href="http://jekyllrb.com/">jeky
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1443,6 +1452,15 @@ jekyll最新的动态和文档现在可以在<a href="http://jekyllrb.com/">jeky
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1871,11 +1889,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 </div> 
 </div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-</code></pre></div></div>
+<pre><code>   &lt;/body&gt;
+&lt;html&gt;
+</code></pre>
 
-<p>default.html包含了每个html都需要的一些标记，以及一个个liquid标记。<code class="highlighter-rouge">{ { … }}</code>是liquid中用来表示“内容”的标记，其中的对象在解析时会被替换成文件到页面中</p>
+<p>default.html包含了每个html都需要的一些标记，以及一个个liquid标记。<code>{ { … }}</code>是liquid中用来表示“内容”的标记，其中的对象在解析时会被替换成文件到页面中</p>
 
 <p>content：表示在这里的地方用子页面的内容替换。</p>
 
@@ -1883,34 +1901,34 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 
 <p>index.html</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+<pre><code>---
 layout: default
 ---
 &lt;h1&gt;Hello jekyll&lt;/h1&gt;
 &lt;p&gt;This is the index page&lt;/p&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>除了普通的html标记外，开头这一段称为YAML格式，以一行“—”开头，一行“—”结尾，在虚线的中间以key-value的形式对一些全局变量进行赋值。</p>
 
-<p>layout变量表示该文章应当使用_layouts/default这个文件作为父模板，并将index.html中的内容替换父模板中的<code class="highlighter-rouge">{ { content }}</code>标记。</p>
+<p>layout变量表示该文章应当使用_layouts/default这个文件作为父模板，并将index.html中的内容替换父模板中的<code>{ { content }}</code>标记。</p>
 
 <p>在根目录中启动jekyll –server，并访问http://localhost:4000/index.html，你将得到下面页面</p>
 
 <p><img src="/images/images/githubpages/build-github-blog-page-05-img0.png" alt="" /></p>
 
-<p>该页面的Html源码如下，可以看到，index.html中的内容替换了default.html中的<code class="highlighter-rouge">{ { content }}</code></p>
+<p>该页面的Html源码如下，可以看到，index.html中的内容替换了default.html中的<code>{ { content }}</code></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
-  <span class="nt">&lt;head&gt;</span>
-      <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Type"</span> <span class="na">content=</span><span class="s">"text/html; charset=UTF-8"</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;title&gt;</span>My blog<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;/head&gt;</span>
-  <span class="nt">&lt;body&gt;</span>
-  <span class="nt">&lt;h1&gt;</span>Hello jekyll<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;p&gt;</span>This is the index page<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;html&gt;</span>
-</code></pre></div></div>
+<pre><code>&lt;html&gt;
+  &lt;head&gt;
+      &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+      &lt;title&gt;My blog&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;h1&gt;Hello jekyll&lt;/h1&gt;
+&lt;p&gt;This is the index page&lt;/p&gt;
+  &lt;/body&gt;
+&lt;html&gt;
+</code></pre>
 
 <p>现在请观察一下_site中的index.html，就是上面的Html代码！OK，现在你明白jekyll的工作方式了吧，它仅仅一次性的完成静态页面的转化，其余的事情全都交给普通的web server了！</p>
 
@@ -1926,26 +1944,26 @@ layout: default
 
 <p>2014-06-21-first-post.html</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+<pre><code>---
 layout: default
 title: my first post
 ---
 &lt;h1&gt;利用github-pages建立个人博客&lt;/h1&gt;
 &lt;p&gt;This is my first post.Click the link below to go back to index:&lt;/p&gt;
 &lt;a href="/index.html"&gt;Go back&lt;/a&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>修改index.html</p>
 
 <p>index.html</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+<pre><code>---
 layout: default
 ---
 &lt;h1&gt;Hello jekyll&lt;/h1&gt;
 &lt;p&gt;This is the index page&lt;/p&gt;
 &lt;p&gt;My post list:&lt;/p&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>最终效果如下：</p>
 
@@ -1963,12 +1981,12 @@ layout: default
 
 <p>###liquid</p>
 
-<p>liquid是jekyll底层用于解析的引擎，我们用到的<code class="highlighter-rouge">{ { .. }}</code>亦或是<code class="highlighter-rouge">{ % … %}</code>标记其实是靠liquid去解析的。本节将详细介绍liquid的使用。</p>
+<p>liquid是jekyll底层用于解析的引擎，我们用到的<code>{ { .. }}</code>亦或是<code>{ % … %}</code>标记其实是靠liquid去解析的。本节将详细介绍liquid的使用。</p>
 
 <p>liquid包含两种标记，理解他们的机理是十分重要的：</p>
 
-<p><code class="highlighter-rouge">{ { .. }}</code>：输入标记，其中的内容将被文本输出
-<code class="highlighter-rouge">{ % … %}</code>：操作标记，通常包含控制流代码
+<p><code>{ { .. }}</code>：输入标记，其中的内容将被文本输出
+<code>{ % … %}</code>：操作标记，通常包含控制流代码
 例如：</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">     
@@ -2004,18 +2022,18 @@ liquid内置了一些filter，并且该机制可以被扩展，jekyll便扩展�
 
 <p>分类和标签功能是jekyll的yaml-format的内置功能，在每篇文章上方可以设置：这里需要注意的是如果多个分类或者tag的话，用逗号分隔，并且要紧跟一个空格。分类可以任意添加，Jekyll在解析网站的时候会统计所有的分类，并放到site.categories中；换句话说，不能脱离文章而设置分类。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+<pre><code>---
 layout: default
 title: Title
 description: 这里的description是自定义属性。
 categories: [web-build]
 tags: [github-page, jekyll, liquid]
 ---
-</code></pre></div></div>
+</code></pre>
 
 <p>下面是本站罗列分类的代码，供大家参考</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div id="categories-3" class="left"&gt;
+<pre><code>&lt;div id="categories-3" class="left"&gt;
      &lt;h3&gt;Categories&lt;/h3&gt;
      &lt;ul&gt;
          
@@ -2078,14 +2096,14 @@ tags: [github-page, jekyll, liquid]
          
      &lt;/ul&gt;
  &lt;/div&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>注意到分类的url链接，这里的categories目录以及其中的html不会自动生成，需要手动添加的，也就是说每增加一个分类，都需要在categories下添加一个该分类的html。当然你可以选择其他目录，甚至考虑其他解决方案，不过我还没想到更简单的方法。Tag的处理方式类似，这里就省略了。</p>
 
 <p>推荐大家下载jekyll原作者推荐的简单例子来学习：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$git clone https://github.com/plusjade/jekyll-bootstrap.git
-</code></pre></div></div>
+<pre><code>$git clone https://github.com/plusjade/jekyll-bootstrap.git
+</code></pre>
 
 <p>下载的目录里面是一个完整的网站，可以使用我们本地的jekyll –server启动。另外，作者的网站：<a href="http://jekyllbootstrap.com/">http://jekyllbootstrap.com/
 </a></p>
@@ -2108,8 +2126,8 @@ tags: [github-page, jekyll, liquid]
 
 <p>###生成指定样式的css文件</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pygmentize -S native -f html &gt; pygments.css
-</code></pre></div></div>
+<pre><code>pygmentize -S native -f html &gt; pygments.css
+</code></pre>
 
 <p>将生成的css文件拷贝到主题的css目录下，如：</p>
 
@@ -2117,18 +2135,18 @@ tags: [github-page, jekyll, liquid]
 
 <p>引入default.html中引入css文件：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// default目录如
+<pre><code>// default目录如
 	%github pages project folder%\includes\themes\twitter\
 
 // 引入如下代码
 	&lt;link href='/css/pygments.css' rel="stylesheet" media="all"&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>在文章中高亮代码:</p>
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java">    	<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span> 
         <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span> 
-       	 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello World!"</span><span class="o">);</span> 
+       	 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Hello World!&quot;</span><span class="o">);</span> 
 		<span class="o">}</span> 
     	<span class="o">}</span> 
 
@@ -2153,10 +2171,10 @@ Jekyll的Plugins页面中有提到一个插件 <a href="https://github.com/dafi/
 	## 陈三的博客</p>
 
 <ol>
-  <li>请注意，<code class="highlighter-rouge">* 目录</code>这一行是必需的，它表示目录树列表，至于星号后面写什么请随意</li>
-  <li>如果要把某标题从目录树中排除，则在该标题的下一行写上 <code class="highlighter-rouge">{:.no_toc}</code></li>
-  <li>目录深度可以通过 config.yml 文件中添加 <code class="highlighter-rouge">toc_levels</code> 选项来定制，默认为 <code class="highlighter-rouge">1..6</code>，表示标题一至标题六全部渲染</li>
-  <li>默认生成的目录列表会添加 id 值 <code class="highlighter-rouge">markdown-toc</code>，我们可以自定义 id 值，比如 {:toc #chen}，生成的目录列表添加的 id 将会是 chen。</li>
+  <li>请注意，<code>* 目录</code>这一行是必需的，它表示目录树列表，至于星号后面写什么请随意</li>
+  <li>如果要把某标题从目录树中排除，则在该标题的下一行写上 <code>{:.no_toc}</code></li>
+  <li>目录深度可以通过 config.yml 文件中添加 <code>toc_levels</code> 选项来定制，默认为 <code>1..6</code>，表示标题一至标题六全部渲染</li>
+  <li>默认生成的目录列表会添加 id 值 <code>markdown-toc</code>，我们可以自定义 id 值，比如 {:toc #chen}，生成的目录列表添加的 id 将会是 chen。</li>
 </ol>
 
 <p>###评论功能</p>
@@ -2315,7 +2333,7 @@ git push -u origin master
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -2425,6 +2443,15 @@ git push -u origin master
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -2797,6 +2824,15 @@ git push -u origin master
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -3274,7 +3310,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -3302,7 +3338,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -3465,11 +3501,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

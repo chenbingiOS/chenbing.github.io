@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Android UI线程和子线程、Service通信 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="Android UI线程和子线程、Service通信 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      Android UI线程和子线程、Service通信 - ChenBing
+      Android UI线程和子线程、Service通信 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  Android UI线程和子线程、Service通信
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2014-07-19-android-UI-Thread.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2014-07-19-android-UI-Thread.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			19 Jul 2014
 		  </div>
@@ -133,7 +133,7 @@
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyService extends Service {  
+<pre><code>public class MyService extends Service {  
   
     public static final String TAG = "MyService";  
   
@@ -161,14 +161,14 @@
     }  
   
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>可以看到，我们只是在onCreate()、onStartCommand()和onDestroy()方法中分别打印了一句话，并没有进行其它任何的操作。
 然后打开或新建activity_main.xml作为程序的主布局文件，代码如下所示：</p>
 
 <p>[html]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+<pre><code>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
     android:layout_width="match_parent"  
     android:layout_height="match_parent"  
     android:orientation="vertical" &gt;  
@@ -186,14 +186,14 @@
         android:text="Stop Service" /&gt;  
   
 &lt;/LinearLayout&gt;  
-</code></pre></div></div>
+</code></pre>
 
 <p>我们在布局文件中加入了两个按钮，一个用于启动Service，一个用于停止Service。
 然后打开或新建MainActivity作为程序的主Activity，在里面加入启动Service和停止Service的逻辑，代码如下所示：</p>
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MainActivity extends Activity implements OnClickListener {  
+<pre><code>public class MainActivity extends Activity implements OnClickListener {  
   
     private Button startService;  
   
@@ -226,37 +226,37 @@
     }  
   
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>可以看到，在Start Service按钮的点击事件里，我们构建出了一个Intent对象，并调用startService()方法来启动MyService。然后在Stop Serivce按钮的点击事件里，我们同样构建出了一个Intent对象，并调用stopService()方法来停止MyService。代码的逻辑非常简单，相信不需要我再多做解释了吧。
 另外需要注意，项目中的每一个Service都必须在AndroidManifest.xml中注册才行，所以还需要编辑AndroidManifest.xml文件，代码如下所示：</p>
 
 <p>[html]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>  
-<span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>  
-    <span class="na">package=</span><span class="s">"com.example.servicetest"</span>  
-    <span class="na">android:versionCode=</span><span class="s">"1"</span>  
-    <span class="na">android:versionName=</span><span class="s">"1.0"</span> <span class="nt">&gt;</span>  
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;  
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"  
+    package="com.example.servicetest"  
+    android:versionCode="1"  
+    android:versionName="1.0" &gt;  
   
-    <span class="nt">&lt;uses-sdk</span>  
-        <span class="na">android:minSdkVersion=</span><span class="s">"14"</span>  
-        <span class="na">android:targetSdkVersion=</span><span class="s">"17"</span> <span class="nt">/&gt;</span>  
+    &lt;uses-sdk  
+        android:minSdkVersion="14"  
+        android:targetSdkVersion="17" /&gt;  
   
-    <span class="nt">&lt;application</span>  
-        <span class="na">android:allowBackup=</span><span class="s">"true"</span>  
-        <span class="na">android:icon=</span><span class="s">"@drawable/ic_launcher"</span>  
-        <span class="na">android:label=</span><span class="s">"@string/app_name"</span>  
-        <span class="na">android:theme=</span><span class="s">"@style/AppTheme"</span> <span class="nt">&gt;</span>  
+    &lt;application  
+        android:allowBackup="true"  
+        android:icon="@drawable/ic_launcher"  
+        android:label="@string/app_name"  
+        android:theme="@style/AppTheme" &gt;  
           
     ……  
   
-        <span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"com.example.servicetest.MyService"</span> <span class="nt">&gt;</span>  
-        <span class="nt">&lt;/service&gt;</span>  
-    <span class="nt">&lt;/application&gt;</span>  
+        &lt;service android:name="com.example.servicetest.MyService" &gt;  
+        &lt;/service&gt;  
+    &lt;/application&gt;  
   
-<span class="nt">&lt;/manifest&gt;</span> 
-</code></pre></div></div>
+&lt;/manifest&gt; 
+</code></pre>
 
 <p>这样的话，一个简单的带有Service功能的程序就写好了，当启动一个Service的时候，会调用该Service中的onCreate()和onStartCommand()方法。</p>
 
@@ -275,7 +275,7 @@
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyService extends Service {  
+<pre><code>public class MyService extends Service {  
   
     public static final String TAG = "MyService";  
   
@@ -314,14 +314,14 @@
     }  
   
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>这里我们新增了一个MyBinder类继承自Binder类，然后在MyBinder中添加了一个startDownload()方法用于在后台执行下载任务，当然这里并不是真正地去下载某个东西，只是做个测试，所以startDownload()方法只是打印了一行日志。
 然后修改activity_main.xml中的代码，在布局文件中添加用于绑定Service和取消绑定Service的按钮：</p>
 
 <p>[html]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+<pre><code>    &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
         android:layout_width="match_parent"  
         android:layout_height="match_parent"  
         android:orientation="vertical" &gt;  
@@ -418,7 +418,7 @@ public class MainActivity extends Activity implements OnClickListener {
     }  
   
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>可以看到，这里我们首先创建了一个ServiceConnection的匿名类，在里面重写了onServiceConnected()方法和onServiceDisconnected()方法，这两个方法分别会在Activity与Service建立关联和解除关联的时候调用。在onServiceConnected()方法中，我们又通过向下转型得到了MyBinder的实例，有了这个实例，Activity和Service之间的关系就变得非常紧密了。现在我们可以在Activity中根据具体的场景来调用MyBinder中的任何public方法，即实现了Activity指挥Service干什么Service就去干什么的功能。
 当然，现在Activity和Service其实还没关联起来了呢，这个功能是在Bind Service按钮的点击事件里完成的。可以看到，这里我们仍然是构建出了一个Intent对象，然后调用bindService()方法将Activity和Service进行绑定。bindService()方法接收三个参数，第一个参数就是刚刚构建出的Intent对象，第二个参数是前面创建出的ServiceConnection的实例，第三个参数是一个标志位，这里传入BIND_AUTO_CREATE表示在Activity和Service建立关联后自动创建Service，这会使得MyService中的onCreate()方法得到执行，但onStartCommand()方法不会执行。</p>
@@ -441,7 +441,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public void onClick(View v) {  
+<pre><code>public void onClick(View v) {  
     switch (v.getId()) {  
     case R.id.start_service:  
         Intent startIntent = new Intent(this, MyService.class);  
@@ -464,7 +464,7 @@ public class MainActivity extends Activity implements OnClickListener {
         break;  
     }  
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>然后重新运行程序，先点击一下Start Service按钮，再点击一下Bind Service按钮，这样就将Service启动起来，并和Activity建立了关联。然后点击Stop Service按钮后Service并不会销毁，再点击一下Unbind Service按钮，Service就会销毁了。
 我们应该始终记得在Service的onDestroy()方法里去清理掉那些不再使用的资源，防止在Service被销毁后还会有一些不再使用的对象仍占用着内存。</p>
@@ -478,14 +478,14 @@ public class MainActivity extends Activity implements OnClickListener {
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Log.d("MyService", "MainActivity thread id is " + Thread.currentThread().getId());  
-</code></pre></div></div>
+<pre><code>Log.d("MyService", "MainActivity thread id is " + Thread.currentThread().getId());  
+</code></pre>
 
 <p>然后在MyService的onCreate()方法里也加入一行打印当前线程id的语句：
 [java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Log.d("MyService", "MyService thread id is " + Thread.currentThread().getId());  
-</code></pre></div></div>
+<pre><code>Log.d("MyService", "MyService thread id is " + Thread.currentThread().getId());  
+</code></pre>
 
 <p>现在重新运行一下程序，并点击Start Service按钮，会看到如下打印日志：</p>
 
@@ -499,7 +499,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Override  
+<pre><code>@Override  
 public int onStartCommand(Intent intent, int flags, int startId) {  
     new Thread(new Runnable() {  
         @Override  
@@ -522,7 +522,7 @@ class MyBinder extends Binder {
     }  
   
 } 
-</code></pre></div></div>
+</code></pre>
 
 <p>##创建前台Service
 Service几乎都是在后台运行的，一直以来它都是默默地做着辛苦的工作。但是Service的系统优先级还是比较低的，当系统出现内存不足情况时，就有可能会回收掉正在后台运行的Service。如果你希望Service可以一直保持运行状态，而不会由于系统内存不足的原因导致被回收，就可以考虑使用前台Service。前台Service和普通Service最大的区别就在于，它会一直有一个正在运行的图标在系统的状态栏显示，下拉状态栏后可以看到更加详细的信息，非常类似于通知的效果。当然有时候你也可能不仅仅是为了防止Service被回收才使用前台Service，有些项目由于特殊的需求会要求必须使用前台Service，比如说墨迹天气，它的Service在后台更新天气数据的同时，还会在系统状态栏一直显示当前天气的信息</p>
@@ -531,7 +531,7 @@ Service几乎都是在后台运行的，一直以来它都是默默地做着辛�
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyService extends Service {  
+<pre><code>public class MyService extends Service {  
   
     public static final String TAG = "MyService";  
   
@@ -554,7 +554,7 @@ Service几乎都是在后台运行的，一直以来它都是默默地做着辛�
     .........  
   
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>这里只是修改了MyService中onCreate()方法的代码。可以看到，我们首先创建了一个Notification对象，然后调用了它的setLatestEventInfo()方法来为通知初始化布局和数据，并在这里设置了点击通知后就打开MainActivity。然后调用startForeground()方法就可以让MyService变成一个前台Service，并会将通知的图片显示出来。
 现在重新运行一下程序，并点击Start Service或Bind Service按钮，MyService就会以前台Service的模式启动了，并且在系统状态栏会弹出一个通栏图标，下拉状态栏后可以看到通知的详细内容。</p>
@@ -567,21 +567,21 @@ Service几乎都是在后台运行的，一直以来它都是默默地做着辛�
 
 <p>[html]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>  
-<span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>  
-    <span class="na">package=</span><span class="s">"com.example.servicetest"</span>  
-    <span class="na">android:versionCode=</span><span class="s">"1"</span>  
-    <span class="na">android:versionName=</span><span class="s">"1.0"</span> <span class="nt">&gt;</span>  
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;  
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"  
+    package="com.example.servicetest"  
+    android:versionCode="1"  
+    android:versionName="1.0" &gt;  
   
     ......  
       
-    <span class="nt">&lt;service</span>  
-        <span class="na">android:name=</span><span class="s">"com.example.servicetest.MyService"</span>  
-        <span class="na">android:process=</span><span class="s">":remote"</span> <span class="nt">&gt;</span>  
-    <span class="nt">&lt;/service&gt;</span>  
+    &lt;service  
+        android:name="com.example.servicetest.MyService"  
+        android:process=":remote" &gt;  
+    &lt;/service&gt;  
   
-<span class="nt">&lt;/manifest&gt;</span>  
-</code></pre></div></div>
+&lt;/manifest&gt;  
+</code></pre>
 
 <p>现在重新运行程序，并点击一下Start Service按钮，你会看到控制台立刻打印了onCreate() executed的信息，而且主界面并没有阻塞住，也不会出现ANR。大概过了一分钟后，又会看到onStartCommand() executed打印了出来。
 为什么将MyService转换成远程Service后就不会导致程序ANR了呢？这是由于，使用了远程Service后，MyService已经在另外一个进程当中运行了，所以只会阻塞该进程中的主线程，并不会影响到当前的应用程序。
@@ -589,8 +589,8 @@ Service几乎都是在后台运行的，一直以来它都是默默地做着辛�
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Log.d("TAG", "process id is " + Process.myPid());  
-</code></pre></div></div>
+<pre><code>Log.d("TAG", "process id is " + Process.myPid());  
+</code></pre>
 
 <p>再次重新运行程序，然后点击一下Start Service按钮，打印结果如下图所示：</p>
 
@@ -602,18 +602,18 @@ Service几乎都是在后台运行的，一直以来它都是默默地做着辛�
 
 <p>那么如何才能让Activity与一个远程Service建立关联呢？这就要使用AIDL来进行跨进程通信了（IPC）。</p>
 
-<p><code class="highlighter-rouge">AIDL（Android Interface Definition</code> Language）是Android接口定义语言的意思，它可以用于让某个Service与多个应用程序组件之间进行跨进程通信，从而可以实现多个应用程序共享同一个Service的功能。</p>
+<p><code>AIDL（Android Interface Definition</code> Language）是Android接口定义语言的意思，它可以用于让某个Service与多个应用程序组件之间进行跨进程通信，从而可以实现多个应用程序共享同一个Service的功能。</p>
 
 <p>下面我们就来一步步地看一下AIDL的用法到底是怎样的。首先需要新建一个AIDL文件，在这个文件中定义好Activity需要与Service进行通信的方法。新建MyAIDLService.aidl文件，代码如下所示：</p>
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">com</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">servicetest</span><span class="p">;</span>  
-<span class="n">interface</span> <span class="n">MyAIDLService</span> <span class="p">{</span>  
-    <span class="n">int</span> <span class="n">plus</span><span class="p">(</span><span class="n">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">int</span> <span class="n">b</span><span class="p">);</span>  
-    <span class="k">String</span> <span class="n">toUpperCase</span><span class="p">(</span><span class="k">String</span> <span class="n">str</span><span class="p">);</span>  
-<span class="p">}</span>  
-</code></pre></div></div>
+<pre><code>package com.example.servicetest;  
+interface MyAIDLService {  
+    int plus(int a, int b);  
+    String toUpperCase(String str);  
+}  
+</code></pre>
 
 <p>点击保存之后，gen目录下就会生成一个对应的Java文件，如下图所示：</p>
 
@@ -621,7 +621,7 @@ Service几乎都是在后台运行的，一直以来它都是默默地做着辛�
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyService extends Service {  
+<pre><code>public class MyService extends Service {  
   
     ......  
   
@@ -647,14 +647,14 @@ Service几乎都是在后台运行的，一直以来它都是默默地做着辛�
     };  
   
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>这里先是对MyAIDLService.Stub进行了实现，重写里了toUpperCase()和plus()这两个方法。这两个方法的作用分别是将一个字符串全部转换成大写格式，以及将两个传入的整数进行相加。然后在onBind()方法中将MyAIDLService.Stub的实现返回。这里为什么可以这样写呢？因为Stub其实就是Binder的子类，所以在onBind()方法中可以直接返回Stub的实现。
 接下来修改MainActivity中的代码，如下所示：</p>
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MainActivity extends Activity implements OnClickListener {  
+<pre><code>public class MainActivity extends Activity implements OnClickListener {  
   
     private Button startService;  
   
@@ -689,7 +689,7 @@ Service几乎都是在后台运行的，一直以来它都是默默地做着辛�
     ......  
   
 } 
-</code></pre></div></div>
+</code></pre>
 
 <p>我们只是修改了ServiceConnection中的代码。可以看到，这里首先使用了MyAIDLService.Stub.asInterface()方法将传入的IBinder对象传换成了MyAIDLService对象，接下来就可以调用在MyAIDLService.aidl文件中定义的所有接口了。这里我们先是调用了plus()方法，并传入了3和5作为参数，然后又调用了toUpperCase()方法，并传入hello world字符串作为参数，最后将调用方法的返回结果打印出来。
 现在重新运行程序，并点击一下Bind Service按钮，可以看到打印日志如下所示：</p>
@@ -702,31 +702,31 @@ Service几乎都是在后台运行的，一直以来它都是默默地做着辛�
 
 <p>[java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Intent bindIntent = new Intent(this, MyService.class);  
+<pre><code>Intent bindIntent = new Intent(this, MyService.class);  
 bindService(bindIntent, connection, BIND_AUTO_CREATE);  
-</code></pre></div></div>
+</code></pre>
 
 <p>这里在构建Intent的时候是使用MyService.class来指定要绑定哪一个Service的，但是在另一个应用程序中去绑定Service的时候并没有MyService这个类，这时就必须使用到隐式Intent了。现在修改AndroidManifest.xml中的代码，给MyService加上一个action，如下所示：
 [html]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>  
-<span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>  
-    <span class="na">package=</span><span class="s">"com.example.servicetest"</span>  
-    <span class="na">android:versionCode=</span><span class="s">"1"</span>  
-    <span class="na">android:versionName=</span><span class="s">"1.0"</span> <span class="nt">&gt;</span>  
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;  
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"  
+    package="com.example.servicetest"  
+    android:versionCode="1"  
+    android:versionName="1.0" &gt;  
   
     ......  
   
-    <span class="nt">&lt;service</span>  
-        <span class="na">android:name=</span><span class="s">"com.example.servicetest.MyService"</span>  
-        <span class="na">android:process=</span><span class="s">":remote"</span> <span class="nt">&gt;</span>  
-        <span class="nt">&lt;intent-filter&gt;</span>  
-            <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.example.servicetest.MyAIDLService"</span><span class="nt">/&gt;</span>  
-        <span class="nt">&lt;/intent-filter&gt;</span>  
-    <span class="nt">&lt;/service&gt;</span>  
+    &lt;service  
+        android:name="com.example.servicetest.MyService"  
+        android:process=":remote" &gt;  
+        &lt;intent-filter&gt;  
+            &lt;action android:name="com.example.servicetest.MyAIDLService"/&gt;  
+        &lt;/intent-filter&gt;  
+    &lt;/service&gt;  
   
-<span class="nt">&lt;/manifest&gt;</span>  
-</code></pre></div></div>
+&lt;/manifest&gt;  
+</code></pre>
 
 <p>这就说明，MyService可以响应带有com.example.servicetest.MyAIDLService这个action的Intent。</p>
 
@@ -739,7 +739,7 @@ bindService(bindIntent, connection, BIND_AUTO_CREATE);
 
 <p>[html]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+<pre><code>&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
     android:layout_width="match_parent"  
     android:layout_height="match_parent"  
     android:orientation="vertical"  
@@ -753,12 +753,12 @@ bindService(bindIntent, connection, BIND_AUTO_CREATE);
        /&gt;  
   
 &lt;/LinearLayout&gt;  
-</code></pre></div></div>
+</code></pre>
 
 <p>接下来打开或新建MainActivity，在其中加入和MyService建立关联的代码，如下所示：
 [java]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MainActivity extends Activity {  
+<pre><code>public class MainActivity extends Activity {  
   
     private MyAIDLService myAIDLService;  
   
@@ -797,7 +797,7 @@ bindService(bindIntent, connection, BIND_AUTO_CREATE);
     }  
   
 } 
-</code></pre></div></div>
+</code></pre>
 
 <p>这部分代码大家一定会非常眼熟吧？没错，这和在ServiceTest的MainActivity中的代码几乎是完全相同的，只是在让Activity和Service建立关联的时候我们使用了隐式Intent，将Intent的action指定成了com.example.servicetest.MyAIDLService。
 在当前Activity和MyService建立关联之后，我们仍然是调用了plus()和toUpperCase()这两个方法，远程的MyService会对传入的参数进行处理并返回结果，然后将结果打印出来。</p>
@@ -824,7 +824,7 @@ handler可以分发Message对象和Runnable对象到主线程中, 每个Handler�
   <li>
     <p>安排一个动作在不同的线程中执行</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Handler中分发消息的一些方法
+    <pre><code>Handler中分发消息的一些方法
 post(Runnable)
 postAtTime(Runnable,long)
 postDelayed(Runnable long)
@@ -834,7 +834,7 @@ sendMessageAtTime(Message,long)
 sendMessageDelayed(Message,long)
 以上post类方法允许你排列一个Runnable对象到主线程队列中,
 sendMessage类方法, 允许你安排一个带数据的Message对象到队列中，等待更新.
-</code></pre></div>    </div>
+</code></pre>
   </li>
 </ol>
 
@@ -842,7 +842,7 @@ sendMessage类方法, 允许你安排一个带数据的Message对象到队列中
       (1) 子类需要继承Handler类，并重写handleMessage(Message msg) 方法, 用于接受线程数据
       以下为一个实例，它实现的功能为 : 通过线程修改界面Button的内容</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 public class MyHandlerActivity extends Activity {
+<pre><code>1 public class MyHandlerActivity extends Activity {
  2     Button button;
  3     MyHandler myHandler;
  4 
@@ -920,14 +920,14 @@ sendMessage类方法, 允许你安排一个带数据的Message对象到队列中
 76     }
 77 
 78 } 
-</code></pre></div></div>
+</code></pre>
 
 
 		  </article>
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -1037,6 +1037,15 @@ sendMessage类方法, 允许你安排一个带数据的Message对象到队列中
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1409,6 +1418,15 @@ sendMessage类方法, 允许你安排一个带数据的Message对象到队列中
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1886,7 +1904,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1914,7 +1932,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -2077,11 +2095,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

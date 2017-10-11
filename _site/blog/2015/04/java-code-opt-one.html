@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="优化java代码建议(1) - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="优化java代码建议(1) - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      优化java代码建议(1) - ChenBing
+      优化java代码建议(1) - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  优化java代码建议(1)
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2015-04-12-java-code-opt-one.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2015-04-12-java-code-opt-one.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			12 Apr 2015
 		  </div>
@@ -137,8 +137,8 @@
 		<span class="o">}</span>
 		<span class="c1">//计算时间</span>
 		<span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
-		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"平均高度是： "</span> <span class="o">+</span> <span class="n">average</span><span class="o">(</span><span class="n">heights</span><span class="o">));</span>
-		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"运行时间： "</span> <span class="o">+</span> <span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">start</span><span class="o">)</span> <span class="o">+</span> <span class="s">"ms"</span><span class="o">);</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;平均高度是： &quot;</span> <span class="o">+</span> <span class="n">average</span><span class="o">(</span><span class="n">heights</span><span class="o">));</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;运行时间： &quot;</span> <span class="o">+</span> <span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">start</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;ms&quot;</span><span class="o">);</span>
 	    <span class="o">}</span>
 
 	    <span class="c1">//计算平均值</span>
@@ -154,9 +154,9 @@
 
 <p>这个程序把50万人的身高存入一个ArrayList中，然后通过foreach遍历求和，再计算平均值，输出结果是：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>平均高度是： 154
+<pre><code>平均高度是： 154
 运行时间： 47ms
-</code></pre></div></div>
+</code></pre>
 
 <p>仅仅是一个算术平均值就花费了47ms，如果是加权平均值等算法，那花的时间肯定更长了，这段代码也没什么好优化的，唯一剩下的就是元素的遍历，List的遍历可以优化吗？</p>
 
@@ -174,9 +174,9 @@
 
 <p>运行结果是：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>平均身高是： 154
+<pre><code>平均身高是： 154
 运行时间： 16ms
-</code></pre></div></div>
+</code></pre>
 
 <p>可以看到运行时间大幅下降，效率提高了65%，为什么性能得到这么大幅度的提升？</p>
 
@@ -193,9 +193,9 @@
 
 <p>但是有些List实现类不是随机存取的，比如LinkedList类，也是一个列表，但它实现了双向链表，每个数据节点node都有三个数据项：前一个节点的引用、本节点元素、下一个节点的引用，也就是说LinkedList的两个元素之间是有关联的，我知道你的存在，你知道我的存在，这时候使用foreach来遍历效率就会更高，我们把代码中的ArrayList修改成LinkedList之后再运行下，结果如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>平均身高是： 154
+<pre><code>平均身高是： 154
 运行时间： 16ms
-</code></pre></div></div>
+</code></pre>
 
 <p>确实如此，也是16ms，你可能也想用测试一下下标访问方法遍历LinkedList的元素，其实不用测试，效率非常低下。</p>
 
@@ -205,7 +205,7 @@
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -315,6 +315,15 @@
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -687,6 +696,15 @@
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1164,7 +1182,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1192,7 +1210,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1355,11 +1373,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

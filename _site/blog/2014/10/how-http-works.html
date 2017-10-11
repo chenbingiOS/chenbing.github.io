@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="当我们打开网页时发生了什么 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="当我们打开网页时发生了什么 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      当我们打开网页时发生了什么 - ChenBing
+      当我们打开网页时发生了什么 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  当我们打开网页时发生了什么
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2014-10-11-how-http-works.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2014-10-11-how-http-works.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			11 Oct 2014
 		  </div>
@@ -142,8 +142,8 @@
 <p>网址算是URL的一个俗称，让我们来看看一个URL的组成，以HTTP版IOT中的URL为例。
 大多数URL都建立在这个通用格式</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frgs&gt;
-</code></pre></div></div>
+<pre><code>&lt;scheme&gt;://&lt;user&gt;:&lt;password&gt;@&lt;host&gt;:&lt;port&gt;/&lt;path&gt;;&lt;params&gt;?&lt;query&gt;#&lt;frgs&gt;
+</code></pre>
 
 <p>各个部分的介绍如下表：
 <img src="/images/images/http/0.jpeg" alt="" />
@@ -187,11 +187,11 @@
 空行
 主体部分</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;method&gt;&lt;request-URL&gt;&lt;version&gt;
+<pre><code>&lt;method&gt;&lt;request-URL&gt;&lt;version&gt;
 &lt;headers&gt;
 
 &lt;entity-body&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>响应报文的格式如下：
 响应行
@@ -199,11 +199,11 @@
 空行
 主体</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;version&gt;&lt;status&gt;&lt;reason-phase&gt;
+<pre><code>&lt;version&gt;&lt;status&gt;&lt;reason-phase&gt;
 &lt;headers&gt;
 
 &lt;entity-body&gt;
-</code></pre></div></div>
+</code></pre>
 
 <ul>
   <li>方法method，常见的有get和post，是客户端希望服务器对资源执行的动作</li>
@@ -224,24 +224,24 @@
 
 <p>可能的响应报文如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> HTTP/1.1 200 OK
+<pre><code> HTTP/1.1 200 OK
  content-type: text/plain
  content-length: 19
  
  Hi,I'm a message! 下面是一个POST方法示例：    ![](/images/images/http/2.jpeg)
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="连接管理">连接管理</h2>
 <p>几乎所有的HTTP通信都是由TCP/IP承载的，HTTP要传送一个报文，会以流的形式将报文数据内容通过一条打开的TCP连接按序传输。TCP收到数据流后会将数据流切成小段的数据块，并将段封装在IP分组中，通道因特网进行传输，每个IP分组包括：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 1. 一个IP分组首部(通常为20字节)
+<pre><code> 1. 一个IP分组首部(通常为20字节)
  2. 一个TCP段首部(通常为20字节)
  3. 一个TCP数据块(0个或者多个字节)
-</code></pre></div></div>
+</code></pre>
 
 <p>IP首部包括源和目的的的IP地址，长度和其他一些标记，TCP首部包括TCP端口号和控制标记。 端口号和电话分机很类似，就像公司的总机号码能将你接到前台，分机号码帮你找到正确的联系人。IP地址可能将你链接的正确的计算机，端口号将你连接到正确的应用程序上去，端口号就是一个数字，HTTP的默认端口号为80。
 TCP连接是通过4个值来识别的：
-<code class="highlighter-rouge">&lt;源IP地址、源端口号、目地IP地址、目地端口号&gt;</code>这4个值唯一定义了一条TCP连接。
+<code>&lt;源IP地址、源端口号、目地IP地址、目地端口号&gt;</code>这4个值唯一定义了一条TCP连接。
  一个TCP分组如下：
   <img src="/images/images/http/3.jpeg" alt="" />
 一个典型的TCP客户端和服务器的通信过程如下：
@@ -254,7 +254,7 @@ TCP连接是通过4个值来识别的：
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -364,6 +364,15 @@ TCP连接是通过4个值来识别的：
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -736,6 +745,15 @@ TCP连接是通过4个值来识别的：
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1213,7 +1231,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1241,7 +1259,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1404,11 +1422,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

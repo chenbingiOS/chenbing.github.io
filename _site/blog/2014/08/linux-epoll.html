@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="处理并发之一：LINUX Epoll机制介绍 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="处理并发之一：LINUX Epoll机制介绍 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      处理并发之一：LINUX Epoll机制介绍 - ChenBing
+      处理并发之一：LINUX Epoll机制介绍 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  处理并发之一：LINUX Epoll机制介绍
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2014-08-23-linux-epoll.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2014-08-23-linux-epoll.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			23 Aug 2014
 		  </div>
@@ -171,7 +171,7 @@
 
 <p>首先回忆一下select模型，当有I/O事件到来时，select通知应用程序有事件到了快去处理，而应用程序必须轮询所有的FD集合，测试每个FD是否有事件发生，并处理事件；代码像下面这样：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int res = select(maxfd+1, &amp;readfds, NULL, NULL, 120);
+<pre><code>int res = select(maxfd+1, &amp;readfds, NULL, NULL, 120);
 if(res &gt; 0)
 
 {
@@ -184,23 +184,23 @@ if(res &gt; 0)
     }
 }
 // if(res == 0) handle timeout, res &lt; 0 handle error
-</code></pre></div></div>
+</code></pre>
 
 <p>Epoll不仅会告诉应用程序有I/0事件到来，还会告诉应用程序相关的信息，这些信息是应用程序填充的，因此根据这些信息应用程序就能直接定位到事件，而不必遍历整个FD集合。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>intres = epoll_wait(epfd, events, 20, 120);
+<pre><code>intres = epoll_wait(epfd, events, 20, 120);
 
 for(int i = 0; i &lt; res;i++)
 {
     handleEvent(events[n]);
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>##5. Epoll关键数据结构</p>
 
 <p>前面提到Epoll速度快和其数据结构密不可分，其关键数据结构就是：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct epoll_event {
+<pre><code>struct epoll_event {
 
     __uint32_t events;      // Epoll events
 
@@ -219,7 +219,7 @@ typedef union epoll_data {
     __uint64_t u64;
 
 } epoll_data_t;
-</code></pre></div></div>
+</code></pre>
 
 <p>结构体epoll_event 被用于注册所感兴趣的事件和回传所发生待处理的事件. 
 其中epoll_data 联合体用来保存触发事件的某个文件描述符相关的数据. 
@@ -245,13 +245,13 @@ ET模式仅当状态发生变化的时候才获得通知,这里所谓的状态�
 
 <p>既然Epoll相比select这么好，那么用起来如何呢？会不会很繁琐啊…先看看下面的三个函数吧，就知道Epoll的易用了。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int epoll_create(int size);
-</code></pre></div></div>
+<pre><code>int epoll_create(int size);
+</code></pre>
 
 <p>生成一个Epoll专用的文件描述符，其实是申请一个内核空间，用来存放你想关注的socket fd上是否发生以及发生了什么事件。size就是你在这个Epoll fd上能关注的最大socket fd数，大小自定，只要内存足够。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
-</code></pre></div></div>
+<pre><code>int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
+</code></pre>
 
 <p>epoll的事件注册函数，它不同与select()是在监听事件时告诉内核要监听什么类型的事件，而是在这里先注册要监听的事件类型。第一个参数是epoll_create()的返回值，第二个参数表示动作，用三个宏来表示：</p>
 
@@ -263,8 +263,8 @@ ET模式仅当状态发生变化的时候才获得通知,这里所谓的状态�
 
 <p>第三个参数是需要监听的fd，第四个参数是告诉内核需要监听什么事</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int epoll_wait(int epfd,struct epoll_event * events,int maxevents,int timeout);
-</code></pre></div></div>
+<pre><code>int epoll_wait(int epfd,struct epoll_event * events,int maxevents,int timeout);
+</code></pre>
 
 <p>等待I/O事件的发生；参数说明：</p>
 
@@ -296,7 +296,7 @@ ET模式仅当状态发生变化的时候才获得通知,这里所谓的状态�
 服务端在绑定监听后，开启了一个线程，用于负责接收客户端连接，加入到epoll中，这样只要accept到客户端的连接，就将其add EPOLLIN到epoll中，然后进入循环调用epoll_wait，监听到读事件，接收数据，并将事件修改为EPOLLOUT；反之监听到写事件，发送数据，并将事件修改为EPOLLIN。
 <strong>服务器代码：</strong></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//cepollserver.h  
+<pre><code>//cepollserver.h  
 #ifndef  C_EPOLL_SERVER_H  
 #define  C_EPOLL_SERVER_H  
   
@@ -480,12 +480,12 @@ bool CEpollServer::InitServer(const char* pIp, int iPort)
 　　        }  
 　　    }  
 　　}  
-</code></pre></div></div>
+</code></pre>
 
 <p><strong>客户端代码：</strong>
 说明：测试是两个并发进行测试，每一个客户端都是一个长连接。代码中在连接服务器（ConnectToServer）时将用户ID和socketid关联起来。用户ID和socketid是一一对应的关系。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    #ifndef _DEFINE_EPOLLCLIENT_H_  
+<pre><code>    #ifndef _DEFINE_EPOLLCLIENT_H_  
     #define _DEFINE_EPOLLCLIENT_H_  
     #define _MAX_SOCKFD_COUNT 65535  
       
@@ -843,11 +843,11 @@ int main()
   
         return 0;  
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>客户端主程序：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    　#include "cepollclient.h"  
+<pre><code>    　#include "cepollclient.h"  
   
 int main(int argc, char *argv[])  
 {  
@@ -867,13 +867,13 @@ int main(int argc, char *argv[])
   
         return 0;  
 }  
-</code></pre></div></div>
+</code></pre>
 
 		  </article>
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -983,6 +983,15 @@ int main(int argc, char *argv[])
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1355,6 +1364,15 @@ int main(int argc, char *argv[])
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1832,7 +1850,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1860,7 +1878,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -2023,11 +2041,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

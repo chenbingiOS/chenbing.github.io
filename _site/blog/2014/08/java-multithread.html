@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="java并发和多线程 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="java并发和多线程 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      java并发和多线程 - ChenBing
+      java并发和多线程 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  java并发和多线程
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2014-08-02-java-multithread.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2014-08-02-java-multithread.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			02 Aug 2014
 		  </div>
@@ -140,59 +140,59 @@
 
 <p>创建Thread子类的一个实例并重写run方法，run方法会在调用start()方法之后被执行。例子如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyThread extends Thread {
+<pre><code>public class MyThread extends Thread {
    public void run(){
      System.out.println("MyThread running");
    }
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>可以用如下方式创建并运行上述Thread子类</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MyThread myThread = new MyThread();
+<pre><code>MyThread myThread = new MyThread();
 myTread.start();
-</code></pre></div></div>
+</code></pre>
 
 <p>一旦线程启动后start方法就会立即返回，而不会等待到run方法执行完毕才返回。就好像run方法是在另外一个cpu上执行一样。当run方法执行后，将会打印出字符串MyThread running。</p>
 
 <p>你也可以如下创建一个Thread的匿名子类：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thread thread = new Thread(){
+<pre><code>Thread thread = new Thread(){
    public void run(){
      System.out.println("Thread Running");
    }
 };
 thread.start();
-</code></pre></div></div>
+</code></pre>
 
 <p>当新的线程的run方法执行以后，计算机将会打印出字符串”Thread Running”。
 ###实现Runnable接口</p>
 
 <p>第二种编写线程执行代码的方式是新建一个实现了java.lang.Runnable接口的类的实例，实例中的方法可以被线程调用。下面给出例子：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyRunnable implements Runnable {
+<pre><code>public class MyRunnable implements Runnable {
    public void run(){
     System.out.println("MyRunnable running");
    }
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>为了使线程能够执行run()方法，需要在Thread类的构造函数中传入 MyRunnable的实例对象。示例如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thread thread = new Thread(new MyRunnable());
+<pre><code>Thread thread = new Thread(new MyRunnable());
 thread.start(); 当线程运行时，它将会调用实现了Runnable接口的run方法。上例中将会打印出”MyRunnable running”。
-</code></pre></div></div>
+</code></pre>
 
 <p>同样，也可以创建一个实现了Runnable接口的匿名类，如下所示：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Runnable myRunnable = new Runnable(){
+<pre><code>Runnable myRunnable = new Runnable(){
    public void run(){
      System.out.println("Runnable running");
    }
 }
 Thread thread = new Thread(myRunnable);
 thread.start();
-</code></pre></div></div>
+</code></pre>
 
 <p>##java同步块
 ava中的同步块用synchronized标记。同步块在Java中是同步在某个对象上。所有同步在一个对象上的同步块在同时只能被一个线程进入并执行操作。所有其他等待进入该同步块的线程将被阻塞，直到执行该同步块中的线程退出。</p>
@@ -212,10 +212,10 @@ ava中的同步块用synchronized标记。同步块在Java中是同步在某个�
 
 <p>下面是一个同步的实例方法：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public synchronized void add(int value){
+<pre><code>public synchronized void add(int value){
 this.count += value;
  }
-</code></pre></div></div>
+</code></pre>
 
 <p>注意在方法声明中同步（synchronized ）关键字。这告诉Java该方法是同步的。</p>
 
@@ -225,10 +225,10 @@ this.count += value;
 
 <p>静态方法同步和实例方法同步方法一样，也使用synchronized 关键字。Java静态方法同步如下示例：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static synchronized void add(int value){
+<pre><code>public static synchronized void add(int value){
  count += value;
  }
-</code></pre></div></div>
+</code></pre>
 
 <p>同样，这里synchronized 关键字告诉Java这个方法是同步的。</p>
 
@@ -242,12 +242,12 @@ this.count += value;
 
 <p>在非同步的Java方法中的同步块的例子如下所示：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public void add(int value){
+<pre><code>public void add(int value){
     synchronized(this){
        this.count += value;
     }
   }
-</code></pre></div></div>
+</code></pre>
 
 <p>示例使用Java同步块构造器来标记一块代码是同步的。该代码在执行时和同步方法一样。</p>
 
@@ -257,7 +257,7 @@ this.count += value;
 
 <p>下面两个例子都同步他们所调用的实例对象上，因此他们在同步的执行效果上是等效的。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyClass {
+<pre><code>public class MyClass {
    public synchronized void log1(String msg1, String msg2){
       log.writeln(msg1);
       log.writeln(msg2);
@@ -270,7 +270,7 @@ this.count += value;
       }
    }
  }
-</code></pre></div></div>
+</code></pre>
 
 <p>在上例中，每次只有一个线程能够在两个同步块中任意一个方法内执行。</p>
 
@@ -280,7 +280,7 @@ this.count += value;
 
 <p>和上面类似，下面是两个静态方法同步的例子。这些方法同步在该方法所属的类对象上。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyClass {
+<pre><code>public class MyClass {
     public static synchronized void log1(String msg1, String msg2){
        log.writeln(msg1);
        log.writeln(msg2);
@@ -292,7 +292,7 @@ this.count += value;
        }
     }
   }
-</code></pre></div></div>
+</code></pre>
 
 <p>这两个方法不允许同时被线程访问。</p>
 
@@ -302,7 +302,7 @@ this.count += value;
 
 <p>在下面例子中，启动了两个线程，都调用Counter类同一个实例的add方法。因为同步在该方法所属的实例上，所以同时只能有一个线程访问该方法。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Counter{
+<pre><code>public class Counter{
      long count = 0;
      public synchronized void add(long value){
        this.count += value;
@@ -331,13 +331,13 @@ this.count += value;
       threadB.start();
     }
   }
-</code></pre></div></div>
+</code></pre>
 
 <p>创建了两个线程。他们的构造器引用同一个Counter实例。Counter.add方法是同步在实例上，是因为add方法是实例方法并且被标记上synchronized关键字。因此每次只允许一个线程调用该方法。另外一个线程必须要等到第一个线程退出add()方法时，才能继续执行方法。</p>
 
 <p>如果两个线程引用了两个不同的Counter实例，那么他们可以同时调用add()方法。这些方法调用了不同的对象，因此这些方法也就同步在不同的对象上。这些方法调用将不会被阻塞。如下面这个例子所示：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Example {
+<pre><code>public class Example {
    public static void main(String[] args){
      Counter counterA = new Counter();
      Counter counterB = new Counter();
@@ -347,7 +347,7 @@ this.count += value;
      threadB.start();
    }
  }
-</code></pre></div></div>
+</code></pre>
 
 <p>注意这两个线程，threadA和threadB，不再引用同一个counter实例。CounterA和counterB的add方法同步在他们所属的对象上。调用counterA的add方法将不会阻塞调用counterB的add方法。</p>
 
@@ -367,7 +367,7 @@ this.count += value;
 <p><strong>1、通过共享对象通信</strong>
 线程间发送信号的一个简单方式是在共享对象的变量里设置信号值。线程A在一个同步块里设置boolean型成员变量hasDataToProcess为true，线程B也在同步块里读取hasDataToProcess这个成员变量。这个简单的例子使用了一个持有信号的对象，并提供了set和check方法:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MySignal{
+<pre><code>public class MySignal{
 
   protected boolean hasDataToProcess = false;
 
@@ -378,19 +378,19 @@ this.count += value;
     this.hasDataToProcess = hasData;
   }
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>线程A和B必须获得指向一个MySignal共享实例的引用，以便进行通信。如果它们持有的引用指向不同的MySingal实例，那么彼此将不能检测到对方的信号。需要处理的数据可以存放在一个共享缓存区里，它和MySignal实例是分开存放的。</p>
 
 <p><strong>2、忙等待(Busy Wait)</strong>
 准备处理数据的线程B正在等待数据变为可用。换句话说，它在等待线程A的一个信号，这个信号使hasDataToProcess()返回true。线程B运行在一个循环里，以等待这个信号：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protected MySignal sharedSignal = ...
+<pre><code>protected MySignal sharedSignal = ...
 ...
 while(!sharedSignal.hasDataToProcess()){
   //do nothing... busy waiting
 }
-</code></pre></div></div>
+</code></pre>
 
 <p><strong>3、wait(),notify()和notifyAll()</strong>
 忙等待没有对运行等待线程的CPU进行有效的利用，除非平均等待时间非常短。否则，让等待线程进入睡眠或者非运行状态更为明智，直到它接收到它等待的信号。</p>
@@ -399,7 +399,7 @@ while(!sharedSignal.hasDataToProcess()){
 
 <p>一个线程一旦调用了任意对象的wait()方法，就会变为非运行状态，直到另一个线程调用了同一个对象的notify()方法。为了调用wait()或者notify()，线程必须先获得那个对象的锁。也就是说，线程必须在同步块里调用wait()或者notify()。以下是MySingal的修改版本——使用了wait()和notify()的MyWaitNotify：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MonitorObject{
+<pre><code>public class MonitorObject{
 }
 public class MyWaitNotify{
   MonitorObject myMonitorObject = new MonitorObject();
@@ -416,7 +416,7 @@ public class MyWaitNotify{
     }
   }
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>等待线程将调用doWait()，而唤醒线程将调用doNotify()。当一个线程调用一个对象的notify()方法，正在等待该对象的所有线程中将有一个线程被唤醒并允许执行（校注：这个将被唤醒的线程是随机的，不可以指定唤醒哪个线程）。同时也提供了一个notifyAll()方法来唤醒正在等待一个给定对象的所有线程。</p>
 
@@ -432,7 +432,7 @@ public class MyWaitNotify{
 notify()和notifyAll()方法不会保存调用它们的方法，因为当这两个方法被调用时，有可能没有线程处于等待状态。通知信号过后便丢弃了。因此，如果一个线程先于被通知线程调用wait()前调用了notify()，等待的线程将错过这个信号。这可能是也可能不是个问题。不过，在某些情况下，这可能使等待线程永远在等待，不再醒来，因为线程错过了唤醒信号。
 为了避免丢失信号，必须把它们保存在信号类里。在MyWaitNotify的例子中，通知信号应被存储在MyWaitNotify实例的一个成员变量里。以下是MyWaitNotify的修改版本：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyWaitNotify2{
+<pre><code>public class MyWaitNotify2{
 
   MonitorObject myMonitorObject = new MonitorObject();
   boolean wasSignalled = false;
@@ -455,7 +455,7 @@ notify()和notifyAll()方法不会保存调用它们的方法，因为当这两�
     }
   }
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>留意doNotify()方法在调用notify()前把wasSignalled变量设为true。同时，留意doWait()方法在调用wait()前会检查wasSignalled变量。事实上，如果没有信号在前一次doWait()调用和这次doWait()调用之间的时间段里被接收到，它将只调用wait()。</p>
 
@@ -468,7 +468,7 @@ notify()和notifyAll()方法不会保存调用它们的方法，因为当这两�
 
 <p>为了防止假唤醒，保存信号的成员变量将在一个while循环里接受检查，而不是在if表达式里。这样的一个while循环叫做自旋锁（校注：这种做法要慎重，目前的JVM实现自旋会消耗CPU，如果长时间不调用doNotify方法，doWait方法会一直自旋，CPU会消耗太大）。被唤醒的线程会自旋直到自旋锁(while循环)里的条件变为false。以下MyWaitNotify2的修改版本展示了这点：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyWaitNotify3{
+<pre><code>public class MyWaitNotify3{
   MonitorObject myMonitorObject = new MonitorObject();
   boolean wasSignalled = false;
   public void doWait(){
@@ -489,7 +489,7 @@ notify()和notifyAll()方法不会保存调用它们的方法，因为当这两�
     }
   }
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>留意wait()方法是在while循环里，而不在if表达式里。如果等待线程没有收到信号就唤醒，wasSignalled变量将变为false,while循环会再执行一次，促使醒来的线程回到等待状态。</p>
 
@@ -501,7 +501,7 @@ notify()和notifyAll()方法不会保存调用它们的方法，因为当这两�
 
 <p>本文早期的一个版本在MyWaitNotify例子里使用字符串常量（””）作为管程对象。以下是那个例子：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyWaitNotify{
+<pre><code>public class MyWaitNotify{
   String myMonitorObject = "";
   boolean wasSignalled = false;
   public void doWait(){
@@ -522,7 +522,7 @@ notify()和notifyAll()方法不会保存调用它们的方法，因为当这两�
     }
   }
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>在空字符串作为锁的同步块(或者其他常量字符串)里调用wait()和notify()产生的问题是，JVM/编译器内部会把常量字符串转换成同一个对象。这意味着，即使你有2个不同的MyWaitNotify实例，它们都引用了相同的空字符串实例。同时也意味着存在这样的风险：在第一个MyWaitNotify实例上调用doWait()的线程会被在第二个MyWaitNotify实例上调用doNotify()的线程唤醒。这种情况可以画成以下这张图：</p>
 
@@ -548,13 +548,13 @@ notify()和notifyAll()方法不会保存调用它们的方法，因为当这两�
 
 <p>该情况如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thread 1  locks A, waits for B
+<pre><code>Thread 1  locks A, waits for B
 Thread 2  locks B, waits for A
-</code></pre></div></div>
+</code></pre>
 
 <p>这里有一个TreeNode类的例子，它调用了不同实例的synchronized方法：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class TreeNode {
+<pre><code>public class TreeNode {
     TreeNode parent   = null; 
     List children = new ArrayList();
  
@@ -577,16 +577,16 @@ Thread 2  locks B, waits for A
         this.parent = parent;
     }
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>如果线程1调用parent.addChild(child)方法的同时有另外一个线程2调用child.setParent(parent)方法，两个线程中的parent表示的是同一个对象，child亦然，此时就会发生死锁。下面的伪代码说明了这个过程：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thread 1: parent.addChild(child); //locks parent
+<pre><code>Thread 1: parent.addChild(child); //locks parent
           --&gt; child.setParentOnly(parent);
 
 Thread 2: child.setParent(parent); //locks child
           --&gt; parent.addChildOnly()
-</code></pre></div></div>
+</code></pre>
 
 <p>首先线程1调用parent.addChild(child)。因为addChild()是同步的，所以线程1会对parent对象加锁以不让其它线程访问该对象。</p>
 
@@ -602,11 +602,11 @@ Thread 2: child.setParent(parent); //locks child
 
 <p>死锁可能不止包含2个线程，这让检测死锁变得更加困难。下面是4个线程发生死锁的例子：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thread 1  locks A, waits for B
+<pre><code>Thread 1  locks A, waits for B
 Thread 2  locks B, waits for C
 Thread 3  locks C, waits for D
 Thread 4  locks D, waits for A
-</code></pre></div></div>
+</code></pre>
 
 <p>线程1等待线程2，线程2等待线程3，线程3等待线程4，线程4等待线程1。</p>
 
@@ -616,11 +616,11 @@ Thread 4  locks D, waits for A
 
 <p>当多个事务同时需要对一些相同的记录做更新操作时，就很有可能发生死锁，例如：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Transaction 1, request 1, locks record 1 for update
+<pre><code>Transaction 1, request 1, locks record 1 for update
 Transaction 2, request 1, locks record 2 for update
 Transaction 1, request 2, tries to lock record 2 for update.
 Transaction 2, request 2, tries to lock record 1 for update.
-</code></pre></div></div>
+</code></pre>
 
 <p>因为锁发生在不同的请求中，并且对于一个事务来说不可能提前知道所有它需要的锁，因此很难检测和避免数据库事务中的死锁。</p>
 
@@ -629,7 +629,7 @@ Transaction 2, request 2, tries to lock record 1 for update.
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -739,6 +739,15 @@ Transaction 2, request 2, tries to lock record 1 for update.
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1111,6 +1120,15 @@ Transaction 2, request 2, tries to lock record 1 for update.
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1588,7 +1606,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1616,7 +1634,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1779,11 +1797,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

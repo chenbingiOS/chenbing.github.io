@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="AndroidPN消息推送 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="AndroidPN消息推送 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      AndroidPN消息推送 - ChenBing
+      AndroidPN消息推送 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  AndroidPN消息推送
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2014-10-30-androidDP-introduction.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2014-10-30-androidDP-introduction.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			30 Oct 2014
 		  </div>
@@ -159,7 +159,7 @@
 
 <p>我们自定义消息时需要定义3个类：在NotificationIQ中定义消息的实体，在NotificationIQProvider中将消息转化为NotificationIQ实体，在NotificationPacketListener中对实体进行处理，具体的实现可参考NotificationIQ,NotificationIQProvider,NotificationPacketListener三个类。在定义这些类之后，还需要在XmppManager中将这3个类中注册到connection中，代码如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>connection.connect();
+<pre><code>connection.connect();
 Log.i(LOGTAG, "XMPP connected successfully");
 // packet provider
 ProviderManager.getInstance().addIQProvider("message",
@@ -171,7 +171,7 @@ NotificationIQ.class);
 // packet listener
 PacketListener packetListener = xmppManager.getNotificationPacketListener();
 connection.addPacketListener(packetListener, packetFilter);
-</code></pre></div></div>
+</code></pre>
 
 <p>需要注意的是，注册NotificationIQProvider时，传入的namespace需要和服务端组装消息时使用的namespace一致，才能正确的收到。</p>
 <h2 id="注册">注册</h2>
@@ -261,7 +261,7 @@ connection.addPacketListener(packetListener, packetFilter);
 
 <p>在这个流程中我们需要修改的是步骤3，也就是需要定义和组装自己的xmpp消息，以便于将适当的信息传到客户端并便于客户端解析。一个简单的消息组装例子如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>private IQ  createMessageIQ(String title, String message, String userId,String json) {
+<pre><code>private IQ  createMessageIQ(String title, String message, String userId,String json) {
 Element notification =  DocumentHelper.createElement(QName.get(
 "message",  INQURIE_NAMESPACE));
 notification.addElement("title").setText(title);
@@ -273,7 +273,7 @@ iq.setType(IQ.Type.set);
 iq.setChildElement(notification);
 return iq;
 } 要注意的是在创建element的时候，传入的namespace要和client解析使用的namespace相匹配。
-</code></pre></div></div>
+</code></pre>
 
 <p><strong>独立部署使用</strong></p>
 
@@ -289,7 +289,7 @@ return iq;
 
 <p>对于spring-config.xml的配置说明：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;bean id="ioAcceptor" class="org.apache.mina.transport.socket.nio.NioSocketAcceptor"init-method="bind" destroy-method="unbind"&gt;
+<pre><code>&lt;bean id="ioAcceptor" class="org.apache.mina.transport.socket.nio.NioSocketAcceptor"init-method="bind" destroy-method="unbind"&gt;
 
 &lt;property name="defaultLocalAddress" value=":5222" /&gt; &lt;!--mina Socekt服务端监听端口，客户端配置和此配置一致--&gt;
 
@@ -300,7 +300,7 @@ return iq;
 &lt;property name="reuseAddress" value="true" /&gt;
 
 &lt;/bean&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>启动脚本在bin下，windowns和linux的脚本都有，需要配置系统环境变量JAVA_HOME，或者修改启动脚本将JAVA_HOME指定为你本机的具体地址，运行run脚本androidpn启动成功，通过浏览器访问http://127.0.0.1:7070/就可看到console界面。</p>
 
@@ -331,11 +331,11 @@ return iq;
 
 <p>org.androidpn.server.xmpp.push.NotificationManager，调用其提供的sendBroadcast和sendNotifcationToUser方法，如下代码调用：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NotificationManager notificationManager = new NotificationManager();
+<pre><code>NotificationManager notificationManager = new NotificationManager();
 notificationManager.sendBroadcast("1234567890", "Hello","Hello BalanceJia!", "uri");
 或
 notificationManager.sendNotifcationToUser(apiKey,username, title, message, uri);
-</code></pre></div></div>
+</code></pre>
 
 <p><strong>情况二：若你的项目中用到spring</strong></p>
 
@@ -353,7 +353,7 @@ notificationManager.sendNotifcationToUser(apiKey,username, title, message, uri);
 
 <p>由于未使用使用hibernate-cfg.xml文件，需要在spring-config文件加入如下内容：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;bean id="sessionFactory"
+<pre><code>&lt;bean id="sessionFactory"
    class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"&gt;
    &lt;property name="dataSource" ref="dataSource" /&gt;
    &lt;property name="mappingResources" &gt;
@@ -371,15 +371,15 @@ notificationManager.sendNotifcationToUser(apiKey,username, title, message, uri);
   &lt;/props&gt;
  &lt;/property&gt;
  &lt;/bean&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>在spring-config.xml文件中，配置组件<bean: id="ioAcceptor">的listenrPort属性</bean:></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;bean id="listenrPort" class="java.net.InetSocketAddress"&gt;
+<pre><code>&lt;bean id="listenrPort" class="java.net.InetSocketAddress"&gt;
  &lt;constructor-arg value="localhost"/&gt;
  &lt;constructor-arg value="5222"/&gt;
 &lt;/bean&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>此外，Androidpn默认采用spring-mvc方式配置，所以需要修改action指向。修改org.androidpn.server.console.controller包下面的三个类，改为继承自struct2的ActionSupport方式，并修改默认的调用方法，然后配置struct.xml文件。</p>
 
@@ -387,7 +387,7 @@ notificationManager.sendNotifcationToUser(apiKey,username, title, message, uri);
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -497,6 +497,15 @@ notificationManager.sendNotifcationToUser(apiKey,username, title, message, uri);
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -869,6 +878,15 @@ notificationManager.sendNotifcationToUser(apiKey,username, title, message, uri);
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1346,7 +1364,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1374,7 +1392,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1537,11 +1555,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

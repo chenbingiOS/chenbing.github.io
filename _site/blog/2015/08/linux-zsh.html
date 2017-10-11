@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Zsh-Linux下最好的Shell简介 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="Zsh-Linux下最好的Shell简介 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      Zsh-Linux下最好的Shell简介 - ChenBing
+      Zsh-Linux下最好的Shell简介 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  Zsh-Linux下最好的Shell简介
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2015-08-23-linux-zsh.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2015-08-23-linux-zsh.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			23 Aug 2015
 		  </div>
@@ -129,30 +129,30 @@
 
 <p>###查看当前系统所有的Shell</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ls /etc/shells
-</code></pre></div></div>
+<pre><code>ls /etc/shells
+</code></pre>
 
 <p>结果如下：
 <img src="/images/zsh1.png" alt="" /></p>
 
 <p>###安装Zsh</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install zsh
-</code></pre></div></div>
+<pre><code>sudo apt-get install zsh
+</code></pre>
 
-<p>简单吧？把它设置为默认Shell,<code class="highlighter-rouge">chsh -s /bin/zsh</code>
+<p>简单吧？把它设置为默认Shell,<code>chsh -s /bin/zsh</code>
 它的默认配置为.zshrc,你可以在里面配置各种按键别名，你也可以使用Github上比较流行的oh-my-zsh配置，安装方法：</p>
 
 <p>自动安装：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
-</code></pre></div></div>
+<pre><code>wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+</code></pre>
 
 <p>手动安装：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+<pre><code>git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-</code></pre></div></div>
+</code></pre>
 
 <p>安装之后进入一个Git分支，显示是这样的，很炫对吧？</p>
 
@@ -162,31 +162,31 @@ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 
 <p><img src="/images/zsh3.png" alt="" /></p>
 
-<p>它的功能不局限如此，时间长了忘记了tar的参数？输入<code class="highlighter-rouge">tar -</code>按一下tab键会显示所有的命令行参数，再按一下tab进入选择模式，如图：</p>
+<p>它的功能不局限如此，时间长了忘记了tar的参数？输入<code>tar -</code>按一下tab键会显示所有的命令行参数，再按一下tab进入选择模式，如图：</p>
 
 <p><img src="/images/zsh4.png" alt="" /></p>
 
-<p>以前杀死进程是不是用<code class="highlighter-rouge">ps aux | grep python</code>
+<p>以前杀死进程是不是用<code>ps aux | grep python</code>
 <img src="/images/zsh5.png" alt="" />
-现在只需要输入<code class="highlighter-rouge">kill python</code>再按一下tab键，结果变成这样了,神奇把？</p>
+现在只需要输入<code>kill python</code>再按一下tab键，结果变成这样了,神奇把？</p>
 
 <p><img src="/images/zsh6.png" alt="" /></p>
 
 <p>###插件</p>
 
-<p>在.zshrc文件里可以配置你要使用的插件，Zsh提供上千种插件，你可以配置自己Shell的主题，我用的是<code class="highlighter-rouge">ZSH_THEME=”robbyrussell”</code>,你还可以配置需要的插件，我的插件是<code class="highlighter-rouge">plugins=(git autojump mvn gradle)</code>,简单介绍下git和autojump:</p>
+<p>在.zshrc文件里可以配置你要使用的插件，Zsh提供上千种插件，你可以配置自己Shell的主题，我用的是<code>ZSH_THEME=”robbyrussell”</code>,你还可以配置需要的插件，我的插件是<code>plugins=(git autojump mvn gradle)</code>,简单介绍下git和autojump:</p>
 
 <p>git. 当你进入一个git目录时，Zsh会显示git和所在的分支，对git的命令进行了简化，例如 gco=’git checkout’、gd=’git diff’、gst=’git status’、g=’git’等等，熟练使用可以大大减少 git 的命令长度，命令内容可以参考~/.oh-my-zsh/plugins/git/git.plugin.zsh</p>
 
 <p>autojump. 安装方法：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/downloads/joelthelion/autojump/autojump_v21.1.2.tar.gz
-</code></pre></div></div>
+<pre><code>wget https://github.com/downloads/joelthelion/autojump/autojump_v21.1.2.tar.gz
+</code></pre>
 
-<p>解压缩后进入目录，执行<code class="highlighter-rouge">./install.sh</code>,最后加上这一行代码到.zshrc中：</p>
+<p>解压缩后进入目录，执行<code>./install.sh</code>,最后加上这一行代码到.zshrc中：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] &amp;&amp; . ~/.autojump/etc/profile.d/autojump.sh
-</code></pre></div></div>
+<pre><code>[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] &amp;&amp; . ~/.autojump/etc/profile.d/autojump.sh
+</code></pre>
 
 <p>安装了autojump之后，zsh 会自动记录你访问过的目录，通过 j + 目录名 可以直接进行目录跳转，而且目录名支持模糊匹配和自动补全，例如你访问过workspace目录，输入j work 即可正确跳转。j –stat 可以看你的历史路径库。</p>
 
@@ -196,7 +196,7 @@ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -306,6 +306,15 @@ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -678,6 +687,15 @@ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1155,7 +1173,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1183,7 +1201,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1346,11 +1364,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="XMPP协议分析-原理 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="XMPP协议分析-原理 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      XMPP协议分析-原理 - ChenBing
+      XMPP协议分析-原理 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  XMPP协议分析-原理
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2014-10-28-xmpp.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2014-10-28-xmpp.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			28 Oct 2014
 		  </div>
@@ -154,15 +154,15 @@
 
 <h2 id="xmpp协议分析">XMPP协议分析</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   XMPP中定义了三个角色：客户端，服务器，网关。 通信能够在这三者的任意两个之间双向发生。服务器同时承担了客户端信息记录，连接管理和信息的路由功能。网关承担着与异构即时通信系统的互联互通，异构系统可以包括SMS （短信），MSN，ICQ等。基本的网络形式是单客户端通过TCP/IP连接到单服务器，然后在之上传输XML。
-</code></pre></div></div>
+<pre><code>   XMPP中定义了三个角色：客户端，服务器，网关。 通信能够在这三者的任意两个之间双向发生。服务器同时承担了客户端信息记录，连接管理和信息的路由功能。网关承担着与异构即时通信系统的互联互通，异构系统可以包括SMS （短信），MSN，ICQ等。基本的网络形式是单客户端通过TCP/IP连接到单服务器，然后在之上传输XML。
+</code></pre>
 
 <p>XMPP的基本网络结构如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C1----S1---S2---C3
+<pre><code>C1----S1---S2---C3
 |
 C2----+--G1===FN1===FC1
-</code></pre></div></div>
+</code></pre>
 
 <p>符号表示：C1,C2,C3=XMPP客户端；S1,S2=XMPP；服务端G1=在XMPP和使用外部消息网络（非XMPP）的协议之间转换的网；FN1=外部消息网络；FC1=外部消息网络的客户端。</p>
 
@@ -204,7 +204,7 @@ C2----+--G1===FN1===FC1
 
 <p>第二步Romeo获取了他的联系人列表，通过向服务器montague.lit发送<iq></iq>字段请求，按照下面的协议。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;iq type=‘get’from=‘romeo@montague.lit/pda’&gt;
+<pre><code>&lt;iq type=‘get’from=‘romeo@montague.lit/pda’&gt;
 &lt;query xmlns=‘jabber:iq:roster’/&gt;
 &lt;/iq&gt;
 
@@ -214,28 +214,28 @@ C2----+--G1===FN1===FC1
 &lt;item jid=‘benvolio@shakespeare.lit’/&gt;
 &lt;/query&gt;
 &lt;/iq&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>第三步Romeo发送了一个presence请求到服务器montague.lit，然后会将这个信息广播到他的所有好友。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;presence from=‘romeo@montague.lit/pda’/&gt;
+<pre><code>&lt;presence from=‘romeo@montague.lit/pda’/&gt;
 &lt;presence from=‘romeo@montague.lit/pda’to=‘juliet@capulet.lit’/&gt;
 &lt;presence from=‘romeo@montague.lit/pda’to=‘mercutio@shakespeare.lit’
 /&gt;
 &lt;presence from=‘romeo@montague.lit/pda’to=‘benvolio@shakespeare.lit’
 /&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>第四步如果Romeo的联系人都在线，就会将presence回复给Romeo，告知自己的状态。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;presence to=‘romeo@montague.lit/pda’from=‘juliet@capulet.lit/balcony’/&gt;
+<pre><code>&lt;presence to=‘romeo@montague.lit/pda’from=‘juliet@capulet.lit/balcony’/&gt;
 &lt;presence to=‘romeo@montague.lit/pda’from=‘juliet@capulet.lit/chamber’/&gt;
 &lt;presence to=‘romeo@montague.lit/pda’from=‘mercutio@shakespeare.lit/home’/&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>第五步Romeo和Juliet开始交换信息，进行聊天。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;message from=‘romeo@montague.lit/pda’to=‘juliet@capulet.lit’&gt;
+<pre><code>&lt;message from=‘romeo@montague.lit/pda’to=‘juliet@capulet.lit’&gt;
 &lt;body&gt;hi!&lt;/body&gt;
 &lt;/message&gt;
 
@@ -243,7 +243,7 @@ C2----+--G1===FN1===FC1
   	&gt; 
 &lt;body&gt;hi yourself!&lt;/body&gt;
 &lt;/message&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>以文档的观点来看，客户端或服务器发送的所有XML文本连缀在一起，从<stream>到</stream>构成了一个完整的XML文档。其中的stream标签就是所谓的XML Stream。在<stream>与</stream>中间的那些<message>...</message>这样的XML元素就是所谓的XML Stanza（XML节）。XMPP核心协议通信的基本模式就是先建立一个stream，然后协商一堆安全之类的东西，中间通信过程就是客户端发送XML Stanza，一个接一个的。服务器根据客户端发送的信息以及程序的逻辑，发送XML Stanza给客户端。但是这个过程并不是一问一答的，任何时候都有可能从一个方发信给另外一方。通信的最后阶段是&lt;/stream&gt;关闭流，关闭TCP/IP连接。</p>
 
@@ -253,7 +253,7 @@ C2----+--G1===FN1===FC1
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -363,6 +363,15 @@ C2----+--G1===FN1===FC1
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -735,6 +744,15 @@ C2----+--G1===FN1===FC1
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1212,7 +1230,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1240,7 +1258,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1403,11 +1421,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

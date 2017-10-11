@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="java同步容器与并发容器 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="java同步容器与并发容器 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      java同步容器与并发容器 - ChenBing
+      java同步容器与并发容器 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  java同步容器与并发容器
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2014-11-08-java-concurrent-collections.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2014-11-08-java-concurrent-collections.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			08 Nov 2014
 		  </div>
@@ -147,7 +147,7 @@ hashtable就是在hashmap的基础上对所有元素的访问和插入操作用s
 <p>collections.synchronizedXXX是在jdk2引入的，和vector,hashtable一样，都是在整个容器上进行同步操作。
 举个例子，下面这个是jdk7种collections.synchronizedMap的实现，这里只列出部分代码：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>private static class SynchronizedMap&lt;K,V&gt;
+<pre><code>private static class SynchronizedMap&lt;K,V&gt;
     implements Map&lt;K,V&gt;, Serializable {
     private static final long serialVersionUID = 1978198479659022715L;
 
@@ -192,7 +192,7 @@ hashtable就是在hashmap的基础上对所有元素的访问和插入操作用s
     public void clear() {
         synchronized (mutex) {m.clear();}
     }
-</code></pre></div></div>
+</code></pre>
 
 <hr />
 <h1 id="并发容器">并发容器</h1>
@@ -205,7 +205,7 @@ hashtable就是在hashmap的基础上对所有元素的访问和插入操作用s
 
 <p>底层实现如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class CopyOnWriteArrayList&lt;E&gt;  
+<pre><code>public class CopyOnWriteArrayList&lt;E&gt;  
     implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable {  
   
 /** The lock protecting all mutators */
@@ -219,11 +219,11 @@ private transient volatile Object[] array;
 
   ...  
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>读写操作：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> @SuppressWarnings("unchecked")
+<pre><code> @SuppressWarnings("unchecked")
 private E get(Object[] a, int index) {
     return (E) a[index];
 }
@@ -255,7 +255,7 @@ public E get(int index) {
         lock.unlock();
     }
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>特别注意：在CopyOnWriteArrayList上获得的Iterator是不能进行set和remove操作的，否则会抛出ConcurrentModificationException。</p>
 
@@ -266,7 +266,7 @@ public E get(int index) {
 <p>ArrayBlockingQueue是对BlockingQueue的一个数组实现，它使用一把全局的锁并行对queue的读写操作，同时使用两个Condition阻塞容量为空时的取操作和容量满时的写操作。
 底层实现：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ArrayBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
+<pre><code>public class ArrayBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
     implements BlockingQueue&lt;E&gt;, java.io.Serializable {  
   
 // 使用循环数组来实现queue，初始时takeIndex和putIndex均为0  
@@ -300,11 +300,11 @@ public ArrayBlockingQueue(int capacity, boolean fair) {
   
   ...  
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>ArrayBlockingQueue的取操作：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ArrayBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
+<pre><code>public class ArrayBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
     implements BlockingQueue&lt;E&gt;, java.io.Serializable {  
   
 private E extract() {  
@@ -346,11 +346,11 @@ public E take() throws InterruptedException {
   
   ...  
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>ArrayBlockingQueue的写操作：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ArrayBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
+<pre><code>public class ArrayBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
     implements BlockingQueue&lt;E&gt;, java.io.Serializable {  
   
 private void insert(E x) {  
@@ -384,7 +384,7 @@ public void put(E o) throws InterruptedException {
   
   ...  
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>注意：ArrayBlockingQueue<strong>在读写操作上都需要锁住整个容器</strong>，因此吞吐量与一般的实现是相似的，适合于实现“生产者消费者”模式。</p>
 
@@ -394,7 +394,7 @@ public void put(E o) throws InterruptedException {
 
 <p>LinkedBlockingQueue底层的定义如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class LinkedBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
+<pre><code>public class LinkedBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
     implements BlockingQueue&lt;E&gt;, java.io.Serializable {  
   
 static class Node&lt;E&gt; {  
@@ -421,11 +421,11 @@ private final Condition notFull = putLock.newCondition();
   
    ...  
 } 
-</code></pre></div></div>
+</code></pre>
 
 <p>LinkedBlockingQueue的添加操作：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class LinkedBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
+<pre><code>public class LinkedBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
     implements BlockingQueue&lt;E&gt;, java.io.Serializable {  
   
 private void insert(E x) {  
@@ -478,11 +478,11 @@ public void put(E o) throws InterruptedException {
   
   ...  
 }   
-</code></pre></div></div>
+</code></pre>
 
 <p>LinkedBlockingQueue的取操作：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class LinkedBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
+<pre><code>public class LinkedBlockingQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
     implements BlockingQueue&lt;E&gt;, java.io.Serializable {  
   
 private E extract() {  
@@ -536,7 +536,7 @@ public E take() throws InterruptedException {
   
   ...  
 }  
-</code></pre></div></div>
+</code></pre>
 
 <hr />
 
@@ -548,7 +548,7 @@ public E take() throws InterruptedException {
 
 <p>segment是ConcurrentHashMap存储元素的基本段，它本身是一个hashtable的实现，read操作时无锁的，write需要同步，定义如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ConcurrentHashMap&lt;K, V&gt; extends AbstractMap&lt;K, V&gt;  
+<pre><code>public class ConcurrentHashMap&lt;K, V&gt; extends AbstractMap&lt;K, V&gt;  
     implements ConcurrentMap&lt;K, V&gt;, Serializable {  
   
   
@@ -575,11 +575,11 @@ static final class HashEntry&lt;K,V&gt; {
   
   ...  
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>segment的read操作：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>static final class Segment&lt;K,V&gt; extends ReentrantLock implements Serializable {  
+<pre><code>static final class Segment&lt;K,V&gt; extends ReentrantLock implements Serializable {  
   
   HashEntry&lt;K,V&gt; getFirst(int hash) {  
       HashEntry[] tab = table;  
@@ -606,12 +606,12 @@ static final class HashEntry&lt;K,V&gt; {
   
 ...  
 } 
-</code></pre></div></div>
+</code></pre>
 
 <p>由于HashEntry当中的key和next都是final的，所以segment之上的操作不可能影响HashEntry列表之间相对的顺序，而value是可变的，当第一次读值失败时，尝试加锁读。
   segment的replace操作：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>static final class Segment&lt;K,V&gt; extends ReentrantLock implements Serializable {  
+<pre><code>static final class Segment&lt;K,V&gt; extends ReentrantLock implements Serializable {  
   
    /** 
    * replace操作是就地替换，HashEntry的value是非final的 
@@ -637,11 +637,11 @@ static final class HashEntry&lt;K,V&gt; {
   
   ...  
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>segment的remove操作一种copy on write 的方法，保留被删元素之后的列表，copy被删元素之前的hashEntry：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>static final class Segment&lt;K,V&gt; extends ReentrantLock implements Serializable {  
+<pre><code>static final class Segment&lt;K,V&gt; extends ReentrantLock implements Serializable {  
   
     V remove(Object key, int hash, Object value) {  
         lock();  
@@ -678,11 +678,11 @@ static final class HashEntry&lt;K,V&gt; {
   
   ...  
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>segment的rehash操作实现比较特别，为了保证rehash过程中copy的元素尽可能少，segment在rehash时Entry入口的个数是以2的倍数增长，这可以保证一个entry在rehash之后要么在原来的列表中，要么在下一个列表中：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>static final class Segment&lt;K,V&gt; extends ReentrantLock implements Serializable {  
+<pre><code>static final class Segment&lt;K,V&gt; extends ReentrantLock implements Serializable {  
   
     void rehash() {  
         // 局部变量引用table  
@@ -738,13 +738,13 @@ static final class HashEntry&lt;K,V&gt; {
   
   ...  
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>ConcurrentHashMap在Segment的基础上，通过首先将&lt;key, value&gt;对hash到一个segment，再由segment实现对entry的管理。</p>
 
 <p>ConcurrentHashMap的get实现：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ConcurrentHashMap&lt;K, V&gt; extends AbstractMap&lt;K, V&gt;  
+<pre><code>public class ConcurrentHashMap&lt;K, V&gt; extends AbstractMap&lt;K, V&gt;  
     implements ConcurrentMap&lt;K, V&gt;, Serializable {  
   
 final Segment&lt;K,V&gt; segmentFor(int hash) {  
@@ -758,11 +758,11 @@ public V get(Object key) {
   
   ...  
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>ConcurrentHashMap的put和get方法：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ConcurrentHashMap&lt;K, V&gt; extends AbstractMap&lt;K, V&gt;  
+<pre><code>public class ConcurrentHashMap&lt;K, V&gt; extends AbstractMap&lt;K, V&gt;  
     implements ConcurrentMap&lt;K, V&gt;, Serializable {  
   
 public V put(K key, V value) {  
@@ -776,7 +776,7 @@ public V remove(Object key) {
     int hash = hash(key);  
     return segmentFor(hash).remove(key, hash, null);  
 }  
-</code></pre></div></div>
+</code></pre>
 
 <p>…<br />
 }</p>
@@ -791,7 +791,7 @@ public V remove(Object key) {
 
 <p>而且不像很多其他容器，ConcurrentLinkedQueue的size()操作不是常量时间，返回的结果也不一定是准确的。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ConcurrentLinkedQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
+<pre><code>public class ConcurrentLinkedQueue&lt;E&gt; extends AbstractQueue&lt;E&gt;  
     implements Queue&lt;E&gt;, java.io.Serializable {  
 private static final long serialVersionUID = 196745693267521676L;  
   
@@ -864,13 +864,13 @@ private transient volatile Node&lt;E&gt; head = new Node&lt;E&gt;(null, null);
 private transient volatile Node&lt;E&gt; tail = head;  
 ...  
 }  
-</code></pre></div></div>
+</code></pre>
 
-<p>先看看其内部数据结构Node的实现。由于使用了原子字段更新器<code class="highlighter-rouge">AtomicReferenceFieldUpdater&lt;T,V&gt;</code>（其中T表示持有字段的类的类型，V表示字段的类型），所以其对应的需要更新的字段要使用volatile进行声明。其<code class="highlighter-rouge">newUpdater(Class&lt;U&gt; tclass, Class&lt;W&gt; vclass, String fieldName)</code>方法实例化一个指定字段的更新器，参数分别表示：持有需要更新字段的类，字段的类，要更新的字段的名称。Node的内部变量item，next分别有对应自己的字段更新器，并且包含了对其原子性操作的方法<code class="highlighter-rouge">compareAndSet(T obj, V expect, V update)</code>，其中T是持有被设置字段的对象，后两者分别是期望值和新值。</p>
+<p>先看看其内部数据结构Node的实现。由于使用了原子字段更新器<code>AtomicReferenceFieldUpdater&lt;T,V&gt;</code>（其中T表示持有字段的类的类型，V表示字段的类型），所以其对应的需要更新的字段要使用volatile进行声明。其<code>newUpdater(Class&lt;U&gt; tclass, Class&lt;W&gt; vclass, String fieldName)</code>方法实例化一个指定字段的更新器，参数分别表示：持有需要更新字段的类，字段的类，要更新的字段的名称。Node的内部变量item，next分别有对应自己的字段更新器，并且包含了对其原子性操作的方法<code>compareAndSet(T obj, V expect, V update)</code>，其中T是持有被设置字段的对象，后两者分别是期望值和新值。</p>
 
 <p>对于ConcurrentLinkedQueue自身也有<strong>两个volatile的线程共享变量：head，tail分别对应队列的头指针和尾指针</strong>。要保证这个队列的线程安全就是保证对这两个Node的引用的访问（更新，查看）的原子性和可见性，由于volatile本身能够保证可见性，所以就是对其修改的原子性要被保证：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public boolean offer(E e) {  
+<pre><code>public boolean offer(E e) {  
 if (e == null) throw new NullPointerException();  
 Node&lt;E&gt; n = new Node&lt;E&gt;(e, null);  
 for (;;) {  
@@ -887,7 +887,7 @@ for (;;) {
         }  
     }  
 }   }  
-</code></pre></div></div>
+</code></pre>
 
 <p>offer()方法都很熟悉了，就是入队的操作。涉及到改变尾指针的操作，所以要看这个方法实现是否保证了原子性。CAS操作配合循环是原子性操作的保证，这里也不例外。此方法的循环内首先获得尾指针和其next指向的对象，由于tail和Node的next均是volatile的，所以保证了获得的分别都是最新的值。</p>
 
@@ -895,24 +895,24 @@ for (;;) {
 
 <ul>
   <li>
-    <p>代码a：<code class="highlighter-rouge">t==tail</code>是最上层的协调，如果其他线程改变了tail的引用，则说明现在获得不是最新的尾指针需要重新循环获得最新的值。</p>
+    <p>代码a：<code>t==tail</code>是最上层的协调，如果其他线程改变了tail的引用，则说明现在获得不是最新的尾指针需要重新循环获得最新的值。</p>
   </li>
   <li>
-    <p>代码b：<code class="highlighter-rouge">s==null</code>的判断。静止状态下tail的next一定是指向null的，但是多线程下的另一个状态就是中间态：tail的指向没有改变，但是其next已经指向新的结点，即完成tail引用改变前的状态，这时候<code class="highlighter-rouge">s!=null</code>。这里就是协调的典型应用，直接进入代码e去协调参与中间态的线程去完成最后的更新，然后重新循环获得新的tail开始自己的新一次的入队尝试。另外值得注意的是a,b之间，其他的线程可能会改变tail的指向，使得协调的操作失败。从这个步骤可以看到无锁实现的复杂性。</p>
+    <p>代码b：<code>s==null</code>的判断。静止状态下tail的next一定是指向null的，但是多线程下的另一个状态就是中间态：tail的指向没有改变，但是其next已经指向新的结点，即完成tail引用改变前的状态，这时候<code>s!=null</code>。这里就是协调的典型应用，直接进入代码e去协调参与中间态的线程去完成最后的更新，然后重新循环获得新的tail开始自己的新一次的入队尝试。另外值得注意的是a,b之间，其他的线程可能会改变tail的指向，使得协调的操作失败。从这个步骤可以看到无锁实现的复杂性。</p>
   </li>
   <li>
-    <p>代码c：<code class="highlighter-rouge">t.casNext(s, n)</code>是入队的第一步，因为入队需要两步：更新Node的next，改变tail的指向。代码c之前可能发生tail引用指向的改变或者进入更新的中间态，这两种情况均会使得t指向的元素的next属性被原子的改变，不再指向null。这时代码c操作失败，重新进入循环。</p>
+    <p>代码c：<code>t.casNext(s, n)</code>是入队的第一步，因为入队需要两步：更新Node的next，改变tail的指向。代码c之前可能发生tail引用指向的改变或者进入更新的中间态，这两种情况均会使得t指向的元素的next属性被原子的改变，不再指向null。这时代码c操作失败，重新进入循环。</p>
   </li>
   <li>
-    <p>代码d：这是完成更新的最后一步了，就是更新tail的指向，最有意思的协调在这儿又有了体现。从代码看<code class="highlighter-rouge">casTail(t, n)</code>不管是否成功都会接着返回true标志着更新的成功。首先如果成功则表明本线程完成了两步的更新，返回true是理所当然的；如果 <code class="highlighter-rouge">casTail(t, n)</code>不成功呢？要清楚的是完成代码c则代表着更新进入了中间态，代码d不成功则是tail的指向被其他线程改变。意味着对于其他的线程而言：它们得到的是中间态的更新，<code class="highlighter-rouge">s!=null</code>，进入代码e帮助本线程执行最后一步并且先于本线程成功。这样本线程虽然代码d失败了，但是是由于别的线程的协助先完成了，所以返回true也就理所当然了。</p>
+    <p>代码d：这是完成更新的最后一步了，就是更新tail的指向，最有意思的协调在这儿又有了体现。从代码看<code>casTail(t, n)</code>不管是否成功都会接着返回true标志着更新的成功。首先如果成功则表明本线程完成了两步的更新，返回true是理所当然的；如果 <code>casTail(t, n)</code>不成功呢？要清楚的是完成代码c则代表着更新进入了中间态，代码d不成功则是tail的指向被其他线程改变。意味着对于其他的线程而言：它们得到的是中间态的更新，<code>s!=null</code>，进入代码e帮助本线程执行最后一步并且先于本线程成功。这样本线程虽然代码d失败了，但是是由于别的线程的协助先完成了，所以返回true也就理所当然了。</p>
   </li>
 </ul>
 
 <hr />
 
-<p>通过分析这个入队的操作，可以清晰的看到无锁实现的每个步骤和状态下多线程之间的协调和工作。理解了入队的整个过程，出队的操作<code class="highlighter-rouge">poll()</code>的实现也就变得简单了。基本上是大同小异的，无非就是同时牵涉到了head和tail的状态，在改变head的同时照顾到tail的协调，在此不多赘述。下面介绍一下其无锁下的查看访问，其内部不单单是查看更包含了线程间的协调，这是无锁实现的一个特点。不管是<code class="highlighter-rouge">contains()，size()</code>还是isEmpty()，只要获得了head后面第一个最新的Node就可以很轻松的实现，毕竟Node的<code class="highlighter-rouge">getNext()和getItem()</code>返回的都是对应的最新值。所以先看看这些方法内部的first()如何获得最新的第一个Node：</p>
+<p>通过分析这个入队的操作，可以清晰的看到无锁实现的每个步骤和状态下多线程之间的协调和工作。理解了入队的整个过程，出队的操作<code>poll()</code>的实现也就变得简单了。基本上是大同小异的，无非就是同时牵涉到了head和tail的状态，在改变head的同时照顾到tail的协调，在此不多赘述。下面介绍一下其无锁下的查看访问，其内部不单单是查看更包含了线程间的协调，这是无锁实现的一个特点。不管是<code>contains()，size()</code>还是isEmpty()，只要获得了head后面第一个最新的Node就可以很轻松的实现，毕竟Node的<code>getNext()和getItem()</code>返回的都是对应的最新值。所以先看看这些方法内部的first()如何获得最新的第一个Node：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Node&lt;E&gt; first() {  
+<pre><code>Node&lt;E&gt; first() {  
 for (;;) {  
     Node&lt;E&gt; h = head;  
     Node&lt;E&gt; t = tail;  
@@ -932,27 +932,27 @@ for (;;) {
         }  
     }  
 }   }  
-</code></pre></div></div>
+</code></pre>
 
 <p>此方法在尝试获得最新的第一个非head结点的时候，在不同的阶段同样在协调着head和tail的更新任务，让人感觉无锁的世界没有纯粹的工作，呵呵。</p>
 <ul>
   <li>
-    <p>代码a：还是最上层的协调，head指向没改变的情况下才继续下面的操作。这时侯head只可能是静止的，因为<code class="highlighter-rouge">poll()</code>出队操作的步骤是反着的：首先更新head的指向进入中间态，然后更新原head的next的item为null。</p>
+    <p>代码a：还是最上层的协调，head指向没改变的情况下才继续下面的操作。这时侯head只可能是静止的，因为<code>poll()</code>出队操作的步骤是反着的：首先更新head的指向进入中间态，然后更新原head的next的item为null。</p>
   </li>
   <li>
-    <p>代码b：之所以<code class="highlighter-rouge">h==t</code>的情况独立于其他的情况(在出队<code class="highlighter-rouge">poll()</code>方法中同样)，主要是因为<code class="highlighter-rouge">first!=null</code>时可能对应着某一个更新的中间态，而产生中间态的的必要条件就是代码b成立。如果<code class="highlighter-rouge">h==t</code>则表示当前线程获得的首尾指针指向同一个结点，当然代码b执行之后可能其他线程会进行head或者tail的更新。</p>
+    <p>代码b：之所以<code>h==t</code>的情况独立于其他的情况(在出队<code>poll()</code>方法中同样)，主要是因为<code>first!=null</code>时可能对应着某一个更新的中间态，而产生中间态的的必要条件就是代码b成立。如果<code>h==t</code>则表示当前线程获得的首尾指针指向同一个结点，当然代码b执行之后可能其他线程会进行head或者tail的更新。</p>
   </li>
   <li>
-    <p>代码c：<code class="highlighter-rouge">first==null</code>表明tail并没有进入更新的中间态而是处于静止状态，并且由于tail指向的是head的指向，所以返回null是唯一的选择。但是这美好的一切都是建立在代码b和代码c之间没有其他的线程更新tail。一旦有其他的线程执行了入队的操作并至少进入中间态的话，<code class="highlighter-rouge">h==t和first==null</code>都遗憾的成立，这就造成了取得幻象值，而实际上h.getNext()已经不再为null。个人认为代码c改成<code class="highlighter-rouge">if((first = h.getNext()) == null)</code>更能提高命中率。</p>
+    <p>代码c：<code>first==null</code>表明tail并没有进入更新的中间态而是处于静止状态，并且由于tail指向的是head的指向，所以返回null是唯一的选择。但是这美好的一切都是建立在代码b和代码c之间没有其他的线程更新tail。一旦有其他的线程执行了入队的操作并至少进入中间态的话，<code>h==t和first==null</code>都遗憾的成立，这就造成了取得幻象值，而实际上h.getNext()已经不再为null。个人认为代码c改成<code>if((first = h.getNext()) == null)</code>更能提高命中率。</p>
   </li>
   <li>
     <p>代码d：只要`first!=null，本线程则去尝试协调其他的线程先完成tail的更新，等待循环再次获取最新的head和tail。</p>
   </li>
   <li>
-    <p>代码e：此处first一定不为null，tail更新与否不影响first的item的获取，但是head的更新会有影响。如果head正在被另一个线程更新并进入中间态，既是poll()内的<code class="highlighter-rouge">else if (casHead(h, first))</code> 成功，但是并没有执行first.setItem(null)之前。此时代码e是满足的，返回的也是当前的first的，但是随后head全部更新成功则first的item为null。所以此处返回的first的item并不一定是<code class="highlighter-rouge">item!=null</code>的结点，在使用此方法获得的结点的item时一定要再次的进行判断，这点在contains(…)等方法内都有体现。</p>
+    <p>代码e：此处first一定不为null，tail更新与否不影响first的item的获取，但是head的更新会有影响。如果head正在被另一个线程更新并进入中间态，既是poll()内的<code>else if (casHead(h, first))</code> 成功，但是并没有执行first.setItem(null)之前。此时代码e是满足的，返回的也是当前的first的，但是随后head全部更新成功则first的item为null。所以此处返回的first的item并不一定是<code>item!=null</code>的结点，在使用此方法获得的结点的item时一定要再次的进行判断，这点在contains(…)等方法内都有体现。</p>
   </li>
   <li>
-    <p>代码f：如果first的<code class="highlighter-rouge">item==null</code>，则更新head的指向。直观上看似乎多余，因为出队的操作是先更新head的指向再更新item为null的。但是另一个方法remove(…)则仅仅更新item的值而不改变head的指向，所以针对这样的多线程调用，代码f变得非常的必需了。</p>
+    <p>代码f：如果first的<code>item==null</code>，则更新head的指向。直观上看似乎多余，因为出队的操作是先更新head的指向再更新item为null的。但是另一个方法remove(…)则仅仅更新item的值而不改变head的指向，所以针对这样的多线程调用，代码f变得非常的必需了。</p>
   </li>
 </ul>
 
@@ -963,7 +963,7 @@ for (;;) {
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -971,8 +971,8 @@ for (;;) {
 	  
 	  <span class="next">
 	    上篇：
-	    <a href="/blog/2014/11/how-to-evaluate-the-hackers-and-painters.html">
-	      如何评价『黑客与画家』
+	    <a href="/blog/2014/11/java-nio.html">
+	      java中NIO与传统IO
 	    </a>
 	  </span>
 	   
@@ -1073,6 +1073,15 @@ for (;;) {
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1445,6 +1454,15 @@ for (;;) {
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1922,7 +1940,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1950,7 +1968,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -2113,11 +2131,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

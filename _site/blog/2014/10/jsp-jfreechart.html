@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="使用Jfreechart生成曲线显示到JSP中 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="使用Jfreechart生成曲线显示到JSP中 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      使用Jfreechart生成曲线显示到JSP中 - ChenBing
+      使用Jfreechart生成曲线显示到JSP中 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  使用Jfreechart生成曲线显示到JSP中
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2014-10-22-jsp-jfreechart.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2014-10-22-jsp-jfreechart.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			22 Oct 2014
 		  </div>
@@ -131,8 +131,8 @@
 
 <p>jsp代码如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="err">%@</span> <span class="na">page</span> <span class="na">contentType=</span><span class="s">"text/html;charset=UTF-8"</span><span class="err">%</span><span class="nt">&gt;</span>
-<span class="nt">&lt;</span><span class="err">%@</span> <span class="na">page</span> <span class="na">import=</span><span class="s">"java.awt.*,
+<pre><code>&lt;%@ page contentType="text/html;charset=UTF-8"%&gt;
+&lt;%@ page import="java.awt.*,
 java.util.List,
 javax.swing.JPanel,
 org.jfree.chart.ChartFactory,
@@ -145,24 +145,24 @@ org.jfree.chart.renderer.xy.XYLineAndShapeRenderer,
 org.jfree.data.time.*,
 org.jfree.data.time.TimeSeries,
 org.jfree.data.time.TimeSeriesCollection,
-org.jfree.data.xy.XYDataset"</span><span class="err">%</span><span class="nt">&gt;</span>
-<span class="nt">&lt;</span><span class="err">%@</span> <span class="na">page</span> <span class="na">import=</span><span class="s">"org.jfree.chart.ChartUtilities"</span><span class="err">%</span><span class="nt">&gt;</span>
-<span class="nt">&lt;</span><span class="err">%@</span> <span class="na">page</span> <span class="na">import=</span><span class="s">"java.util.*"</span><span class="err">%</span><span class="nt">&gt;</span>
-<span class="nt">&lt;</span><span class="err">%@</span> <span class="na">page</span> <span class="na">import =</span><span class="err"> </span><span class="s">"com.lippi.medic.server.*"</span><span class="err">%</span><span class="nt">&gt;</span>
-<span class="nt">&lt;</span><span class="err">%@</span> <span class="na">page</span> <span class="na">import =</span><span class="err"> </span><span class="s">"java.io.*"</span> <span class="err">%</span><span class="nt">&gt;</span>
+org.jfree.data.xy.XYDataset"%&gt;
+&lt;%@ page import="org.jfree.chart.ChartUtilities"%&gt;
+&lt;%@ page import="java.util.*"%&gt;
+&lt;%@ page import = "com.lippi.medic.server.*"%&gt;
+&lt;%@ page import = "java.io.*" %&gt;
 
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Type"</span> <span class="na">content=</span><span class="s">"text/html"</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;h1</span> <span class="na">align=</span><span class="s">"center"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;font</span> <span class="na">font-size=</span><span class="s">"5"</span> <span class="na">color=</span><span class="s">"black"</span><span class="nt">&gt;</span>欢迎访问肌电信号数据库<span class="nt">&lt;/font&gt;</span>
-<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;</span><span class="err">%</span>
- <span class="err">//创建时序图对象</span>
- <span class="na">TimeSeries</span> <span class="na">timeSeries =</span><span class="err"> </span><span class="s">new</span> <span class="na">TimeSeries</span><span class="err">("肌电信号");</span>
- <span class="err">//这里的</span><span class="na">logs</span><span class="err">是从</span><span class="na">servlet</span><span class="err">中设置的</span><span class="na">request</span><span class="err">属性值</span>
- <span class="na">List</span><span class="err">&lt;</span><span class="na">MedicLogs</span><span class="nt">&gt;</span> logs = (List)request.getAttribute("logs");
- Iterator<span class="nt">&lt;MedicLogs&gt;</span> iterator = logs.iterator();
+&lt;html&gt;
+&lt;body&gt;
+&lt;meta http-equiv="Content-Type" content="text/html" charset="utf-8"&gt;
+&lt;h1 align="center"&gt;
+&lt;font font-size="5" color="black"&gt;欢迎访问肌电信号数据库&lt;/font&gt;
+&lt;/h1&gt;
+&lt;%
+ //创建时序图对象
+ TimeSeries timeSeries = new TimeSeries("肌电信号");
+ //这里的logs是从servlet中设置的request属性值
+ List&lt;MedicLogs&gt; logs = (List)request.getAttribute("logs");
+ Iterator&lt;MedicLogs&gt; iterator = logs.iterator();
  		while(iterator.hasNext()){
  			MedicLogs log = iterator.next();
  			Minute minute = new Minute(log.getCreateDate());
@@ -185,20 +185,20 @@ org.jfree.data.xy.XYDataset"</span><span class="err">%</span><span class="nt">&g
  final File file = new File("/home/lippi/apache-tomcat-8.0.11/webapps/medicdatabase/chart.png");
  ChartUtilities.saveChartAsPNG(file, chart, 500, 300);
  %&gt;
- <span class="nt">&lt;h1</span> <span class="na">align=</span><span class="s">"center"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;IMG</span> <span class="na">SRC=</span><span class="s">"chart.png"</span> <span class="na">WIDTH=</span><span class="s">"600"</span> <span class="na">HEIGHT=</span><span class="s">"400"</span> <span class="na">BORDER=</span><span class="s">"0"</span> <span class="na">USEMAP=</span><span class="s">"#chart"</span><span class="nt">&gt;</span>
+ &lt;h1 align="center"&gt;
+&lt;IMG SRC="chart.png" WIDTH="600" HEIGHT="400" BORDER="0" USEMAP="#chart"&gt;
 
-<span class="nt">&lt;br&gt;&lt;br&gt;</span>
+&lt;br&gt;&lt;br&gt;
 
-<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"display.do"</span> <span class="na">method=</span><span class="s">"post"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"back"</span> <span class="na">value=</span><span class="s">"载入前5000条数据"</span> <span class="nt">&gt;</span>
+&lt;form action="display.do" method="post"&gt;
+    &lt;input type="submit" name="back" value="载入前5000条数据" &gt;
     
-    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">name=</span><span class="s">"forward"</span> <span class="na">value=</span><span class="s">"载入后5000条数据"</span> <span class="nt">&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
-<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</code></pre></div></div>
+    &lt;input type="submit" name="forward" value="载入后5000条数据" &gt;
+&lt;/form&gt;
+&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 
 <p>附上Jsp代码的转换和编译过程：</p>
 
@@ -217,7 +217,7 @@ org.jfree.data.xy.XYDataset"</span><span class="err">%</span><span class="nt">&g
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -327,6 +327,15 @@ org.jfree.data.xy.XYDataset"</span><span class="err">%</span><span class="nt">&g
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -699,6 +708,15 @@ org.jfree.data.xy.XYDataset"</span><span class="err">%</span><span class="nt">&g
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1176,7 +1194,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1204,7 +1222,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1367,11 +1385,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

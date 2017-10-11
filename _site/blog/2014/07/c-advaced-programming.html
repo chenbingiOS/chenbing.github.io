@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="C语言高级编程指南 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="C语言高级编程指南 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      C语言高级编程指南 - ChenBing
+      C语言高级编程指南 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  C语言高级编程指南
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2014-07-05-c-advaced-programming.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2014-07-05-c-advaced-programming.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			05 Jul 2014
 		  </div>
@@ -130,7 +130,7 @@
 <p>大部分 C 程序员都以为基本的整形操作都是安全的其实不然,看下面这个例子,
 你觉得输出结果是什么:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int main(int argc, char** argv) {
+<pre><code>int main(int argc, char** argv) {
     long i = -1;
 
     if (i &lt; sizeof(i)) {
@@ -142,7 +142,7 @@
 
     return 0;
 } 当一个变量转换成无符号整形时,i的值不再是-1,而是 size_t的最大值,因 为sizeof操作返回的是一个 size_t类型的无符号数。 在C99/C11标准里写道:
-</code></pre></div></div>
+</code></pre>
 
 <blockquote>
   <p>“If the operand that has unsigned integer type has rank greater or
@@ -156,21 +156,21 @@ unsigned integer type.”</p>
 <p>如果 int可以表示原始类型的所有值,那么这个操作数会转换成 int,否则
 他会转换成 unsigned int。下面这个函数在 32 位平台返回 65536,但是在 16 位系统返回 0。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uint32_t sum()
+<pre><code>uint32_t sum()
 {
     uint16_t a = 65535;
     uint16_t b = 1;
     return a+b;
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>对于char 类型到底是 signed 还是 unsigned 取决于硬件架构和操作系统,通常
 由特定平台的 ABI(Application Binary Interface) 指定,如果是 signed char,下面的代码输出-128 和-127,否则输出 128,129(x86 架构)。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>char c = 128;
+<pre><code>char c = 128;
 char d = 129;
 printf("%d,%d\n",c,d);
-</code></pre></div></div>
+</code></pre>
 
 <hr />
 <p>##内存管理和分配</p>
@@ -184,7 +184,7 @@ implementation- defined: the value returned shall be either a null
 pointer or a unique pointer.”</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>size_t computed_size;
+<pre><code>size_t computed_size;
 
 if (elem_size &amp;&amp; num &gt; SIZE_MAX / elem_size) {
     errno = ENOMEM;
@@ -192,7 +192,7 @@ if (elem_size &amp;&amp; num &gt; SIZE_MAX / elem_size) {
 }
 
 computed_size = elem_size*num;
-</code></pre></div></div>
+</code></pre>
 
 <p>malloc不会给分配的内存初始化，如果要对新分配的内存初始化，可以用calloc代替malloc,一般情况下给序列分配相等大小的元素时,用calloc来代替用表达式计算大小,calloc 会把内存初始化为 0。</p>
 
@@ -208,7 +208,7 @@ realloc fails.”</p>
 
 <p>下面这段代码可以带你领会malloc,calloc，realloc,free的用法：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;stdio.h&gt;
+<pre><code>#include &lt;stdio.h&gt;
 #include &lt;stdint.h&gt;
 #include &lt;malloc.h&gt;
 #include &lt;errno.h&gt;
@@ -279,7 +279,7 @@ int grow_vector(struct vector *vc) {
     vc-&gt;size = newsize;
     return VECTOR_OK;
 }
-</code></pre></div></div>
+</code></pre>
 
 <hr />
 
@@ -299,14 +299,14 @@ int grow_vector(struct vector *vc) {
 </ol>
 
 <blockquote>
-  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>char *ptr = NULL;
+  <pre><code>char *ptr = NULL;
 void nullfree(void **pptr) {
     void *ptr = *pptr;
     assert(ptr != NULL)
     free(ptr);
     *pptr = NULL;
 }
-</code></pre></div>  </div>
+</code></pre>
 </blockquote>
 
 <p>3.对空指针解引用，数组越界访问</p>
@@ -336,7 +336,7 @@ void nullfree(void **pptr) {
     <p>使用引用计数
  引用计数是一个很好的管理内存的方法，特别是当你不希望自己定义的对象被复制时，每一次赋值把引用计数加1,每次失去引用就把引用计数减1,当引用计数等于0时，以为的对象已经不再需要了，我们需要释放对象占用的内存，由于C不提供自动的析构函数，我们必须手动释放内存，看一个例子：</p>
 
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;stdlib.h&gt;
+    <pre><code>#include &lt;stdlib.h&gt;
 #include &lt;stdint.h&gt;
     
 #define MAX_REF_OBJ 100
@@ -398,7 +398,7 @@ if(handle &lt; reference_count &amp;&amp; handle &gt;= 0){
         }
      }
 } C++标准库有个auto_ptr智能指针，能够自动释放指针所指对象的内存，C++ boost库有个boost：：shared_ptr智能指针，内置引用计数，支持拷贝和赋值，看下面这个例子：
-</code></pre></div>    </div>
+</code></pre>
   </li>
 </ol>
 
@@ -407,7 +407,7 @@ if(handle &lt; reference_count &amp;&amp; handle &gt;= 0){
   <p>“Objects of shared_ptr types have the ability of taking ownership of a pointer and share that ownership: once they take ownership, the group of owners of a pointer become responsible for its deletion when the last one of them releases that ownership.”</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;boost/smart_ptr.hpp&gt;
+<pre><code>#include &lt;boost/smart_ptr.hpp&gt;
 #include &lt;iostream&gt;
 int main()
 {
@@ -422,11 +422,11 @@ int main()
     std::cout &lt;&lt; "ref count of p1: " &lt;&lt; p1.use_count() &lt;&lt; std::endl;
     return 0;
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>4.内存池，有利于减少内存碎片，看下面这个例子：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;stdlib.h&gt;
+<pre><code>#include &lt;stdlib.h&gt;
 #include &lt;stdint.h&gt;
 
 struct mem_pool_t{
@@ -470,7 +470,7 @@ free(pool-&gt;ptr);
 free(pool);
  }
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>5.垃圾回收机制
  引用计数采用的方法是当内存不再需要时得到手动释放，垃圾回收发生在内存分配失败或者内存到达一定的水位（watermarks），实现垃圾回收最简单的一个算法是MARK AND SWEEP算法，该算法的思路是遍历所有动态分配对象的内存，标记那些还能继续使用的，回收那些没有被标记的内存。
@@ -488,7 +488,7 @@ free(pool);
 
 <p>看下面这个例子：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>short a[] = {1,2,3};
+<pre><code>short a[] = {1,2,3};
 short *pa;
 short (*px)[];
 
@@ -500,27 +500,27 @@ void init(){
 
     printf("a[1]:%i; pa[1]:%i (*px)[1]:%i\n", a[1], pa[1],(*px)[1]);
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>a是一个short类型数组，pa是一个指向short类型的指针，px呢？
 px是一个指向数组类型的指针，在a被赋值给pa之前，他的值被转换成一个指向数组第一个元素的指针，下面那个a却没有转换，因为遇到的是&amp;操作符。
 数组下标a[1]等价于<em>(a+1),和p[1]一样，也指向</em>(p+1)，但是两者还是有区别的，a是一个数组，它实际上存储的是第一个元素的地址，所以数组a是用来定位第一个元素的，而pa不一样，它就是一个指针，不是用来定位的。
 再比如：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int a[10];
+<pre><code>int a[10];
 int b[10];
 int *a;
 c=&amp;a[0];//c是指向数组a地一个元素的指针
 c=a;//a自动转换成指向第一个元素的指针，实际上是指针拷贝
 b=a;//非法的，你不能用赋值符把一个数组的所有元素赋给另一个数组
 a=c;//非法的，你不能修改const指针的值
-</code></pre></div></div>
+</code></pre>
 
 		  </article>
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -630,6 +630,15 @@ a=c;//非法的，你不能修改const指针的值
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1002,6 +1011,15 @@ a=c;//非法的，你不能修改const指针的值
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1479,7 +1497,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1507,7 +1525,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1670,11 +1688,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

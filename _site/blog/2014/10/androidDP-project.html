@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Androidpn 消息推送总结 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="Androidpn 消息推送总结 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      Androidpn 消息推送总结 - ChenBing
+      Androidpn 消息推送总结 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  Androidpn 消息推送总结
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2014-10-31-androidDP-project.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2014-10-31-androidDP-project.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			31 Oct 2014
 		  </div>
@@ -133,15 +133,15 @@
 
 <p>在程序的入口 DemoAppActivity 中设置通知的 icon 并开启消息接收服务，代码如下：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：1-1 
+<pre><code>Number：1-1 
 ServiceManager serviceManager = new ServiceManager(this);
 serviceManager.setNotificationIcon(R.drawable.notification);
 serviceManager.startService();
-</code></pre></div></div>
+</code></pre>
 
 <p>在上面的代码中可以看到程序对 ServiceManager 进行了初始化操作，在 ServiceManager 类的构造函数中我们可以看到程序对传递过来的 context 进行了判断，如果这个 context 是一个 Activity 实例，紧接着会获取对应的包名和类名。之后再去加载 res/raw/androidpn.properties 配置文件中的参数信息，并将读取到的信息和之前从 context 中获取的包名和类名一起存入首选项中。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：2-1 
+<pre><code>Number：2-1 
 public ServiceManager(Context context) {
 this.context = context;
 
@@ -166,11 +166,11 @@ editor.putString(Constants.CALLBACK_ACTIVITY_PACKAGE_NAME, callbackActivityPacka
 editor.putString(Constants.CALLBACK_ACTIVITY_CLASS_NAME, callbackActivityClassName);
 editor.commit();
 }
-</code></pre></div></div>
+</code></pre>
 
-<p>完成上述操作之后，紧接着调用 <code class="highlighter-rouge">ServiceManager.startService()</code> 方法来开启服务，实际上 ServiceManager 只是一个普通的类，方法 ServiceManager.startService() 只是开启一个子线程来开启真正的服务类 NotificationService ，许多人认为开一个线程不停的去开启服务会不会消耗相当一部分资源？答案是不会的，因为服务的生命周期决定了onCreate() 方法在服务被创建时调用，该方法只会被调用一次，无论调用多少次 startService() 方法，服务也只被创建一次，细心的读者会发现 Androidpn 的作者在 NotificationService 类的 <code class="highlighter-rouge">onStart(Intent intent, int startId)</code> 方法中没有做任何事，而是在onCreate() 方法中完成了诸多操作。</p>
+<p>完成上述操作之后，紧接着调用 <code>ServiceManager.startService()</code> 方法来开启服务，实际上 ServiceManager 只是一个普通的类，方法 ServiceManager.startService() 只是开启一个子线程来开启真正的服务类 NotificationService ，许多人认为开一个线程不停的去开启服务会不会消耗相当一部分资源？答案是不会的，因为服务的生命周期决定了onCreate() 方法在服务被创建时调用，该方法只会被调用一次，无论调用多少次 startService() 方法，服务也只被创建一次，细心的读者会发现 Androidpn 的作者在 NotificationService 类的 <code>onStart(Intent intent, int startId)</code> 方法中没有做任何事，而是在onCreate() 方法中完成了诸多操作。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：3-1
+<pre><code>Number：3-1
 public void startService() {
 Thread serviceThread = new Thread(new Runnable() {
 public void run() {
@@ -180,11 +180,11 @@ context.startService(intent);
 });
 serviceThread.start();
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>下面我们来看 NotificationService 类的onCreate() 方法中都完成什么操作？</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：4-1
+<pre><code>Number：4-1
 public void onCreate() {
 telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 sharedPrefs = getSharedPreferences(Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
@@ -210,11 +210,11 @@ NotificationService.this.start();
 }
 });
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>在上面的方法中作者获取了设备号并将设备号存入了首选项中，同时还对在模拟器下运行的情况做了处理，这些操作是次要的。真正的核心的操作是 taskSubmitter 里调用了NotificationService.this.start()，这里的 NotificationService.this 完成了 NotificationService 的实例化，我们可以看到 NotificationService 类的构造方法中完成了 NotificationReceiver、ConnectivityReceiver、PhoneStateChangeListener、Executors、TaskSubmitter、TaskTracker 等类的实例化。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：5-1
+<pre><code>Number：5-1
 public NotificationService() {
 notificationReceiver = new NotificationReceiver();
 connectivityReceiver = new ConnectivityReceiver(this);
@@ -223,21 +223,21 @@ executorService = Executors.newSingleThreadExecutor();
 taskSubmitter = new TaskSubmitter(this);
 taskTracker = new TaskTracker(this);
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>NotificationService 的实例化完成后调用的start() 方法中注册了一个广播接收者 NotificationReceiver 用来处理从服务器推送过来的消息；同时还注册了一个广播接收者来监听网络连接状况，如果有网络连接，则执行 xmppManager.connect()，如果没有网络连接，则执行 xmppManager.disconnect()。但是在start() 方法中最终还是会执行 xmppManager.connect()。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：6-1
+<pre><code>Number：6-1
 private void start() {
 registerNotificationReceiver();
 registerConnectivityReceiver();
 xmppManager.connect();
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>再来看看 xmppManager.connect() 方法中都做了些什么？程序在这个方法中提交了一个登录任务：submitLoginTask()，在提交的登录任务中又提交了一个注册任务：submitRegisterTask()，同时将新建的登录任务添加到任务集合中并交由 TaskTracker 来对添加的任务进行监视，此时 TaskTracker 的计数加一。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：7-1
+<pre><code>Number：7-1
 public void connect() {
  submitLoginTask();
 }
@@ -247,15 +247,15 @@ private void submitLoginTask() {
  submitRegisterTask();
  addTask(new LoginTask());
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>下面继续来看新添加的登录任务 new LoginTask() 具体做了什么？看 Number：8-2 代码，程序在登录任务线程的 run() 方法中首先去判断当前客户端是否已经经过身份验证，验证身份的代码请看 Number：8-1 。</p>
 
-<p>如果没有通过身份验证：xmppManager 会获取当前连并接携带着从首选项中读取的 username 和password 执行登录操作，登录成功后 xmppManager 会在登录成功的连接上添加连接监听器<code class="highlighter-rouge">PersistentConnectionListener</code>，这个监听器可以监听连接关闭和和连接错误，并在连接错误的情况下执行重连操作。接下来会在当前连接上添加包过滤器 PacketFilter packetFilter 和包监听器 <code class="highlighter-rouge">NotificationPacketListener packetListener</code>，包过滤器用来校验从服务器发送过来的数据包是否符合 NotificationIQ 格式，打开 NotificationIQ 类我们可以看到这个类中定义了数据包中需要封装的信息：id、apiKey、title、message、uri。包监听器则是用来真正处理从服务器发过来的数据。</p>
+<p>如果没有通过身份验证：xmppManager 会获取当前连并接携带着从首选项中读取的 username 和password 执行登录操作，登录成功后 xmppManager 会在登录成功的连接上添加连接监听器<code>PersistentConnectionListener</code>，这个监听器可以监听连接关闭和和连接错误，并在连接错误的情况下执行重连操作。接下来会在当前连接上添加包过滤器 PacketFilter packetFilter 和包监听器 <code>NotificationPacketListener packetListener</code>，包过滤器用来校验从服务器发送过来的数据包是否符合 NotificationIQ 格式，打开 NotificationIQ 类我们可以看到这个类中定义了数据包中需要封装的信息：id、apiKey、title、message、uri。包监听器则是用来真正处理从服务器发过来的数据。</p>
 
-<p>请看 Number：8-3 代码，在 NotificationPacketListener 类的 <code class="highlighter-rouge">processPacket(Packet packet)</code> 方法中程序首先会判断获得的数据包是否是 NotificationIQ 的一个实例，如果是程序会调用 NotificationIQ 的<code class="highlighter-rouge">getChildElementXML()</code> 方法将数据包中携带的信息拼装为一个字符串进行判断动作是否为发送广播，如果动作为发送广播，程序会将数据包的信息填充到 Intent 中并发送广播，注意这个广播中填充到 Intent 的动作名称 Constants.ACTION_SHOW_NOTIFICATION 为显示广播，这个动作被另一个广播接收者 NotificationReceiver (该广播接收者在之前的<code class="highlighter-rouge"> NotificationService 的start()</code> 方法中已经注册)所监听。</p>
+<p>请看 Number：8-3 代码，在 NotificationPacketListener 类的 <code>processPacket(Packet packet)</code> 方法中程序首先会判断获得的数据包是否是 NotificationIQ 的一个实例，如果是程序会调用 NotificationIQ 的<code>getChildElementXML()</code> 方法将数据包中携带的信息拼装为一个字符串进行判断动作是否为发送广播，如果动作为发送广播，程序会将数据包的信息填充到 Intent 中并发送广播，注意这个广播中填充到 Intent 的动作名称 Constants.ACTION_SHOW_NOTIFICATION 为显示广播，这个动作被另一个广播接收者 NotificationReceiver (该广播接收者在之前的<code> NotificationService 的start()</code> 方法中已经注册)所监听。</p>
 
-<p>另外需要注意的是，如果客户端在登录过程中出现INVALID_CREDENTIALS_ERROR_CODE = “401” 错误，在 Number：8-2 的代码中我们可以看到程序执行了 <code class="highlighter-rouge">xmppManager.reregisterAccount()</code> 操作和 <code class="highlighter-rouge">xmppManager.startReconnectionThread() </code>操作。在 <code class="highlighter-rouge">xmppManager.reregisterAccount()</code> 操作中程序会删除保存在首选项中的 username 和password 并重新提交登录任务 submitLoginTask()，在这个登录任务中依次再嵌套执行注册、连接任务。这些任务执行完毕之后程序继续调用 xmppManager.startReconnectionThread() 执行重连操作。如果客户端在登录过程中出现不可预知的错误，在 Number：8-2 的代码中我们可以看到程序执直接调用 <code class="highlighter-rouge">xmppManager.startReconnectionThread()</code> 来执行重连操作。</p>
+<p>另外需要注意的是，如果客户端在登录过程中出现INVALID_CREDENTIALS_ERROR_CODE = “401” 错误，在 Number：8-2 的代码中我们可以看到程序执行了 <code>xmppManager.reregisterAccount()</code> 操作和 <code>xmppManager.startReconnectionThread() </code>操作。在 <code>xmppManager.reregisterAccount()</code> 操作中程序会删除保存在首选项中的 username 和password 并重新提交登录任务 submitLoginTask()，在这个登录任务中依次再嵌套执行注册、连接任务。这些任务执行完毕之后程序继续调用 xmppManager.startReconnectionThread() 执行重连操作。如果客户端在登录过程中出现不可预知的错误，在 Number：8-2 的代码中我们可以看到程序执直接调用 <code>xmppManager.startReconnectionThread()</code> 来执行重连操作。</p>
 
 <p>如果已经通过身份验证：意味着客户端已经登录成功，程序直接调用 xmppManager.runTask() 方法来执行之前添加到任务集合中的任务 new LoginTask()，同时 TaskTracker 的计数减一。</p>
 
@@ -264,7 +264,7 @@ private boolean isAuthenticated() {
 return connection != null &amp;&amp; connection.isConnected() &amp;&amp; connection.isAuthenticated();
 }</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：8-2
+<pre><code>Number：8-2
 private class LoginTask implements Runnable {
 final XmppManager xmppManager;
 private LoginTask() {
@@ -352,11 +352,11 @@ removeAccount();
 submitLoginTask();
 runTask();
 }
-</code></pre></div></div>
+</code></pre>
 
-<p>NotificationReceiver 在接收到NotificationPacketListener 中发出的广播后，先判断Intent 中携带的动作和自己所收听的动作是否一致，如果一致，则继续从Intent 中取出Intent 所携带的信息并调用 Notifier 的<code class="highlighter-rouge">notify(String notificationId, String apiKey, String title, String message, String uri)</code> 来发送通知。</p>
+<p>NotificationReceiver 在接收到NotificationPacketListener 中发出的广播后，先判断Intent 中携带的动作和自己所收听的动作是否一致，如果一致，则继续从Intent 中取出Intent 所携带的信息并调用 Notifier 的<code>notify(String notificationId, String apiKey, String title, String message, String uri)</code> 来发送通知。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：9-1
+<pre><code>Number：9-1
 public final class NotificationReceiver extends BroadcastReceiver {
 
 private static final String LOGTAG = LogUtil.makeLogTag(NotificationReceiver.class);
@@ -381,26 +381,26 @@ notifier.notify(notificationId, notificationApiKey, notificationTitle, notificat
 }
 }
 }
-</code></pre></div></div>
+</code></pre>
 
-<p>Notifier 在发送通知之前会先去首选项中读取用户的配置信息，如果配置信息中<code class="highlighter-rouge"> Constants.SETTINGS_NOTIFICATION_ENABLED</code> 的值为 true，然后开始组装通知并为通知进行参数配置，这些操作完成后再调用 NotificationManager 将组装好的通知发送出去。至此，在客户端已经注册的前提下，执行的登录、接收服务器数据包、发送广播、发送通知的流程就结束了，添加在当前连接上的NotificationPacketListener 会一直监听从服务器发送过来的数据包并重复执行数据包解析、发送广播、发送通知的操作。</p>
+<p>Notifier 在发送通知之前会先去首选项中读取用户的配置信息，如果配置信息中<code> Constants.SETTINGS_NOTIFICATION_ENABLED</code> 的值为 true，然后开始组装通知并为通知进行参数配置，这些操作完成后再调用 NotificationManager 将组装好的通知发送出去。至此，在客户端已经注册的前提下，执行的登录、接收服务器数据包、发送广播、发送通知的流程就结束了，添加在当前连接上的NotificationPacketListener 会一直监听从服务器发送过来的数据包并重复执行数据包解析、发送广播、发送通知的操作。</p>
 
-<p>但是需要注意的是从代码 Number：7-1 至代码 Number：9-1 的流程是以客户端已经完成注册为前提的；如果客户端是第一次执行消息推送的服务，显然不会直接进入到登录的逻辑中来，让我们继续跳到 Number：7-2 中的岔路口，程序在提交登录任务的内部嵌套着提交了一个注册任务 submitRegisterTask()，继续来看这个注册任务做了什么操作。在这个注册任务中继续将新建的注册任务添加到任务集合中并交由 TaskTracker 来对添加的任务进行监视，此时 TaskTracker 的计数加一；与此同时内嵌提交了一个连接任务<code class="highlighter-rouge">submitConnectTask()</code>。</p>
+<p>但是需要注意的是从代码 Number：7-1 至代码 Number：9-1 的流程是以客户端已经完成注册为前提的；如果客户端是第一次执行消息推送的服务，显然不会直接进入到登录的逻辑中来，让我们继续跳到 Number：7-2 中的岔路口，程序在提交登录任务的内部嵌套着提交了一个注册任务 submitRegisterTask()，继续来看这个注册任务做了什么操作。在这个注册任务中继续将新建的注册任务添加到任务集合中并交由 TaskTracker 来对添加的任务进行监视，此时 TaskTracker 的计数加一；与此同时内嵌提交了一个连接任务<code>submitConnectTask()</code>。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：10-1
+<pre><code>Number：10-1
 private void submitRegisterTask() {
 submitConnectTask();
 addTask(new RegisterTask());
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>先来看登录任务中做了什么操作？参看代码 Number：11-1。</p>
 
-<p>如果没有注册：则使用UUID生成2个随机数作为 username 和 password，同时实例化 Registration，将创建的包过滤器和包监听器添加到当前连接上，然后使用 Registration 实例将生成的 username 和 password 作为属性添加到 Registration 实例上，再由当前连接调用<code class="highlighter-rouge"> connection.sendPacket(registration)</code> 向服务器发送数据包执行注册操作。创建的包监听器会监听并处理服务器会送的数据包，PacketListener 在接收到服务器会送的数据包后，同样会判断数据包的格式是否符合包过滤器中定义的格式，只有格式匹配的情况下进行后续处理。在格式匹配的情况下，程序继续进行判断：如果服务器返回信息的类型是 <code class="highlighter-rouge">IQ.Type.ERROR</code> 则进行报错处理；如果服务器返回信息的类型是 <code class="highlighter-rouge">IQ.Type.RESULT </code>证明在服务器注册成功，这时程序会将 username 和 password 存储到首选项中，之后程序直接调用 <code class="highlighter-rouge">xmppManager.runTask() </code>方法来执行之前添加到任务集合中的任务 <code class="highlighter-rouge">new LoginTask()</code>，同时 TaskTracker 的计数减一。</p>
+<p>如果没有注册：则使用UUID生成2个随机数作为 username 和 password，同时实例化 Registration，将创建的包过滤器和包监听器添加到当前连接上，然后使用 Registration 实例将生成的 username 和 password 作为属性添加到 Registration 实例上，再由当前连接调用<code> connection.sendPacket(registration)</code> 向服务器发送数据包执行注册操作。创建的包监听器会监听并处理服务器会送的数据包，PacketListener 在接收到服务器会送的数据包后，同样会判断数据包的格式是否符合包过滤器中定义的格式，只有格式匹配的情况下进行后续处理。在格式匹配的情况下，程序继续进行判断：如果服务器返回信息的类型是 <code>IQ.Type.ERROR</code> 则进行报错处理；如果服务器返回信息的类型是 <code>IQ.Type.RESULT </code>证明在服务器注册成功，这时程序会将 username 和 password 存储到首选项中，之后程序直接调用 <code>xmppManager.runTask() </code>方法来执行之前添加到任务集合中的任务 <code>new LoginTask()</code>，同时 TaskTracker 的计数减一。</p>
 
-<p>如果已经注册：意味着首选项中已经有了配置信息，程序直接调用 <code class="highlighter-rouge">xmppManager.runTask() </code>方法来执行之前添加到任务集合中的任务 <code class="highlighter-rouge">new LoginTask()</code>，同时 TaskTracker 的计数减一。</p>
+<p>如果已经注册：意味着首选项中已经有了配置信息，程序直接调用 <code>xmppManager.runTask() </code>方法来执行之前添加到任务集合中的任务 <code>new LoginTask()</code>，同时 TaskTracker 的计数减一。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：11-1
+<pre><code>Number：11-1
 private class RegisterTask implements Runnable {
 
 final XmppManager xmppManager;
@@ -452,23 +452,23 @@ public void run() {
         xmppManager.runTask();
     }
 } }
-</code></pre></div></div>
+</code></pre>
 
-<p>至此，在客户端已经连接到服务器的前提下，执行的注册、登录、接收服务器数据包、发送广播、发送通知的流程就结束了，添加在当前连接上的 <code class="highlighter-rouge">NotificationPacketListener</code> 会一直监听从服务器发送过来的数据包并重复执行数据包解析、发送广播、发送通知的操作。</p>
+<p>至此，在客户端已经连接到服务器的前提下，执行的注册、登录、接收服务器数据包、发送广播、发送通知的流程就结束了，添加在当前连接上的 <code>NotificationPacketListener</code> 会一直监听从服务器发送过来的数据包并重复执行数据包解析、发送广播、发送通知的操作。</p>
 
-<p>同样需要注意的是从代码 Number：10-1 至代码 Number：11-1 的流程是以客户端已经连接到服务器为前提的；如果客户端是第一次执行消息推送的服务，显然也不会直接进入到注册的逻辑中来，让我们继续跳到 Number：10-1 中的岔路口，程序在提交注册任务的内部嵌套着提交了一个连接任务 <code class="highlighter-rouge">submitConnectTask()</code>，继续来看这个连接任务做了什么操作。在这个连接任务中程序直接将新建的连接任务添加到任务集合中并交由 TaskTracker 来对添加的任务进行监视，此时 TaskTracker 的计数加一。</p>
+<p>同样需要注意的是从代码 Number：10-1 至代码 Number：11-1 的流程是以客户端已经连接到服务器为前提的；如果客户端是第一次执行消息推送的服务，显然也不会直接进入到注册的逻辑中来，让我们继续跳到 Number：10-1 中的岔路口，程序在提交注册任务的内部嵌套着提交了一个连接任务 <code>submitConnectTask()</code>，继续来看这个连接任务做了什么操作。在这个连接任务中程序直接将新建的连接任务添加到任务集合中并交由 TaskTracker 来对添加的任务进行监视，此时 TaskTracker 的计数加一。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：12-1
+<pre><code>Number：12-1
 private void submitConnectTask() {
 addTask(new ConnectTask());
 } 继续来看连接任务中做了什么操作？参看代码 Number：13-1。
-</code></pre></div></div>
+</code></pre>
 
-<p>如果没有连接到服务器：程序会从首选项中读取 xmppHost 和 xmppPort 并使用 XMPPConnection 通过配置信息实例化一个连接，然后再由该连接执行连接操作。连接成功后，程序调用<code class="highlighter-rouge">xmppManager.runTask() </code>方法来执行之前添加到任务集合中的任务 <code class="highlighter-rouge">new RegisterTask()</code>，同时 TaskTracker 的计数减一。</p>
+<p>如果没有连接到服务器：程序会从首选项中读取 xmppHost 和 xmppPort 并使用 XMPPConnection 通过配置信息实例化一个连接，然后再由该连接执行连接操作。连接成功后，程序调用<code>xmppManager.runTask() </code>方法来执行之前添加到任务集合中的任务 <code>new RegisterTask()</code>，同时 TaskTracker 的计数减一。</p>
 
-<p>如果已经连接到服务器：程序直接调用<code class="highlighter-rouge"> xmppManager.runTask()</code> 方法来执行之前添加到任务集合中的任务 new RegisterTask()，同时 TaskTracker 的计数减一。</p>
+<p>如果已经连接到服务器：程序直接调用<code> xmppManager.runTask()</code> 方法来执行之前添加到任务集合中的任务 new RegisterTask()，同时 TaskTracker 的计数减一。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Number：13-1
+<pre><code>Number：13-1
 private class ConnectTask implements Runnable {
 
 final XmppManager xmppManager;
@@ -503,9 +503,9 @@ public void run() {
         xmppManager.runTask();
     }
 } }
-</code></pre></div></div>
+</code></pre>
 
-<p>至此，在客户端执行的连接、注册、登录、接收服务器数据包、发送广播、发送通知的流程就结束了，添加在当前连接上的 <code class="highlighter-rouge">NotificationPacketListener </code>会一直监听从服务器发送过来的数据包并重复执行数据包解析、发送广播、发送通知的操作。</p>
+<p>至此，在客户端执行的连接、注册、登录、接收服务器数据包、发送广播、发送通知的流程就结束了，添加在当前连接上的 <code>NotificationPacketListener </code>会一直监听从服务器发送过来的数据包并重复执行数据包解析、发送广播、发送通知的操作。</p>
 
 <hr />
 
@@ -513,9 +513,9 @@ public void run() {
 
 <p>▐ 关于服务器重启客户端自动重连服务器的问题？</p>
 
-<p>▐ 在 XmppManager 的 <code class="highlighter-rouge">addTask(Runnable runnable)</code> 方法中添加 <code class="highlighter-rouge">runTask() </code>方法即可解决。</p>
+<p>▐ 在 XmppManager 的 <code>addTask(Runnable runnable)</code> 方法中添加 <code>runTask() </code>方法即可解决。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>private void addTask(Runnable runnable) {
+<pre><code>private void addTask(Runnable runnable) {
 taskTracker.increase();
 synchronized (taskList) {
     if (taskList.isEmpty() &amp;&amp; !running) {
@@ -533,7 +533,7 @@ synchronized (taskList) {
         taskList.add(runnable);
     }
 } }
-</code></pre></div></div>
+</code></pre>
 
 <p>▐ 关于使用设备ID或 MAC替换源码中的 UUID作为 username 和 password 带来的问题？</p>
 
@@ -564,7 +564,7 @@ synchronized (taskList) {
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -674,6 +674,15 @@ synchronized (taskList) {
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1046,6 +1055,15 @@ synchronized (taskList) {
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1523,7 +1541,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1551,7 +1569,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1714,11 +1732,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

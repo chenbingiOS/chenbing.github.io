@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Smack开发手册 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="Smack开发手册 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      Smack开发手册 - ChenBing
+      Smack开发手册 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  Smack开发手册
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2014-10-30-how to use smack.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2014-10-30-how to use smack.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			30 Oct 2014
 		  </div>
@@ -167,7 +167,7 @@
 
 <p>XMPPConnection类是为XMPP服务器建立连接的类。若要创建SSL连接，需使用SSLXMPPConnection类，以下是创建连接的例子。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Create a connection to the jabber.org server.
+<pre><code>// Create a connection to the jabber.org server.
 XMPPConnection conn1 = new XMPPConnection("jabber.org");
  
 // Create a connection to the jabber.org server on a specific port.
@@ -175,9 +175,9 @@ XMPPConnection conn2 = new XMPPConnection("jabber.org", 5222);
  
 // Create an SSL connection to jabber.org.
 XMPPConnection connection = new SSLXMPPConnection("jabber.org");
-</code></pre></div></div>
+</code></pre>
 
-<p>如果创建了一个连接，你应该使用<code class="highlighter-rouge">XMPPConnection.login(String username, String password)</code>方法（参数为用户名和密码）进行登陆。一旦登陆成功，你就可以通过创建一个新的Chat 或GroupChat对象与其它用户聊天。</p>
+<p>如果创建了一个连接，你应该使用<code>XMPPConnection.login(String username, String password)</code>方法（参数为用户名和密码）进行登陆。一旦登陆成功，你就可以通过创建一个新的Chat 或GroupChat对象与其它用户聊天。</p>
 
 <hr />
 
@@ -223,24 +223,24 @@ XMPPConnection connection = new SSLXMPPConnection("jabber.org");
 聊天（Chat）
 聊天时在两个用户间创建了一个新的线程（使用一个线程ID）。以下程序片示例了如何如何与一个用户进行开始聊天并发送一段文本消息：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Assume we've created an XMPPConnection name "connection".
+<pre><code>// Assume we've created an XMPPConnection name "connection".
 Chat newChat = connection.createChat("jsmith@jivesoftware.com");
 newChat.sendMessage("Howdy!");
-</code></pre></div></div>
+</code></pre>
 
 <p>Chat.sendMessage(String)方法可以很方便的创建一个消息对象，方法体使用字符串类型的参数，然后发送消息。如果想在发送消息前对消息设置额外的只，可以使用Chat.createMessage() and Chat.sendMessage(Message)方法，如下例所示：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Assume we've created an XMPPConnection name "connection".
+<pre><code>// Assume we've created an XMPPConnection name "connection".
 Chat newChat = connection.createChat("jsmith@jivesoftware.com");
 Message newMessage = newChat.createMessage();
 newMessage.setBody("Howdy!");
 message.setProperty("favoriteColor", "red");
 newChat.sendMessage(newMessage);
-</code></pre></div></div>
+</code></pre>
 
 <p>使用Chat对象可以轻松的收听其它聊天者的回复。以下程序片是parrot-bot，它映射会其它用户类型的所有事情：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Assume we've created an XMPPConnection name "connection".
+<pre><code>// Assume we've created an XMPPConnection name "connection".
 Chat newChat = connection.createChat("jsmith@jivesoftware.com");
 newMessage.setBody("Hi, I'm an annoying parrot-bot! Type something back to me.");
 while (true) {
@@ -249,7 +249,7 @@ Message message = newChat.nextMessage();
 // Send back the same text the other user sent us.
 newChat.sendMessage(message.getBody());
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>以上代码使用Chat.nextMessage()方法获得下一条消息，它必需一直等待直到收到下一条消息。也有其它的方法可以等待特定的时间来接受下一条消息，或者你也可以增加一个监听器，它可以在每次收到消息时通知你。</p>
 
@@ -257,13 +257,13 @@ newChat.sendMessage(message.getBody());
 
 <p>群聊在通过一个服务器连接到聊天室，你可以向一组人发送消息或接收他们的消息。在你能接收和发送消息前，你必须使用一个昵称登陆到聊天室。以下程序段可以连接到一个聊天室并发送消息：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Assume we've created an XMPPConnection name "connection".
+<pre><code>// Assume we've created an XMPPConnection name "connection".
 GroupChat newGroupChat = connection.createGroupChat("test@jivesoftware.com");
 // Join the group chat using the nickname "jsmith".
 newGroupChat.join("jsmith");
 // Send a message to all the other people in the chat room.
 newGroupChat.sendMessage("Howdy!");
-</code></pre></div></div>
+</code></pre>
 
 <p>群聊时收发消息和私聊时工作原理大体一致。同样，也有方法可以获得聊天室里其它用户的列表。</p>
 
@@ -272,8 +272,8 @@ newGroupChat.sendMessage("Howdy!");
 <h2 id="roster-and--presence">Roster and  Presence</h2>
 <p>花名册让你很清楚的知道其它可用的用户。用户可以被分成像“朋友”、“合作者”这样的组。其它的即使通讯系统将花名册作为好友列表、联系列表等。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   **当你成功登陆服务器后，可以使用XMPPConnection.getRoster()获得Roster类的实例。**
-</code></pre></div></div>
+<pre><code>   **当你成功登陆服务器后，可以使用XMPPConnection.getRoster()获得Roster类的实例。**
+</code></pre>
 
 <p><strong>花名册条目（Roster Entries）</strong></p>
 
@@ -309,7 +309,7 @@ newGroupChat.sendMessage("Howdy!");
 
 <p>显示的信息很可能会经常改变，也有可能是花名册的条目被改变甚至被删除。为了监视花名册的改变和显示的信息，应该使用一个花名册监听器（RosterListener）。以下代码使用Roster（它可以打印出花名册中的任何变化）注册了一个RosterListener。标准的客户端应该使用相似的代码更新花名册的用户信息（roster UI）以正确显示变化的信息。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>final Roster roster = con.getRoster();
+<pre><code>final Roster roster = con.getRoster();
 roster.addRosterListener(new RosterListener() {
 public void rosterModified() {
 // Ignore event for this example.
@@ -321,7 +321,7 @@ public void presenceChanged(String user) {
 System.out.println("Presence changed: " + roster.getPresence(user));
 }
 });
-</code></pre></div></div>
+</code></pre>
 
 <p><strong>向花名册中添加条目（Adding Entries to the Roster）</strong></p>
 
@@ -350,7 +350,7 @@ XMPPConnection的实例来创建。</p>
 <p>由org.jivesoftware.smack.filter.PacketFilter接口来决定哪个特殊的信息包将被转交给信息包收集器（PacketCollector）或信息包监听器（PacketListener）。可以在org.jivesoftware.smack.filter包中找到许多预先定义的过滤器。
 以下代码阐释了如何注册一个信息包收集器（packet collector）和信息包监听器（packet listener）：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Create a packet filter to listen for new messages from a particular
+<pre><code>// Create a packet filter to listen for new messages from a particular
 // user. We use an AndFilter to combine two other filters.
 PacketFilter filter = new AndFilter(new PacketTypeFilter(Message.class),
 new FromContainsFilter("mary@jivesoftware.com"));
@@ -368,7 +368,7 @@ public void processPacket(Packet packet) {
 };
 // Register the listener.
 connection.addPacketListener(myListener, filter);
-</code></pre></div></div>
+</code></pre>
 
 <p><strong>标准信息包过滤器（Standard Packet Filters）</strong></p>
 
@@ -410,15 +410,15 @@ Smack提供的体系是堵塞自定义的XML信息包扩展和IQ包分析器的�
 
 <p>因为许多IQ类型是XMPP及其扩展部分的一部分，所以提供一个可插入的IQ分析机制。IQ Providers被程序自动的注册或通过创建在你的JAR 文件的META-INF目录下创建一个mack.providers文件。该文件是一个包含一个或多个iqProvider条目（iqProvider entries）的XML文档，如下例所示：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
-<span class="nt">&lt;smackProviders&gt;</span>
- <span class="nt">&lt;iqProvider&gt;</span>
- <span class="nt">&lt;elementName&gt;</span>query<span class="nt">&lt;/elementName&gt;</span>
- <span class="nt">&lt;namespace&gt;</span>jabber:iq:time<span class="nt">&lt;/namespace&gt;</span>
- <span class="nt">&lt;className&gt;</span>org.jivesoftware.smack.packet.Time<span class="nt">&lt;/className&gt;</span>
- <span class="nt">&lt;/iqProvider&gt;</span>
-<span class="nt">&lt;/smackProviders&gt;</span>
-</code></pre></div></div>
+<pre><code>&lt;?xml version="1.0"?&gt;
+&lt;smackProviders&gt;
+ &lt;iqProvider&gt;
+ &lt;elementName&gt;query&lt;/elementName&gt;
+ &lt;namespace&gt;jabber:iq:time&lt;/namespace&gt;
+ &lt;className&gt;org.jivesoftware.smack.packet.Time&lt;/className&gt;
+ &lt;/iqProvider&gt;
+&lt;/smackProviders&gt;
+</code></pre>
 
 <p>每一个IQ provider都和一个元素名（element name）和名字空间（ namespace）相联系。在上面的例子中，元素名是query，名字空间是abber:iq:time。如果有多重提供者条目（multiple provider entries）尝试注册并控制相同的名字空间，那么从类路径（classpath）载入的第一个条目将有优先权。</p>
 
@@ -437,15 +437,15 @@ Smack提供的体系是堵塞自定义的XML信息包扩展和IQ包分析器的�
 
 <p>信息包插件提供者（Packet extension providers）为信息包提供一个可插入的系统，这些信息包是一个IQ, message和presence packets的自定义名字空间的子元素。每一个插件提供者（extension provider）使用一个元素名（element name）和名字空间（namespace）在smack.providers文件中注册，如下例所示：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
-<span class="nt">&lt;smackProviders&gt;</span>
-<span class="nt">&lt;extensionProvider&gt;</span>
-<span class="nt">&lt;elementName&gt;</span>x<span class="nt">&lt;/elementName&gt;</span>
-<span class="nt">&lt;namespace&gt;</span>jabber:iq:event<span class="nt">&lt;/namespace&gt;</span>
-<span class="nt">&lt;className&gt;</span>org.jivesoftware.smack.packet.MessageEvent<span class="nt">&lt;/className&gt;</span>
-<span class="nt">&lt;/extensionProvider&gt;</span>
-<span class="nt">&lt;/smackProviders&gt;</span>
-</code></pre></div></div>
+<pre><code>&lt;?xml version="1.0"?&gt;
+&lt;smackProviders&gt;
+&lt;extensionProvider&gt;
+&lt;elementName&gt;x&lt;/elementName&gt;
+&lt;namespace&gt;jabber:iq:event&lt;/namespace&gt;
+&lt;className&gt;org.jivesoftware.smack.packet.MessageEvent&lt;/className&gt;
+&lt;/extensionProvider&gt;
+&lt;/smackProviders&gt;
+</code></pre>
 
 <p>如果有多重提供者条目（multiple provider entries）尝试注册并控制相同的名字空间，那么从类路径（classpath）载入的第一个条目将有优先权。</p>
 
@@ -461,24 +461,24 @@ Smack提供的体系是堵塞自定义的XML信息包扩展和IQ包分析器的�
 
 <p>所有主要对象都有属性支持，例如消息对象（Message objects）。以下代码阐释了如何设置属性：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Message message = chat.createMessage();
+<pre><code>Message message = chat.createMessage();
 // Add a Color object as a property.
 message.setProperty("favoriteColor", new Color(0, 0, 255));
 // Add an int as a property.
 message.setProperty("favoriteNumber", 4);
 chat.sendMessage(message);
-</code></pre></div></div>
+</code></pre>
 
 <p>获得这些相同的属性要用到以下的代码：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Message message = chat.nextMessage();
+<pre><code>Message message = chat.nextMessage();
 // Get a Color object property.
 Color favoriteColor = (Color)message.getProperty("favoriteColor");
 // Get an int property. Note that properties are always returned as
 // Objects, so we must cast the value to an Integer, then convert
 // it to an int.
 int favoriteNumber = ((Integer)message.getProperty("favoriteNumber")).intValue();
-</code></pre></div></div>
+</code></pre>
 
 <p><strong>将对象作为属性（Objects as Properties）</strong></p>
 
@@ -496,7 +496,7 @@ int favoriteNumber = ((Integer)message.getProperty("favoriteNumber")).intValue()
 
 <p>当前的用于发送属性的XML格式不是标准的，所以可能不会得到使用Smack的客户的认可。XML如下所示（为了更清晰添加了注释）：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;!-- All properties are in a x block. --&gt;
+<pre><code>&lt;!-- All properties are in a x block. --&gt;
 &lt;properties xmlns="http://www.jivesoftware.com/xmlns/xmpp/properties"&gt;
 &lt;!-- First, a property named "prop1" that's an integer. --&gt;
 &lt;property&gt;
@@ -510,7 +510,7 @@ int favoriteNumber = ((Integer)message.getProperty("favoriteNumber")).intValue()
 &lt;value type="java-object"&gt;adf612fna9nab&lt;/value&gt;
 &lt;property&gt;
 &lt;/properties&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>当前支持的数据类型有：integer, long, float, double, boolean, string, 和java-object。</p>
 
@@ -522,15 +522,15 @@ int favoriteNumber = ((Integer)message.getProperty("favoriteNumber")).intValue()
 
 <p>1．在创建连接前加入以下一行代码：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>XMPPConnection.DEBUG_ENABLED = true;
-</code></pre></div></div>
+<pre><code>XMPPConnection.DEBUG_ENABLED = true;
+</code></pre>
 
 <p>2．将Java的系统属性smack.debugEnabled设置为true。这一系统属性可通过下一命令行设置：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java -Dsmack.debugEnabled=true SomeApp 在你的应用程序中，如果你想明确的禁用调试模式，包括使用命令行参数，则在打开新的连接前在你的应用程序中添加以下一行代码：
+<pre><code>java -Dsmack.debugEnabled=true SomeApp 在你的应用程序中，如果你想明确的禁用调试模式，包括使用命令行参数，则在打开新的连接前在你的应用程序中添加以下一行代码：
 
 XMPPConnection.DEBUG_ENABLED = false;
-</code></pre></div></div>
+</code></pre>
 
 <p>Smack使用一下的逻辑来决定使用哪个调制控制台：</p>
 
@@ -538,8 +538,8 @@ XMPPConnection.DEBUG_ENABLED = false;
   <li>它将首先尝试使用Java系统属性smack.debuggerClass 所指定的调试类（debugger class）。如果你需要开发自己的调试器 I，可以实现SmackDebugger 接口然后使用下面的命令行设置系统属性：</li>
 </ol>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java -Dsmack.debuggerClass=my.company.com.MyDebugger SomeApp
-</code></pre></div></div>
+<pre><code>java -Dsmack.debuggerClass=my.company.com.MyDebugger SomeApp
+</code></pre>
 
 <ol>
   <li>
@@ -579,7 +579,7 @@ XMPPConnection.DEBUG_ENABLED = false;
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -689,6 +689,15 @@ XMPPConnection.DEBUG_ENABLED = false;
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1061,6 +1070,15 @@ XMPPConnection.DEBUG_ENABLED = false;
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1538,7 +1556,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1566,7 +1584,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1729,11 +1747,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>

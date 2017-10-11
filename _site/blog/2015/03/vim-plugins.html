@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="一些强大的Vim插件 - ChenBing - Lippi.OuYang(ouyanglip@gmail.com)">
+    <meta name="description" content="一些强大的Vim插件 - 陈冰 - ChenBing(chenbingios@163.com)">
     <title>
-      一些强大的Vim插件 - ChenBing
+      一些强大的Vim插件 - 陈冰
     </title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
             </span>
           </button>
           <a class="navbar-brand" href="/index.html">
-            ChenBing
+            陈冰
           </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -116,7 +116,7 @@
  		<header>
 		<h1>
 		  一些强大的Vim插件
-		  <div class="post-date"><a href="https://github.com/LippiOuYang/LippiOuYang.github.io/edit/master/_posts/2015-03-20-vim-plugins.md" target="_blank">纠错</a>&nbsp;&nbsp;
+		  <div class="post-date"><a href="https://github.com/chenbingiOS/chenbingiOS.github.io/edit/master/_posts/2015-03-20-vim-plugins.md" target="_blank">纠错</a>&nbsp;&nbsp;
 			<span class="glyphicon glyphicon-time"></span>
 			20 Mar 2015
 		  </div>
@@ -138,55 +138,55 @@
 
 <p>###安装Vundle</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-</code></pre></div></div>
+<pre><code>$ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+</code></pre>
 
 <p>配置Vundle插件：</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim">    <span class="k">set</span> nocompatible              " be iMproved<span class="p">,</span> required
-    <span class="k">filetype</span> off                  " required
-    
-    <span class="c">" set the runtime path to include Vundle and initialize</span>
-    <span class="k">set</span> rtp<span class="p">+=~</span><span class="sr">/.vim/</span>bundle/Vundle<span class="p">.</span><span class="k">vim</span>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim">    <span class="k">set</span> <span class="nb">nocompatible</span>              <span class="c">&quot; be iMproved, required</span>
+    <span class="k">filetype</span> off                  <span class="c">&quot; required</span>
+<span class="c">    </span>
+<span class="c">    &quot; set the runtime path to include Vundle and initialize</span>
+    <span class="k">set</span> <span class="nb">rtp</span><span class="p">+=~</span><span class="sr">/.vim/</span>bundle/Vundle.<span class="k">vim</span>
     <span class="k">call</span> vundle#begin<span class="p">()</span>
-    <span class="c">" alternatively, pass a path where Vundle should install plugins</span>
-    <span class="c">"call vundle#begin('~/some/path/here')</span>
-    <span class="c">"在下面添加你需要安装的插件</span>
-    <span class="c">" let Vundle manage Vundle, required</span>
-    Plugin <span class="s1">'gmarik/Vundle.vim'</span>
-    
-    <span class="c">" The following are examples of different formats supported.</span>
-    <span class="c">" Keep Plugin commands between vundle#begin/end.</span>
-    <span class="c">"在Github仓库的插件</span>
-    Plugin <span class="s1">'tpope/vim-fugitive'</span>
-    <span class="c">" http://vim-scripts.org/vim/scripts.html网站上的插件直接写插件名称</span>
-    Plugin <span class="s1">'L9'</span>
-    <span class="c">" Git plugin not hosted on GitHub</span>
-    Plugin <span class="s1">'git://git.wincent.com/command-t.git'</span>
-    <span class="c">" 本机目录下的插件</span>
-    Plugin <span class="s1">'file:///home/gmarik/path/to/plugin'</span>
-    <span class="c">" The sparkup vim script is in a subdirectory of this repo called vim.</span>
-    <span class="c">" Pass the path to set the runtimepath properly.</span>
-    Plugin <span class="s1">'rstacruz/sparkup'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'rtp'</span><span class="p">:</span> <span class="s1">'vim/'</span><span class="p">}</span>
-    <span class="c">" Avoid a name conflict with L9</span>
-    Plugin <span class="s1">'user/L9'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'newL9'</span><span class="p">}</span>
-    
-    <span class="c">" 所有的插件需要在这一行之前添加</span>
-    <span class="k">call</span> vundle#<span class="k">end</span><span class="p">()</span>            " required
-    <span class="k">filetype</span> plugin indent <span class="k">on</span>    " required
-    <span class="c">" To ignore plugin indent changes, instead use:</span>
-    <span class="c">"filetype plugin on</span>
+<span class="c">    &quot; alternatively, pass a path where Vundle should install plugins</span>
+<span class="c">    &quot;call vundle#begin(&#39;~/some/path/here&#39;)</span>
+<span class="c">    &quot;在下面添加你需要安装的插件</span>
+<span class="c">    &quot; let Vundle manage Vundle, required</span>
+    Plugin <span class="s1">&#39;gmarik/Vundle.vim&#39;</span>
+<span class="c">    </span>
+<span class="c">    &quot; The following are examples of different formats supported.</span>
+<span class="c">    &quot; Keep Plugin commands between vundle#begin/end.</span>
+<span class="c">    &quot;在Github仓库的插件</span>
+    Plugin <span class="s1">&#39;tpope/vim-fugitive&#39;</span>
+<span class="c">    &quot; http://vim-scripts.org/vim/scripts.html网站上的插件直接写插件名称</span>
+    Plugin <span class="s1">&#39;L9&#39;</span>
+<span class="c">    &quot; Git plugin not hosted on GitHub</span>
+    Plugin <span class="s1">&#39;git://git.wincent.com/command-t.git&#39;</span>
+<span class="c">    &quot; 本机目录下的插件</span>
+    Plugin <span class="s1">&#39;file:///home/gmarik/path/to/plugin&#39;</span>
+<span class="c">    &quot; The sparkup vim script is in a subdirectory of this repo called vim.</span>
+<span class="c">    &quot; Pass the path to set the runtimepath properly.</span>
+    Plugin <span class="s1">&#39;rstacruz/sparkup&#39;</span><span class="p">,</span> {<span class="s1">&#39;rtp&#39;</span>: <span class="s1">&#39;vim/&#39;</span>}
+<span class="c">    &quot; Avoid a name conflict with L9</span>
+    Plugin <span class="s1">&#39;user/L9&#39;</span><span class="p">,</span> {<span class="s1">&#39;name&#39;</span>: <span class="s1">&#39;newL9&#39;</span>}
+<span class="c">    </span>
+<span class="c">    &quot; 所有的插件需要在这一行之前添加</span>
+    <span class="k">call</span> vundle#<span class="k">end</span><span class="p">()</span>            <span class="c">&quot; required</span>
+    <span class="k">filetype</span> plugin indent <span class="k">on</span>    <span class="c">&quot; required</span>
+<span class="c">    &quot; To ignore plugin indent changes, instead use:</span>
+<span class="c">    &quot;filetype plugin on</span>
     </code></pre></figure>
 
 <p>###如何使用Vundle</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim">    <span class="c">" Brief help</span>
-    <span class="c">" :PluginList       - lists configured plugins</span>
-    <span class="c">" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span>
-    <span class="c">" :PluginSearch foo - searches for foo; append `!` to refresh local cache</span>
-    <span class="c">" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="c">    &quot; Brief help</span>
+<span class="c">    &quot; :PluginList       - lists configured plugins</span>
+<span class="c">    &quot; :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate</span>
+<span class="c">    &quot; :PluginSearch foo - searches for foo; append `!` to refresh local cache</span>
+<span class="c">    &quot; :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal</span>
 
-    <span class="c">" 使用:h vundle 显示帮助文档</span>
+<span class="c">    &quot; 使用:h vundle 显示帮助文档</span>
 
       </code></pre></figure>
 
@@ -215,89 +215,89 @@
 
 <p>###配置</p>
 
-<figure class="highlight"><pre><code class="language-vim" data-lang="vim">        <span class="c">"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!</span>
-        <span class="c">" Disable AutoComplPop.</span>
-        <span class="k">let</span> <span class="nv">g:acp_enableAtStartup</span> <span class="p">=</span> <span class="m">0</span>
-        <span class="c">" Use neocomplete.</span>
-        <span class="k">let</span> <span class="nv">g:neocomplete</span>#enable_at_startup <span class="p">=</span> <span class="m">1</span>
-        <span class="c">" Use smartcase.</span>
-        <span class="k">let</span> <span class="nv">g:neocomplete</span>#enable_smart_case <span class="p">=</span> <span class="m">1</span>
-        <span class="c">" Set minimum syntax keyword length.</span>
-        <span class="k">let</span> <span class="nv">g:neocomplete</span>#sources#syntax#min_keyword_length <span class="p">=</span> <span class="m">3</span>
-        <span class="k">let</span> <span class="nv">g:neocomplete</span>#lock_buffer_name_pattern <span class="p">=</span> <span class="s1">'\*ku\*'</span>
-        
-        <span class="c">" Define dictionary.</span>
-        <span class="k">let</span> <span class="nv">g:neocomplete</span>#sources#dictionary#dictionaries <span class="p">=</span> <span class="p">{</span>
-<span class="se">            \</span> <span class="s1">'default'</span> <span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-<span class="se">            \</span> <span class="s1">'vimshell'</span> <span class="p">:</span> $HOME<span class="p">.</span><span class="s1">'/.vimshell_hist'</span><span class="p">,</span>
-<span class="se">            \</span> <span class="s1">'scheme'</span> <span class="p">:</span> $HOME<span class="p">.</span><span class="s1">'/.gosh_completions'</span>
-<span class="se">                \</span> <span class="p">}</span>
-        
-        <span class="c">" Define keyword.</span>
-        <span class="k">if</span> <span class="p">!</span>exists<span class="p">(</span><span class="s1">'g:neocomplete#keyword_patterns'</span><span class="p">)</span>
-            <span class="k">let</span> <span class="nv">g:neocomplete</span>#keyword_patterns <span class="p">=</span> <span class="p">{}</span>
+<figure class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="c">        &quot;Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!</span>
+<span class="c">        &quot; Disable AutoComplPop.</span>
+        <span class="k">let</span> <span class="k">g</span>:acp_enableAtStartup <span class="p">=</span> <span class="m">0</span>
+<span class="c">        &quot; Use neocomplete.</span>
+        <span class="k">let</span> <span class="k">g</span>:neocomplete#enable_at_startup <span class="p">=</span> <span class="m">1</span>
+<span class="c">        &quot; Use smartcase.</span>
+        <span class="k">let</span> <span class="k">g</span>:neocomplete#enable_smart_case <span class="p">=</span> <span class="m">1</span>
+<span class="c">        &quot; Set minimum syntax keyword length.</span>
+        <span class="k">let</span> <span class="k">g</span>:neocomplete#sources#<span class="nb">syntax</span>#min_keyword_length <span class="p">=</span> <span class="m">3</span>
+        <span class="k">let</span> <span class="k">g</span>:neocomplete#lock_buffer_name_pattern <span class="p">=</span> <span class="s1">&#39;\*ku\*&#39;</span>
+<span class="c">        </span>
+<span class="c">        &quot; Define dictionary.</span>
+        <span class="k">let</span> <span class="k">g</span>:neocomplete#sources#<span class="nb">dictionary</span>#dictionaries <span class="p">=</span> {
+            \ <span class="s1">&#39;default&#39;</span> : <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            \ <span class="s1">&#39;vimshell&#39;</span> : $HOME.<span class="s1">&#39;/.vimshell_hist&#39;</span><span class="p">,</span>
+            \ <span class="s1">&#39;scheme&#39;</span> : $HOME.<span class="s1">&#39;/.gosh_completions&#39;</span>
+                \ }
+<span class="c">        </span>
+<span class="c">        &quot; Define keyword.</span>
+        <span class="k">if</span> <span class="p">!</span>exists<span class="p">(</span><span class="s1">&#39;g:neocomplete#keyword_patterns&#39;</span><span class="p">)</span>
+            <span class="k">let</span> <span class="k">g</span>:neocomplete#keyword_patterns <span class="p">=</span> {}
         <span class="k">endif</span>
-        <span class="k">let</span> <span class="nv">g:neocomplete</span>#keyword_patterns<span class="p">[</span><span class="s1">'default'</span><span class="p">]</span> <span class="p">=</span> <span class="s1">'\h\w*'</span>
-        
-        <span class="c">" Plugin key-mappings.</span>
-        inoremap <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">g</span><span class="p">&gt;</span>     neocomplete#undo_completion<span class="p">()</span>
-        inoremap <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">l</span><span class="p">&gt;</span>     neocomplete#complete_common_string<span class="p">()</span>
-        
-        <span class="c">" Recommended key-mappings.</span>
-        <span class="c">" &lt;CR&gt;: close popup and save indent.</span>
-        inoremap <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span>CR<span class="p">&gt;</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">r</span><span class="p">&gt;=&lt;</span>SID<span class="p">&gt;</span>my_cr_function<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
-        <span class="k">function</span><span class="p">!</span> <span class="nv">s:my_cr_function</span><span class="p">()</span>
-          <span class="k">return</span> neocomplete#close_popup<span class="p">()</span> <span class="p">.</span> <span class="s2">"\&lt;CR&gt;"</span>
-          <span class="c">" For no inserting &lt;CR&gt; key.</span>
-          <span class="c">"return pumvisible() ? neocomplete#close_popup() : "\&lt;CR&gt;"</span>
+        <span class="k">let</span> <span class="k">g</span>:neocomplete#keyword_patterns[<span class="s1">&#39;default&#39;</span>] <span class="p">=</span> <span class="s1">&#39;\h\w*&#39;</span>
+<span class="c">        </span>
+<span class="c">        &quot; Plugin key-mappings.</span>
+        <span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">g</span><span class="p">&gt;</span>     neocomplete#undo_completion<span class="p">()</span>
+        <span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">l</span><span class="p">&gt;</span>     neocomplete#complete_common_string<span class="p">()</span>
+<span class="c">        </span>
+<span class="c">        &quot; Recommended key-mappings.</span>
+<span class="c">        &quot; &lt;CR&gt;: close popup and save indent.</span>
+        <span class="nb">inoremap</span> <span class="p">&lt;</span><span class="k">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span>CR<span class="p">&gt;</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">r</span><span class="p">&gt;=&lt;</span>SID<span class="p">&gt;</span>my_cr_function<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+        <span class="k">function</span><span class="p">!</span> <span class="k">s</span>:my_cr_function<span class="p">()</span>
+          <span class="k">return</span> neocomplete#close_popup<span class="p">()</span> . <span class="s2">&quot;\&lt;CR&gt;&quot;</span>
+<span class="c">          &quot; For no inserting &lt;CR&gt; key.</span>
+<span class="c">          &quot;return pumvisible() ? neocomplete#close_popup() : &quot;\&lt;CR&gt;&quot;</span>
         <span class="k">endfunction</span>
-        <span class="c">" &lt;TAB&gt;: completion.</span>
-        inoremap <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>TAB<span class="p">&gt;</span>  pumvisible<span class="p">()</span> ? <span class="s2">"\&lt;C-n&gt;"</span> <span class="p">:</span> <span class="s2">"\&lt;TAB&gt;"</span>
-        <span class="c">" &lt;C-h&gt;, &lt;BS&gt;: close popup and delete backword char.</span>
-        inoremap <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">h</span><span class="p">&gt;</span> neocomplete#smart_close_popup<span class="p">().</span><span class="s2">"\&lt;C-h&gt;"</span>
-        inoremap <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>BS<span class="p">&gt;</span> neocomplete#smart_close_popup<span class="p">().</span><span class="s2">"\&lt;C-h&gt;"</span>
-        inoremap <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">y</span><span class="p">&gt;</span>  neocomplete#close_popup<span class="p">()</span>
-        inoremap <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">e</span><span class="p">&gt;</span>  neocomplete#cancel_popup<span class="p">()</span>
-        <span class="c">" Close popup by &lt;Space&gt;.</span>
-        <span class="c">"inoremap &lt;expr&gt;&lt;Space&gt; pumvisible() ? neocomplete#close_popup() : "\&lt;Space&gt;"</span>
-        
-        <span class="c">" For cursor moving in insert mode(Not recommended)</span>
-        <span class="c">"inoremap &lt;expr&gt;&lt;Left&gt;  neocomplete#close_popup() . "\&lt;Left&gt;"</span>
-        <span class="c">"inoremap &lt;expr&gt;&lt;Right&gt; neocomplete#close_popup() . "\&lt;Right&gt;"</span>
-        <span class="c">"inoremap &lt;expr&gt;&lt;Up&gt;    neocomplete#close_popup() . "\&lt;Up&gt;"</span>
-        <span class="c">"inoremap &lt;expr&gt;&lt;Down&gt;  neocomplete#close_popup() . "\&lt;Down&gt;"</span>
-        <span class="c">" Or set this.</span>
-        <span class="c">"let g:neocomplete#enable_cursor_hold_i = 1</span>
-        <span class="c">" Or set this.</span>
-        <span class="c">"let g:neocomplete#enable_insert_char_pre = 1</span>
-        
-        <span class="c">" AutoComplPop like behavior.</span>
-        <span class="c">"let g:neocomplete#enable_auto_select = 1</span>
-        
-        <span class="c">" Shell like behavior(not recommended).</span>
-        <span class="c">"set completeopt+=longest</span>
-        <span class="c">"let g:neocomplete#enable_auto_select = 1</span>
-        <span class="c">"let g:neocomplete#disable_auto_complete = 1</span>
-        <span class="c">"inoremap &lt;expr&gt;&lt;TAB&gt;  pumvisible() ? "\&lt;Down&gt;" : "\&lt;C-x&gt;\&lt;C-u&gt;"</span>
-        
-        <span class="c">" Enable omni completion.</span>
-        autocmd <span class="nb">FileType</span> css <span class="k">setlocal</span> omnifunc<span class="p">=</span>csscomplete#CompleteCSS
-        autocmd <span class="nb">FileType</span> html<span class="p">,</span>markdown <span class="k">setlocal</span> omnifunc<span class="p">=</span>htmlcomplete#CompleteTags
-        autocmd <span class="nb">FileType</span> javascript <span class="k">setlocal</span> omnifunc<span class="p">=</span>javascriptcomplete#CompleteJS
-        autocmd <span class="nb">FileType</span> python <span class="k">setlocal</span> omnifunc<span class="p">=</span>pythoncomplete#Complete
-        autocmd <span class="nb">FileType</span> xml <span class="k">setlocal</span> omnifunc<span class="p">=</span>xmlcomplete#CompleteTags
-        
-        <span class="c">" Enable heavy omni completion.</span>
-        <span class="k">if</span> <span class="p">!</span>exists<span class="p">(</span><span class="s1">'g:neocomplete#sources#omni#input_patterns'</span><span class="p">)</span>
-          <span class="k">let</span> <span class="nv">g:neocomplete</span>#sources#omni#input_patterns <span class="p">=</span> <span class="p">{}</span>
+<span class="c">        &quot; &lt;TAB&gt;: completion.</span>
+        <span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>TAB<span class="p">&gt;</span>  pumvisible<span class="p">()</span> ? <span class="s2">&quot;\&lt;C-n&gt;&quot;</span> : <span class="s2">&quot;\&lt;TAB&gt;&quot;</span>
+<span class="c">        &quot; &lt;C-h&gt;, &lt;BS&gt;: close popup and delete backword char.</span>
+        <span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">h</span><span class="p">&gt;</span> neocomplete#smart_close_popup<span class="p">()</span>.<span class="s2">&quot;\&lt;C-h&gt;&quot;</span>
+        <span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>BS<span class="p">&gt;</span> neocomplete#smart_close_popup<span class="p">()</span>.<span class="s2">&quot;\&lt;C-h&gt;&quot;</span>
+        <span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">y</span><span class="p">&gt;</span>  neocomplete#close_popup<span class="p">()</span>
+        <span class="nb">inoremap</span> <span class="p">&lt;</span>expr<span class="p">&gt;&lt;</span>C<span class="p">-</span><span class="k">e</span><span class="p">&gt;</span>  neocomplete#cancel_popup<span class="p">()</span>
+<span class="c">        &quot; Close popup by &lt;Space&gt;.</span>
+<span class="c">        &quot;inoremap &lt;expr&gt;&lt;Space&gt; pumvisible() ? neocomplete#close_popup() : &quot;\&lt;Space&gt;&quot;</span>
+<span class="c">        </span>
+<span class="c">        &quot; For cursor moving in insert mode(Not recommended)</span>
+<span class="c">        &quot;inoremap &lt;expr&gt;&lt;Left&gt;  neocomplete#close_popup() . &quot;\&lt;Left&gt;&quot;</span>
+<span class="c">        &quot;inoremap &lt;expr&gt;&lt;Right&gt; neocomplete#close_popup() . &quot;\&lt;Right&gt;&quot;</span>
+<span class="c">        &quot;inoremap &lt;expr&gt;&lt;Up&gt;    neocomplete#close_popup() . &quot;\&lt;Up&gt;&quot;</span>
+<span class="c">        &quot;inoremap &lt;expr&gt;&lt;Down&gt;  neocomplete#close_popup() . &quot;\&lt;Down&gt;&quot;</span>
+<span class="c">        &quot; Or set this.</span>
+<span class="c">        &quot;let g:neocomplete#enable_cursor_hold_i = 1</span>
+<span class="c">        &quot; Or set this.</span>
+<span class="c">        &quot;let g:neocomplete#enable_insert_char_pre = 1</span>
+<span class="c">        </span>
+<span class="c">        &quot; AutoComplPop like behavior.</span>
+<span class="c">        &quot;let g:neocomplete#enable_auto_select = 1</span>
+<span class="c">        </span>
+<span class="c">        &quot; Shell like behavior(not recommended).</span>
+<span class="c">        &quot;set completeopt+=longest</span>
+<span class="c">        &quot;let g:neocomplete#enable_auto_select = 1</span>
+<span class="c">        &quot;let g:neocomplete#disable_auto_complete = 1</span>
+<span class="c">        &quot;inoremap &lt;expr&gt;&lt;TAB&gt;  pumvisible() ? &quot;\&lt;Down&gt;&quot; : &quot;\&lt;C-x&gt;\&lt;C-u&gt;&quot;</span>
+<span class="c">        </span>
+<span class="c">        &quot; Enable omni completion.</span>
+        autocmd <span class="nb">FileType</span> css <span class="k">setlocal</span> <span class="nb">omnifunc</span><span class="p">=</span>csscomplete#CompleteCSS
+        autocmd <span class="nb">FileType</span> html<span class="p">,</span>markdown <span class="k">setlocal</span> <span class="nb">omnifunc</span><span class="p">=</span>htmlcomplete#CompleteTags
+        autocmd <span class="nb">FileType</span> javascript <span class="k">setlocal</span> <span class="nb">omnifunc</span><span class="p">=</span>javascriptcomplete#CompleteJS
+        autocmd <span class="nb">FileType</span> python <span class="k">setlocal</span> <span class="nb">omnifunc</span><span class="p">=</span>pythoncomplete#Complete
+        autocmd <span class="nb">FileType</span> xml <span class="k">setlocal</span> <span class="nb">omnifunc</span><span class="p">=</span>xmlcomplete#CompleteTags
+<span class="c">        </span>
+<span class="c">        &quot; Enable heavy omni completion.</span>
+        <span class="k">if</span> <span class="p">!</span>exists<span class="p">(</span><span class="s1">&#39;g:neocomplete#sources#omni#input_patterns&#39;</span><span class="p">)</span>
+          <span class="k">let</span> <span class="k">g</span>:neocomplete#sources#omni#input_patterns <span class="p">=</span> {}
         <span class="k">endif</span>
-        <span class="c">"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]-&gt;\h\w*\|\h\w*::'</span>
-        <span class="c">"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|-&gt;\)'</span>
-        <span class="c">"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|-&gt;\)\|\h\w*::'</span>
-        
-        <span class="c">" For perlomni.vim setting.</span>
-        <span class="c">" https://github.com/c9s/perlomni.vim</span>
-        <span class="k">let</span> <span class="nv">g:neocomplete</span>#sources#omni#input_patterns<span class="p">.</span>perl <span class="p">=</span> <span class="s1">'\h\w*-&gt;\h\w*\|\h\w*::'</span>
+<span class="c">        &quot;let g:neocomplete#sources#omni#input_patterns.php = &#39;[^. \t]-&gt;\h\w*\|\h\w*::&#39;</span>
+<span class="c">        &quot;let g:neocomplete#sources#omni#input_patterns.c = &#39;[^.[:digit:] *\t]\%(\.\|-&gt;\)&#39;</span>
+<span class="c">        &quot;let g:neocomplete#sources#omni#input_patterns.cpp = &#39;[^.[:digit:] *\t]\%(\.\|-&gt;\)\|\h\w*::&#39;</span>
+<span class="c">        </span>
+<span class="c">        &quot; For perlomni.vim setting.</span>
+<span class="c">        &quot; https://github.com/c9s/perlomni.vim</span>
+        <span class="k">let</span> <span class="k">g</span>:neocomplete#sources#omni#input_patterns.perl <span class="p">=</span> <span class="s1">&#39;\h\w*-&gt;\h\w*\|\h\w*::&#39;</span>
          </code></pre></figure>
 
 <p>3.<em>CtrlP插件</em> <a href="https://github.com/kien/ctrlp.vim">github主页</a></p>
@@ -306,7 +306,7 @@
 
 <p>基本操作：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>在Vim中按下Ctrl+p打开Ctrlp插件
+<pre><code>在Vim中按下Ctrl+p打开Ctrlp插件
 &lt;c-d&gt;在路径搜索和文件名搜索之间切换
  &lt;c-r&gt;在字符串搜索和正则表达式搜索中切换
 &lt;c-f&gt;和&lt;c-b&gt;forward和backward，搜索结果在不同搜索模式中切换
@@ -318,7 +318,7 @@
 &lt;c-y&gt;创建新的文件和目录
 &lt;c-z&gt;标记将要打开的文件
 &lt;c-o&gt;打开被&lt;c-z&gt;标记的文件
-</code></pre></div></div>
+</code></pre>
 
 <p>4<em>surround</em> <a href="https://github.com/tpope/vim-surround">github主页</a></p>
 
@@ -327,11 +327,11 @@
 <p>使用surround，你将很容易添加和修改配对符号，比如：</p>
 
 <figure class="highlight"><pre><code class="language-vim" data-lang="vim">	     Old text                  Command		 New text <span class="p">~</span>
-      <span class="c">"Hello *world!"				 ds"         Hello world!</span>
-      <span class="p">[</span><span class="m">123</span><span class="p">+</span><span class="m">4</span>*<span class="m">56</span><span class="p">]</span><span class="sr">/2					cs])        (123+456)/</span><span class="m">2</span>
-      <span class="c">"Look ma, I'm *HTML!"			cs"&lt;q&gt;      &lt;q&gt;Look ma, I'm HTML!&lt;/q&gt;</span>
-      <span class="k">if</span> *<span class="k">x</span><span class="p">&gt;</span><span class="m">3</span> <span class="p">{</span>						ysW<span class="p">(</span>        <span class="k">if</span> <span class="p">(</span> <span class="k">x</span><span class="p">&gt;</span><span class="m">3</span> <span class="p">)</span> <span class="p">{</span>
-      my $str <span class="p">=</span> *whee<span class="p">!</span>;				vlllls<span class="s1">'     my $str = '</span>whee<span class="p">!</span>';
+<span class="c">      &quot;Hello *world!&quot;				 ds&quot;         Hello world!</span>
+      [<span class="m">123</span><span class="p">+</span><span class="m">4</span>*<span class="m">56</span>]<span class="sr">/2					cs])        (123+456)/</span><span class="m">2</span>
+<span class="c">      &quot;Look ma, I&#39;m *HTML!&quot;			cs&quot;&lt;q&gt;      &lt;q&gt;Look ma, I&#39;m HTML!&lt;/q&gt;</span>
+      <span class="k">if</span> *<span class="k">x</span><span class="p">&gt;</span><span class="m">3</span> {						ysW<span class="p">(</span>        <span class="k">if</span> <span class="p">(</span> <span class="k">x</span><span class="p">&gt;</span><span class="m">3</span> <span class="p">)</span> {
+      my $str <span class="p">=</span> *whee<span class="p">!</span>;				vlllls<span class="s1">&#39;     my $str = &#39;</span>whee<span class="p">!</span>&#39;;
       <span class="p">&lt;</span>div<span class="p">&gt;</span>Yo<span class="p">!</span>*<span class="p">&lt;</span>/div<span class="p">&gt;</span>				dst         Yo<span class="p">!</span>
       <span class="p">&lt;</span>div<span class="p">&gt;</span>Yo<span class="p">!</span>*<span class="p">&lt;</span><span class="sr">/div&gt;				cst&lt;p&gt;      &lt;p&gt;Yo!&lt;/</span><span class="k">p</span><span class="p">&gt;</span>
           </code></pre></figure>
@@ -352,15 +352,15 @@
     
     Visual <span class="k">mode</span>
     <span class="p">-----------</span>
-    s   <span class="p">-</span> <span class="k">in</span> visual <span class="k">mode</span><span class="p">,</span> add <span class="k">a</span> surrounding
+    <span class="k">s</span>   <span class="p">-</span> <span class="k">in</span> visual <span class="k">mode</span><span class="p">,</span> add <span class="k">a</span> surrounding
     S   <span class="p">-</span> <span class="k">in</span> visual <span class="k">mode</span><span class="p">,</span> add <span class="k">a</span> surrounding but place text <span class="k">on</span> <span class="k">new</span> line <span class="p">+</span> indent it
     
     Insert <span class="k">mode</span>
     <span class="p">-----------</span>
-    <span class="p">&lt;</span>CTRL<span class="p">-</span>s<span class="p">&gt;</span> <span class="p">-</span> <span class="k">in</span> insert <span class="k">mode</span><span class="p">,</span> add <span class="k">a</span> surrounding
-    <span class="p">&lt;</span>CTRL<span class="p">-</span>s<span class="p">&gt;&lt;</span>CTRL<span class="p">-</span>s<span class="p">&gt;</span> <span class="p">-</span> <span class="k">in</span> insert <span class="k">mode</span><span class="p">,</span> add <span class="k">a</span> <span class="k">new</span> line <span class="p">+</span> surrounding <span class="p">+</span> indent
-    <span class="p">&lt;</span>CTRL<span class="p">-</span><span class="k">g</span><span class="p">&gt;</span>s <span class="p">-</span> same <span class="k">as</span> <span class="p">&lt;</span>CTRL<span class="p">-</span>s<span class="p">&gt;</span>
-    <span class="p">&lt;</span>CTRL<span class="p">-</span><span class="k">g</span><span class="p">&gt;</span>S <span class="p">-</span> same <span class="k">as</span> <span class="p">&lt;</span>CTRL<span class="p">-</span>s<span class="p">&gt;&lt;</span>CTRL<span class="p">-</span>s<span class="p">&gt;</span>
+    <span class="p">&lt;</span>CTRL<span class="p">-</span><span class="k">s</span><span class="p">&gt;</span> <span class="p">-</span> <span class="k">in</span> insert <span class="k">mode</span><span class="p">,</span> add <span class="k">a</span> surrounding
+    <span class="p">&lt;</span>CTRL<span class="p">-</span><span class="k">s</span><span class="p">&gt;&lt;</span>CTRL<span class="p">-</span><span class="k">s</span><span class="p">&gt;</span> <span class="p">-</span> <span class="k">in</span> insert <span class="k">mode</span><span class="p">,</span> add <span class="k">a</span> <span class="k">new</span> line <span class="p">+</span> surrounding <span class="p">+</span> indent
+    <span class="p">&lt;</span>CTRL<span class="p">-</span><span class="k">g</span><span class="p">&gt;</span><span class="k">s</span> <span class="p">-</span> same <span class="k">as</span> <span class="p">&lt;</span>CTRL<span class="p">-</span><span class="k">s</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span>CTRL<span class="p">-</span><span class="k">g</span><span class="p">&gt;</span>S <span class="p">-</span> same <span class="k">as</span> <span class="p">&lt;</span>CTRL<span class="p">-</span><span class="k">s</span><span class="p">&gt;&lt;</span>CTRL<span class="p">-</span><span class="k">s</span><span class="p">&gt;</span>
     </code></pre></figure>
 
 <p>5.<em>syntastic</em>  <a href="https://github.com/scrooloose/syntastic#installation">githun主页</a></p>
@@ -402,10 +402,10 @@
 <p>在VIM的命令行中，%符号具有特殊的含义：他将扩展为当前文件的全路径。可以使用该命令来运行使用文件名作为参数的任意git命令，从而使得命令作用于当前的文件。但是fugitive也提供了一些便利的方法，其中的一些总结如下：</p>
 
 <figure class="highlight"><pre><code class="language-vim" data-lang="vim">      git	             fugitive	      action
-    <span class="p">:</span>Git add %	        <span class="p">:</span>Gwrite  	     Stage the current <span class="k">file</span> <span class="k">to</span> the index
-    <span class="p">:</span>Git checkout %	    <span class="p">:</span>Gread	         Revert current <span class="k">file</span> <span class="k">to</span> last checked <span class="k">in</span> version
-    <span class="p">:</span>Git rm %	        <span class="p">:</span>Gremove	     Delete the current <span class="k">file</span> and the corresponding Vim buffer
-    <span class="p">:</span>Git mv %	        <span class="p">:</span>Gmove	         Rename the current <span class="k">file</span> and the corresponding Vim buffer
+    :Git add %	        :Gwrite  	     Stage the current <span class="k">file</span> <span class="k">to</span> the <span class="k">index</span>
+    :Git checkout %	    :Gread	         Revert current <span class="k">file</span> <span class="k">to</span> last checked <span class="k">in</span> <span class="k">version</span>
+    :Git rm %	        :Gremove	     Delete the current <span class="k">file</span> and the corresponding Vim buffer
+    :Git <span class="k">mv</span> %	        :Gmove	         Rename the current <span class="k">file</span> and the corresponding Vim buffer
      </code></pre></figure>
 
 
@@ -413,7 +413,7 @@
 		<hr>
 	<br/>
         <p>
-          本作品由 <a href="mailto:ouyanglip@gmail.com">Lippi.OuYang</a> 创作，采用
+          本作品由 <a href="mailto:chenbingios@163.com">ChenBing</a> 创作，采用
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="查看协议详细信息" target="_blank">CC BY-NC-SA 3.0 许可协议</a>
           进行许可。
         </p>
@@ -523,6 +523,15 @@
                   <a href="/blog/2014/11/java-concurrent-collections.html" class="post-list-item">
                     <h2>java同步容器与并发容器</h2>
                     <span class="date">Nov 8, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/java-nio.html" class="post-list-item">
+                    <h2>java中NIO与传统IO</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -895,6 +904,15 @@
                   <a href="/blog/2014/11/web-server.html" class="post-list-item">
                     <h2>也谈如何构建高性能服务端程序</h2>
                     <span class="date">Nov 19, 2014</span>
+                  </a>
+		</li>
+                
+              
+                
+		<li>
+                  <a href="/blog/2014/11/android-push.html" class="post-list-item">
+                    <h2>Android消息推送方式</h2>
+                    <span class="date">Nov 1, 2014</span>
                   </a>
 		</li>
                 
@@ -1372,7 +1390,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
       </a>
       
         <a href="javascript:;" class="categories-list-item" cate="java">
-          java <span class="my-badge">17</span>
+          java <span class="my-badge">18</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="c">
@@ -1400,7 +1418,7 @@ var duoshuoQuery = {short_name:"lippiouyang"};
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="web">
-          web <span class="my-badge">9</span>
+          web <span class="my-badge">10</span>
         </a>
       
         <a href="javascript:;" class="categories-list-item" cate="book">
@@ -1563,11 +1581,11 @@ var duoshuoQuery = {short_name:"lippiouyang"};
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a href="mailto:ouyanglip@gmail.com"><span class="glyphicon glyphicon-envelope"></span> ouyanglip@gmail.com</a>
+        <a href="mailto:chenbingios@163.com"><span class="glyphicon glyphicon-envelope"></span> chenbingios@163.com</a>
         <span class="point"> · </span>
         
           
-          <a href="https://github.com/LippiOuYang">
+          <a href="https://github.com/chenbingiOS">
             <span class="icon">
               <svg viewBox="0 0 16 16">
                 <path fill="#aaa" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
